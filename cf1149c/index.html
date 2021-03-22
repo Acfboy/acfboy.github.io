@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 CF1149C Tree Generator™ | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1616455298649">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1616455298649" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://img.cc0.cn/pixabay/2019102219290732571.jpg!cc0.cn.jpg')">
+            </div>
+          
+          <h2 class="post-title">题解 CF1149C Tree Generator™</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-03-23</span>
+            
+          </div>
+          <div class="post-content">
+            <p><s>这不但打了 TM 而且还是世界知名商标，可能受法律保护哦</s></p>
+<p>一道非常惊喜的线段树题。</p>
+<!-- more -->
+<blockquote>
+<p>给定一颗树, 用 <code>(</code> 表示下一层， <code>)</code> 表示上一层，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span> 次询问，每次交换两个括号，求每次的直径。</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/6Tpzff"><img src="https://z3.ax1x.com/2021/03/22/6Tpzff.png" alt="6Tpzff.png" loading="lazy"></a></figure>
+</blockquote>
+<p>从上面的图我们可以得到一个结论：</p>
+<p><strong>链是由形如 <code>))))(((((</code> 的字符串构成的</strong></p>
+<p>因为肯定是退上来再深入到另一边，而且链只能一上一下，所以原题目其实等价于要求维护去掉所有匹配括号后长度最长的子串。</p>
+<p>令人惊喜的是，可以用线段树来维护。</p>
+<ol>
+<li>
+<p>将在 <code>(</code> 的权设为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>， <code>)</code> 设为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>, 这样一段区间内数字的和就是多出来的左括号个数，而如果是右括号多出来，则这个值时负的，所以统计个数只需要用连续且靠后的一段减前面一段最大就可以了。</p>
+</li>
+<li>
+<p>但这个东西直接用线段树维护似乎没有办法做，所以多记录一些信息来尝试合并，记录这两个区间一边顶到头的非常好合并，只需要一边的和再 加/减 另一边顶到这一边的答案就可以了。</p>
+</li>
+<li>
+<p>所以考虑如何用一边顶到头的答案合并除最后的答案。</p>
+<ol>
+<li>可能是左边或右边原有的答案</li>
+<li>可能是右边最大前缀和加上左边顶到右端点的答案</li>
+<li>可能是右边顶到左端点的答案减去左边最小的后缀</li>
+</ol>
+</li>
+</ol>
+<p><code>pushup</code> 函数如下</p>
+<pre><code class="language-cpp">void pushup(int p) {
+	tree[p].sum = tree[p+p].sum + tree[p+p+1].sum;
+	tree[p].lmax = std::max(tree[p+p].lmax, tree[p+p].sum + tree[p+p+1].lmax);
+	tree[p].rmax = std::max(tree[p+p+1].rmax, tree[p+p+1].sum + tree[p+p].rmax);
+	tree[p].lmin = std::min(tree[p+p].lmin, tree[p+p].sum + tree[p+p+1].lmin);
+	tree[p].rmin = std::min(tree[p+p+1].rmin, tree[p+p+1].sum + tree[p+p].rmin);
+	
+	tree[p].max1 = std::max(tree[p+p].max1, std::max(tree[p+p+1].max1 - tree[p+p].sum,
+				   tree[p+p+1].lmax + tree[p+p].rmax - (tree[p+p].sum - tree[p+p].rmax)));
+	tree[p].max2 = std::max(tree[p+p+1].max2, std::max(tree[p+p+1].sum + tree[p+p].max2,
+				   tree[p+p+1].sum - tree[p+p+1].lmin - (tree[p+p+1].lmin + tree[p+p].rmin)));
+	tree[p].ans = std::max(std::max(tree[p+p].ans, tree[p+p+1].ans), std::max(
+				  tree[p+p].max2 + tree[p+p+1].lmax, tree[p+p+1].max1 - tree[p+p].rmin));			   
+}
+</code></pre>
+<p>重点解释 <code>max1</code> 的合并， <code>max2</code> 同理</p>
+<pre><code class="language-cpp">tree[p].max1 = std::max(tree[p+p].max1,   // 可能是左边顶到左端点的答案
+	           std::max(tree[p+p+1].max1 - tree[p+p].sum, // 左边全部被当成 ) 的一段，右边靠左最大的减去左边的和
+			            tree[p+p+1].lmax + tree[p+p].rmax - (tree[p+p].sum - tree[p+p].rmax)));
+		       // 中间一段最大的接起来减去左边剩下的，即 ( 的一段跨越了分界线
+</code></pre>
+<p>如果不是把匹配的都去掉，答案一定会更小，会被更大的答案覆盖，所以不需要特殊判断。</p>
+<p>修改和建树都比较常规。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/cf709/">
+              <h3 class="post-title">
+                下一篇：CF Round 709(div 2) 游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
