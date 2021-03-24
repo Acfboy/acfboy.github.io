@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的小站</title>
-    <updated>2021-03-23T02:20:43.931Z</updated>
+    <updated>2021-03-24T00:57:18.336Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,150 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 [SDOI2013]城市规划]]></title>
+        <id>https://acfboy.pw/sdoi2013city/</id>
+        <link href="https://acfboy.pw/sdoi2013city/">
+        </link>
+        <updated>2021-03-24T00:53:52.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
+<p>因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 非常的小，很容易维护，所以可以按行建立一颗线段树，维护其中联通块的数量。处理联通块的时候用并查集记录上下两个边界的联通状况以及是否有建筑物。</p>
+<p>难点在于如何合并，即 <code>pushup</code>。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
+<p>因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 非常的小，很容易维护，所以可以按行建立一颗线段树，维护其中联通块的数量。处理联通块的时候用并查集记录上下两个边界的联通状况以及是否有建筑物。</p>
+<p>难点在于如何合并，即 <code>pushup</code>。</p>
+<!-- more -->
+<ol>
+<li>将两边块的 <code>ans</code> 合起来。</li>
+<li>将新的左端点设为左边的左端点，右端点设为右边的右端点。</li>
+<li>现在合并并查集
+<ol>
+<li>左边的并查集复制一份，存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1, 2m]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span>, 将右边复制一份，存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>2</mn><mi>m</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mn>4</mn><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[2m+1, 4m]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">2</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span>。</li>
+<li>枚举两块交界处的，若可以合并，则将其合并，若两边都有建筑物，则 <code>ans--</code>。</li>
+<li>经过上面的操作，并查集被合并成了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>4</mn><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,4m]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span> 的并查集，但是我们只要存上面的边界和下面的边界的联通性。</li>
+<li>建立一个新数组，将上下边界的 <code>fa</code> 都连向它们。</li>
+<li>然后将每一个的 <code>fa</code> 都改为它的 <code>fa</code> 所指向的。</li>
+<li>经过这些操作，所有点集合的根都在上边界和下边界了，可以直接返回。</li>
+</ol>
+</li>
+</ol>
+<p>其实思路清晰的话也没有很多难写的细节，代码也不至于长达 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>200</mn></mrow><annotation encoding="application/x-tex">200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 行。</p>
+<p>代码如下。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+const int N = 100005, M = 8;
+int n, m, q, l, r, x, y, tmpfa[M*4], tmpflag[M*4], v[M*4];
+char opt[5], z[5], map[N][M];
+struct node {
+	int l, r, ans;
+	int fa[2*M], flag[2*M];
+	node() {
+		for(int i = 1; i &lt;= m; i++) fa[i] = fa[i+i] = 0, flag[i] = 0; 
+	}
+	void init() {
+		ans = 0;
+		for(int i = 1; i &lt;= m; i++) fa[i] = fa[i+m] = i;
+		for(int i = 1; i &lt;= m; i++) flag[i] = (map[l][i] == 'O') ? 1 : 0;
+	}
+	int find(int x) {
+		if(fa[x] != x) fa[x] = find(fa[x]);
+		return fa[x]; 
+	}
+	void merge(int x, int y) {
+		int fx = find(x), fy = find(y);
+		if(fx == fy) return;
+		fa[fy] = fx;
+		flag[fx] |= flag[fy];
+	}
+	void makeNode() { // 构造线段树的叶子
+		init();
+		for(int i = 1; i &lt; m; i++) {
+			char now = map[l][i], next = map[l][i+1];
+			if(now != '|' &amp;&amp; now != '.' &amp;&amp; next != '|' &amp;&amp; next != '.') merge(i, i+1);
+		}
+		for(int i = 1; i &lt;= m; i++) find(i+m);
+		for(int i = 1; i &lt;= m; i++) 
+			if(fa[i] == i &amp;&amp; flag[i]) ans++;			
+	}
+} tree[N &lt;&lt; 2];
+int findTmp(int x) {
+	if(x != tmpfa[x]) tmpfa[x] = findTmp(tmpfa[x]);
+	return tmpfa[x];
+}
+node mergeAns(node x, node y) { // 合并过程上面写得很详细了
+	node an;
+	an.l = x.l, an.r = y.r;
+	an.ans = x.ans + y.ans;
+	for(int i = 1; i &lt;= 2*m; i++) tmpfa[i] = x.fa[i], tmpflag[i] = x.flag[i];
+	for(int i = 1; i &lt;= 2*m; i++) tmpfa[i+2*m] = y.fa[i]+2*m, tmpflag[i+2*m] = y.flag[i];
+	for(int i = 1; i &lt;= m; i++) {
+		char lval = map[x.r][i], rval = map[y.l][i];
+		if(lval != '.' &amp;&amp; lval != '-' &amp;&amp; rval != '.' &amp;&amp; rval != '-') {
+			int fx = findTmp(i+m), fy = findTmp(i+2*m);
+			if(fx == fy) continue;
+			if(tmpflag[fx] &amp;&amp; tmpflag[fy]) an.ans--;
+			tmpfa[fy] = fx;
+			tmpflag[fx] |= tmpflag[fy];
+		}
+	}
+	memset(v, 0, sizeof v);
+	for(int i = 1; i &lt;= m; i++) {
+		int fi = findTmp(i);
+		if(!v[fi]) v[fi] = i, an.flag[i] = tmpflag[fi];
+		fi = findTmp(i+3*m);
+		if(!v[fi]) v[fi] = i+m, an.flag[i+m] = tmpflag[fi];
+	}
+	for(int i = 1; i &lt;= m; i++) an.fa[i] = v[findTmp(i)], an.fa[i+m] = v[findTmp(i+3*m)];
+	return an;
+}
+void pushUp(int p) { tree[p] = mergeAns(tree[p+p], tree[p+p+1]); }
+void build(int p = 1, int l = 1, int r = n) {
+	tree[p].l = l, tree[p].r = r;
+	if(l == r) return tree[p].makeNode();
+	int mid = l + (r-l) / 2;
+	build(p+p, l, mid);
+	build(p+p+1, mid+1, r);
+	pushUp(p);
+}
+void Change(int p, int x, int y, char z) {
+	if(tree[p].l == tree[p].r) {
+		map[tree[p].l][y] = z;
+		return tree[p].makeNode(); // 修改的时候重新构造即可
+	}
+	int mid = tree[p].l + (tree[p].r - tree[p].l) / 2;
+	if(x &lt;= mid) Change(p+p, x, y, z);
+	else Change(p+p+1, x, y, z);
+	pushUp(p);
+}
+node Query(int p, int l, int r) {
+	if(l == tree[p].l &amp;&amp; r == tree[p].r) return tree[p];
+	int mid = tree[p].l + (tree[p].r - tree[p].l) / 2;
+	if(l &gt; mid) return Query(p+p+1, l, r);
+	else if(r &lt;= mid) return Query(p+p, l, r);
+	else return mergeAns(Query(p+p, l, mid), Query(p+p+1, mid+1, r));
+}
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= n; i++)
+		scanf(&quot;%s&quot;, map[i]+1);
+	build();
+	scanf(&quot;%d&quot;, &amp;q);
+	while(q--) {
+		scanf(&quot;%s&quot;, opt);
+		if(opt[0] == 'Q') {
+			scanf(&quot;%d%d&quot;, &amp;l, &amp;r);
+			printf(&quot;%d\n&quot;, Query(1, l, r).ans);
+		}
+		else {
+			scanf(&quot;%d%d%s&quot;, &amp;x, &amp;y, z);
+			Change(1, x, y, z[0]);
+		}
+	}
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 CF1149C Tree Generator™]]></title>
         <id>https://acfboy.pw/cf1149c/</id>
