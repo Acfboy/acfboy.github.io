@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的小站</title>
-    <updated>2021-03-24T05:30:52.229Z</updated>
+    <updated>2021-03-24T07:46:48.678Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,58 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 ABC149E Handshake]]></title>
+        <id>https://acfboy.pw/abc149e/</id>
+        <link href="https://acfboy.pw/abc149e/">
+        </link>
+        <updated>2021-03-24T07:43:37.000Z</updated>
+        <summary type="html"><![CDATA[<p>模拟赛……一个悲伤的故事，切了俩 ABC 的 F, 结果被这一个绿色的 E 给卡死了，必须写题解记录一下。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>模拟赛……一个悲伤的故事，切了俩 ABC 的 F, 结果被这一个绿色的 E 给卡死了，必须写题解记录一下。</p>
+<!-- more -->
+<blockquote>
+<p>给定一个数组 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>, 求所有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub><mo>+</mo><msub><mi>A</mi><mi>j</mi></msub><mo>(</mo><mn>1</mn><mo>≤</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>≤</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">A_i + A_j(1 \le i,j \le n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 大的和</p>
+</blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 可以取到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> 直接模拟显然不可做。</p>
+<p>比赛的时候一直在模拟那种两个优先队列求两个数组前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 大的做法，希望发现一线性质，然而未果。比赛最后几分钟搞了一个假的线性做法和一个假的证明，然后调了一中午显然错的做法。</p>
+<p>错的做法是排个序，把和变成一张表，然后从右下角开始一层层向左上做，理由是右下一定比左上好。但样例就是反例，可以平着多伸出去一点的。</p>
+<p><strong>来讲正确的做法。</strong></p>
+<p>如果确定了一个数，使两个数的和要比它大，那么可以枚举一个，另一个显然具有单调性，可以二分。利用前缀和可以确定所有满足这个的和。满足要求的数对数量也容易确定。</p>
+<p>所以可以二分出恰是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 大的数对和，然后用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>lg</mi><mo>⁡</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \lg n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">l<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span> 的时间记录和判断。</p>
+<p>需要处理的细节：可能不是恰好取到，因为同样大小的可能会有多个，所以最后要减去多余的。</p>
+<p>代码如下。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define int long long
+const int N = 200005;
+int n, m, a[N], sum[N], res, l, r, ans, cnt;
+bool check(int x) {
+    cnt = 0, res = 0;
+    for (int i = 1; i &lt;= n; i++) {
+        int pos = std::lower_bound(a + 1, a + n + 1, x - a[i]) - a;
+        cnt += n - pos + 1;
+        res += sum[n] - sum[pos - 1] + a[i] * (n - pos + 1);
+    }
+    return cnt &gt;= m;
+}
+signed main() {
+    scanf(&quot;%lld%lld&quot;, &amp;n, &amp;m);
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]);
+    std::sort(a + 1, a + n + 1);
+    for (int i = 1; i &lt;= n; i++) sum[i] = sum[i - 1] + a[i];
+    l = 0, r = 200005;
+    while (l &lt;= r) {
+        int mid = (l + r) &gt;&gt; 1;
+        if (check(mid)) ans = mid, l = mid + 1;
+        else r = mid - 1;
+    }
+    printf(&quot;%lld\n&quot;, res - (cnt - m) * ans);
+    return 0;
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 [SDOI2013]城市规划]]></title>
         <id>https://acfboy.pw/sdoi2013city/</id>
