@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的小站</title>
-    <updated>2021-03-25T00:49:47.057Z</updated>
+    <updated>2021-03-25T10:53:18.754Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,100 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 [洛谷 4314]CPU监控]]></title>
+        <id>https://acfboy.pw/cpujiankong/</id>
+        <link href="https://acfboy.pw/cpujiankong/">
+        </link>
+        <updated>2021-03-25T10:42:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>又是好不容易才 <s>疑似</s> 明白的神仙作业题，考验对懒惰标记的理解，好题目。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>又是好不容易才 <s>疑似</s> 明白的神仙作业题，考验对懒惰标记的理解，好题目。</p>
+<!-- more -->
+<blockquote>
+<p>给定一个序列，要求维护如下操作</p>
+<ol>
+<li>查询区间最大值</li>
+<li>查询区间历史最大值</li>
+<li>将一段加上一个数</li>
+<li>将一段数都变成一个</li>
+</ol>
+</blockquote>
+<p>先考虑如何用 lazy tag 处理加上一个数和变成一个数的问题。</p>
+<p>可以发现，使用了一次覆盖操作以后所有加的操作都可以用覆盖来代替了，这样就可以记录两个 tag 来分别描述加和覆盖而不会出现问题。</p>
+<p>然后考虑如何记录区间最大值和区间历史最大值。</p>
+<p>如果直接处理，这个点的子子孙孙都没有办法得到及时的更新，无法获得正确的区间最大值答案。为了解决这个问题，我们可以再开两个 lazy tag， 来记录区间历史最大覆盖和区间历史最大加，像其它的 lazy tag 一样下放，这样确保被更新区间的子子孙孙都可以得到正确的区间历史最大值。</p>
+<p>难点主要在于下放标记的操作。</p>
+<p>将往一个点上加上加标记定义为函数 <code>plus</code>, 加上覆盖标记定义为 <code>cover</code>, 这两个函数都需要两个参数，一个是要加上的现在标记，一个是要用来更新历史的标记。</p>
+<p>注意，是更新历史的标记，而不是历史标记。</p>
+<p>如用来更新的 <code>Change</code> 函数应该是这么写的。</p>
+<pre><code class="language-cpp">void Change(int p, int l, int r, int x, int opt) {
+	if(l == t[p].l &amp;&amp; r == t[p].r) {
+		if(opt == ADD) t[p].plus(x, x);
+		else t[p].cover(x, x);
+		return;
+	}
+	pushDown(p);
+	int mid =  t[p].l + (t[p].r - t[p].l) / 2;
+	if(l &gt; mid) Change(p+p+1, l, r, x, opt);
+	else if(r &lt;= mid) Change(p+p, l, r, x, opt);
+	else Change(p+p, l, mid, x, opt), Change(p+p+1, mid+1, r, x, opt);
+	pushUp(p);
+}
+</code></pre>
+<p>注意到</p>
+<pre><code class="language-cpp">if(opt == ADD) t[p].plus(x, x);
+else t[p].cover(x, x);
+</code></pre>
+<p>如果写成 <code>t[p].plus(x, t[p].hadd)</code> 就会 WA 成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>40</mn></mrow><annotation encoding="application/x-tex">40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">0</span></span></span></span> 分，因为没有更新历史最值的标记。我开始一直不理解这个问题。</p>
+<p>现在来写 <code>pushDown</code></p>
+<pre><code class="language-cpp">void pushDown(int p) {
+	t[p+p].plus(t[p].add, t[p].hadd);
+	t[p+p+1].plus(t[p].add, t[p].hadd);
+	t[p].add = t[p].hadd = 0;
+	if(t[p].isCov) {
+		t[p+p].cover(t[p].cov, t[p].hcov);
+		t[p+p+1].cover(t[p].cov, t[p].hcov);
+		t[p].isCov = t[p].cov = t[p].hcov = 0;
+	}
+}
+</code></pre>
+<p>那这里为什么写的是 <code>t[p].hadd</code> 呢？因为这里是用父亲的标记取更新孩子的标记，相当于把这个 lazy tag 下放，注意记得清空标记。</p>
+<p>理解了上面的内容，就比较容易写出这个结构体了。不理解的话看了这个结构体的实现也就理解了。</p>
+<pre><code class="language-cpp">struct twt { 
+	int cov, l, r, add, max, hmax, hcov, hadd;
+	bool isCov;
+	twt() {
+		add = cov = hcov = isCov = 0;
+		max = hmax = -INF;
+	}
+	void cover(int d, int hd) {
+		if(isCov) hcov = std::max(hcov, hd);
+		else {
+			isCov = true;
+			hcov = hd;
+		}
+		hmax = std::max(hmax, hd);
+		cov = max = d;
+		add = 0;
+	}
+	void addd(int d, int hd) {
+		hadd = std::max(hadd, add+hd);
+		hmax = std::max(hmax, max+hd);
+		add += d, max += d;
+	}
+	void plus(int d, int hd) {
+		if(isCov) cover(cov+d, cov+hd);
+		else addd(d, hd);
+	}
+} t[N&lt;&lt;2];
+</code></pre>
+<p><code>plus</code> 中是判断是直接加上还是用覆盖来代替加法，<code>addd</code> 是真正的加入加标记，注意我们更新 <code>hadd</code>、<code>hmax</code>、<code>hcov</code> 用的都是 <code>hd</code>, 而更新 <code>cov</code>, <code>max</code> 和 <code>add</code> 用的都是 <code>d</code> 因为一个是在加入历史最值的标记，另一个是维护现在的标记。</p>
+<p><s>说句闲话， <code>twt</code> 指的不是 <a href="https://twt-tec.github.io/">谭炜谭信息科技</a>， 而是我的名字之一 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><menclose notation="horizontalstrike"><mstyle mathcolor="red"><mtext mathvariant="sans-serif">T</mtext><mstyle mathcolor="black"><mtext mathvariant="sans-serif">heman</mtext><mstyle mathcolor="red"><mtext mathvariant="sans-serif">W</mtext><mstyle mathcolor="black"><mtext mathvariant="sans-serif">ithgoldwhoalwayshoutsandshousasasaien</mtext><mstyle mathcolor="red"><mtext mathvariant="sans-serif">T</mtext></mstyle></mstyle></mstyle></mstyle></mstyle></menclose></mrow><annotation encoding="application/x-tex">\sout \textsf{\color{red}T\color{black}heman\color{red}W\color{black}ithgoldwhoalwayshoutsandshousasasaien\color{red}T}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textsf" style="color:red;">T</span><span class="mord textsf" style="color:black;">heman</span><span class="mord textsf" style="color:red;">W</span><span class="mord textsf" style="color:black;">ithgoldwhoalwayshoutsandshousasasaien</span><span class="mord textsf" style="color:red;">T</span></span></span><span style="top:-3.2155em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy sout"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span></span>。</s></p>
+<p>实现了这几个函数以后，线段树的其它部分就比较常规了，自行实现不难。</p>
+<p>开始的时候一直不理解将区间的历史值当做标记来下放，现在想想，还是觉得这个考验了对懒惰标记的真正理解，非常妙，是一道好题目。我开始疑惑的为什么不直接打区间最大的标记在理解以后就很好想通了，算不出啊，得有了这两个标记才能算出哇！</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 [清华集训2012]序列操作]]></title>
         <id>https://acfboy.pw/xuliecaozuo/</id>
