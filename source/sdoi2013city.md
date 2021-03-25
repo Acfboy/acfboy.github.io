@@ -1,7 +1,7 @@
 ---
 title: '题解 [SDOI2013]城市规划'
 date: 2021-03-24 08:53:52
-tags: [题解]
+tags: [题解,线段树,并查集]
 published: true
 hideInList: false
 feature: 

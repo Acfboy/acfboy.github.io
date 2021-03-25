@@ -1,9 +1,11 @@
+
+<!DOCTYPE html>
 <html>
   <head>
     
 <meta charset="utf-8" >
 
-<title>Acfboy 的小站</title>
+<title>并查集 | Acfboy 的小站</title>
 <meta name="description" content="纵世事物欲横流，仍心归少年志向。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -75,29 +77,68 @@
 </transition>
 
 
-        <div class="content-container">
-          
-          <div class="tags-container">
-            
-              <a class="tag" href="https://acfboy.pw/zu-he-ji-shu/">组合计数</a>
-            
-              <a class="tag" href="https://acfboy.pw/xian-duan-shu/">线段树</a>
-            
-              <a class="tag" href="https://acfboy.pw/ti-jie/">题解</a>
-            
-              <a class="tag" href="https://acfboy.pw/er-fen/">二分</a>
-            
-              <a class="tag" href="https://acfboy.pw/bing-cha-ji/">并查集</a>
-            
-              <a class="tag" href="https://acfboy.pw/KlBqWTQTjz/">游记</a>
-            
-              <a class="tag" href="https://acfboy.pw/E4EMhjbUF/">随笔</a>
-            
-          </div>
+      <div class="content-container">
 
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 并查集
+          </h2> 
         </div>
 
-        <div class="site-footer">
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://acfboy.pw/sdoi2013city/">
+        <h2 class="post-title">题解 [SDOI2013]城市规划</h2>
+      </a>
+      <div class="post-abstract">
+        <p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
+<p>因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 非常的小，很容易维护，所以可以按行建立一颗线段树，维护其中联通块的数量。处理联通块的时候用并查集记录上下两个边界的联通状况以及是否有建筑物。</p>
+<p>难点在于如何合并，即 <code>pushup</code>。</p>
+
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2021-03-24</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://acfboy.pw/xian-duan-shu/">
+                线段树
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://acfboy.pw/bing-cha-ji/">
+                并查集
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://acfboy.pw/ti-jie/">
+                题解
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+
+<div class="pagination-container">
+  
+  
+</div>
+
+
+      </div>
+
+      <div class="site-footer">
   <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
   <div class="social-container">
     
@@ -116,8 +157,8 @@
 </div>
 
 
-      </div>
-      <script type="application/javascript">
+    </div>
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 
@@ -133,6 +174,5 @@ var app = new Vue({
 
 
 
-    </div>
   </body>
 </html>

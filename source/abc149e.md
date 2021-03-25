@@ -1,7 +1,7 @@
 ---
 title: '题解 ABC149E Handshake'
 date: 2021-03-24 15:43:37
-tags: [题解]
+tags: [题解,二分]
 published: true
 hideInList: false
 feature: https://z3.ax1x.com/2021/03/24/6bcGqJ.jpg
