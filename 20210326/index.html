@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>3.26 校内模拟赛游记 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1616742718884">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1616742718884" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">3.26 校内模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-03-26</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>完完全全 PJ 难度的比赛，居然给我玩炸了.......</p>
+<p>大概就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span> 分钟前两道，T3 是有些恶心的大模拟，写了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mtext mathvariant="sans-serif">h</mtext><mn>40</mn><mtext mathvariant="sans-serif">min</mtext></mrow><annotation encoding="application/x-tex">1\textsf{h} 40\textsf{min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord text"><span class="mord textsf">h</span></span><span class="mord">4</span><span class="mord">0</span><span class="mord text"><span class="mord textsf">min</span></span></span></span></span>，结果还挂在了俩傻傻的问题上。 T4 一道巧妙的题，但模拟样例时想歪了，最后没有做出来。所以赶紧写游记，下次不能再犯这样的错误了。</p>
+<!-- more -->
+<p>只讲 T3 &amp; T4.</p>
+<h2 id="t3">T3</h2>
+<p><a href="https://www.luogu.com.cn/problem/P2749">原题传送门</a></p>
+<p>考虑如何判断相似的情况，暴力的做法是要判断四次旋转和一个镜像共八种，但当然不会去真的旋转，不同的方向只是角度的不同，循环的时候变一下顺序就可以了。</p>
+<p>暴力判断会超时，我没有想到题解中的神奇定理，于是大力哈希了，将每个块抠出来，每行分开拼成一个二进制数。但这样是错的，如下面这种情况。</p>
+<pre><code class="language-plain">11
+11
+</code></pre>
+<p>二进制是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1111</mn></mrow><annotation encoding="application/x-tex">1111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">1</span><span class="mord">1</span></span></span></span>， 和 <code>1111</code> 的哈希值是一样的。为了解决这个问题，随便在换行的时候做点什么即可，如果您担心其它的重复，只要上多次哈希就好了，赛场上我写了三哈希，如果不是错误的哈希做法，这样重复的概率大概是很小的。</p>
+<p>染色的时候我本来想着反正也染了就不用来判重复了吧，但遗憾的是，不行。</p>
+<p>如这样子的数据。</p>
+<pre><code class="language-plain">1111
+1111
+1111
+1111
+...
+1111
+1111
+</code></pre>
+<p>就会被大量地重复塞入，因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 塞入了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(2, 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span>, 但先走到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(1, 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span>, 然后再次塞入了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(2, 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span>，这样会有大量的重复，最终超时和超空间。</p>
+<p>代码总长度达 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>180</mn></mrow><annotation encoding="application/x-tex">180</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">0</span></span></span></span> 行。但模块化做的非常的好 <s>自卖自夸</s> 思路特别的清晰。</p>
+<p>大概理一下思路(来自赛场草稿)：</p>
+<ol>
+<li>遍历</li>
+<li>抠出图形
+<ol>
+<li>bfs 找出联通的和起始块的相对位置</li>
+<li>修正坐标，让最小的 横/纵 都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
+</ol>
+</li>
+<li>哈希
+<ol>
+<li>包括镜像的共八个方向处理</li>
+<li>三个模数都跑一遍</li>
+<li>对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>24</mn></mrow><annotation encoding="application/x-tex">24</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">4</span></span></span></span> 个哈希值排序，以处理不同方向读到顺序不同的情况</li>
+</ol>
+</li>
+<li>比较
+<ol>
+<li>如果前面没有就新开一个</li>
+<li>染色</li>
+</ol>
+</li>
+</ol>
+<p>因为最多星座不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>26</mn></mrow><annotation encoding="application/x-tex">26</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">6</span></span></span></span> 所以时间复杂度是对的。</p>
+<p>主程序（没什么东西，就是遍历一遍，如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 就执行上面的操作）：</p>
+<pre><code class="language-cpp">int main() {
+	scanf(&quot;%d%d&quot;, &amp;m, &amp;n);
+	for(int i = 1; i &lt;= n; i++) 
+		scanf(&quot;%s&quot;, map[i]+1);
+	for(int i = 1; i &lt;= n; i++) 
+		for(int j = 1; j &lt;= m; j++) 
+			if(map[i][j] == '1') doit(i, j);
+	for(int i = 1; i &lt;= n; i++) {
+		for(int j = 1; j &lt;= m; j++) putchar(map[i][j]);
+		putchar('\n');
+	}
+	return 0;
+} 
+</code></pre>
+<p>然后是 <code>doit</code> 函数, 各个函数都是字面意思，就是把上面所说的给组织了一下。</p>
+<pre><code class="language-cpp">void doit(int i, int j) {
+	int x = 0, y = 0;
+	getClu(i, j, x, y);
+	twt a = hashClu(x, y);
+	int pos = findClu(a);
+	if(pos == -1) {
+		clusters.push_back(a);
+		pos = ++totC; 
+	}
+	Color(i, j, pos + 'a' - 1);
+	initClu(x, y);
+}
+</code></pre>
+<p>再看 <code>getClu</code>，同样没有什么东西</p>
+<pre><code class="language-cpp">void getClu(int sx, int sy, int &amp;n, int &amp;m) {
+	bfs(sx, sy);
+	revize(n, m);
+}
+</code></pre>
+<p>相信 <code>bfs</code> 很容易实现，来看 <code>revize</code>, 修正也很简单，就是找到最小的然后都加上它和一的差。</p>
+<pre><code class="language-cpp">void revize(int &amp;n, int &amp;m) {
+	n = 0, m = 0;
+	int minx = 0, miny = 0;
+	for(int i = 0; i &lt; (signed)tmp.size(); i++) {
+		minx = std::min(minx, tmp[i].x);
+		miny = std::min(miny, tmp[i].y);
+	}
+	int deltaX = 1 - minx, deltaY = 1 - miny;
+	for(int i = 0; i &lt; (signed)tmp.size(); i++) {
+		int x = tmp[i].x + deltaX, y = tmp[i].y + deltaY;
+		clu[x][y] = rclu[x][y] = 1;
+		n = std::max(n, x), m = std::max(m, y);
+	} 
+	for(int i = 1; i &lt;= n; i++) std::reverse(rclu[i]+1, rclu[i]+1+m);
+}
+</code></pre>
+<p>再看 <code>hashClu</code>, 这里我们需要把八个东西都哈希一遍。最后记得排序， <code>hash1-4</code> 就是四种不同的方向， <code>Z</code> 是正，<code>F</code> 是反。也不难写，是吧。</p>
+<pre><code class="language-cpp">twt hashClu(int n, int m) {
+	twt an;
+	for(int i = 1; i &lt;= 3; i++) { // 三哈希！
+		an.insert(i, hash1(Z, n, m, i)), an.insert(i, hash1(F, n, m, i));
+		an.insert(i, hash2(Z, n, m, i)), an.insert(i, hash2(F, n, m, i));
+		an.insert(i, hash3(Z, n, m, i)), an.insert(i, hash3(F, n, m, i));
+		an.insert(i, hash4(Z, n, m, i)), an.insert(i, hash4(F, n, m, i));
+	} 
+	an.Sort();
+	return an; 
+}
+</code></pre>
+<p><code>hash</code> 是要注意的，四种方向不是转换一个轴就可以的，赛场上我还因此而调试了一会儿，要根据实际的旋转情况定顺序，确保相似的图形遍历到每个元素的顺序都是一样的，处理行，我使用了乘十。</p>
+<pre><code class="language-cpp">int hash1(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int i = 1; i &lt;= n; i++) {
+		for(int j = 1; j &lt;= m; j++) 
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;		
+	}
+	return an;
+}
+int hash2(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int i = n; i &gt;= 1; i--) {
+		for(int j = m; j &gt;= 1; j--) 
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;
+	}
+	return an;
+}
+int hash3(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int j = 1; j &lt;= m; j++) {
+		for(int i = n; i &gt;= 1; i--)
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;
+	}
+	return an;
+}
+int hash4(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int j = m; j &gt;= 1; j--) {
+		for(int i = 1; i &lt;= n; i++)
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;
+	}
+	return an;
+}
+</code></pre>
+<p>然后是简单的查找和染色，没有什么好说的。</p>
+<p>最后是一堆同样重要的定义。</p>
+<pre><code class="language-cpp">const int N = 105, Z = 123, F = 321;
+char map[N][N];
+int clu[N][N], rclu[N][N], vis[N][N], n, m, totC, vis2[N][N];
+int dx[9] = {0, 1, 1, 1, -1, -1, -1, 0, 0},
+	dy[9] = {0, -1, 0, 1, -1, 0, 1, 1, -1},
+	mods[4] = {0, 998244353, 1000000007, 1000000009}; 
+struct point { int x, y; };
+std::queue&lt;point&gt; que;
+std::vector&lt;point&gt; tmp;
+struct twt {
+	std::vector&lt;int&gt; wc[3];
+	twt() { wc[0].clear(), wc[1].clear(), wc[2].clear(); }
+	void insert(int p, int x) {
+		p--;
+		wc[p].push_back(x);
+	}
+	void Sort() {
+		std::sort(wc[0].begin(), wc[0].end());
+		std::sort(wc[1].begin(), wc[1].end());
+		std::sort(wc[2].begin(), wc[2].end());
+	}
+	bool operator == (twt b) const {
+		for(int i = 0; i &lt; 3; i++) 
+			if(wc[i].size() != b.wc[i].size()) return false;
+		for(int i = 0; i &lt; 3; i++)	
+			for(int j = 0; j &lt; wc[i].size(); j++)
+				if(wc[i][j] != b.wc[i][j]) return false;
+		return true; 
+	}
+};
+std::vector&lt;twt&gt; clusters;
+
+</code></pre>
+<p>就完成了。</p>
+<p>赛场上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>180</mn></mrow><annotation encoding="application/x-tex">180</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">0</span></span></span></span> 行的代码准确地实现了自己的思路，还是让人很舒服的，尽管还是少考虑了一点。</p>
+<p>模块化的思路，化那么复杂的一个操作变为很好写的小操作，并在赛场上完成，体现了代码能力的增长和严密，还是让我很开心的。</p>
+<h3 id="t4">T4</h3>
+<p>这似乎是一道原创题，很好的好题，代码极短。</p>
+<p>赛场也模拟了较大的样例，但却想歪了，错失发现正解的机会。</p>
+<blockquote>
+<p>给定一个由 <code>M</code> 和 <code>F</code> 组成的序列，每一秒 <code>MF</code> 会交换成 <code>FM</code>，问多少次后不能交换。</p>
+</blockquote>
+<p>赛场上模拟了这样的一个数据。</p>
+<pre><code class="language-plain">MFFFFMMFFMMMFMFFF
+</code></pre>
+<p>大概是这样的（用 $0 $ 代替 <code>M</code>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 代替 <code>F</code>）</p>
+<pre><code class="language-plain">01111001100010111
+10111010100101011
+11011101001010101
+11101110010101010
+11110110101010100
+11111011010101000
+11111101101010000
+11111110110100000
+11111111011000000
+11111111101000000
+11111111110000000
+</code></pre>
+<p>然后画出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的运动路径（大概这个样）</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/6jgwRA"><img src="https://z3.ax1x.com/2021/03/26/6jgwRA.png" alt="6jgwRA.png" loading="lazy"></a></figure>
+<p>就发现相撞转折一直是单调递增的，而每个点最多被撞一次，所以用类似单调队列的方法找新的这一个撞到的。</p>
+<p>这似乎是对的，但是仔细观察，我们有更简单的方法。</p>
+<p>要求就是要把后面的 <code>M</code> 堆到后面的相应位置，所以至少要和 <code>F</code> 进行交换，主要是在多个 <code>M</code> 连在一起，这个就得等前面的移掉后再来，所以答案要加上 <code>1</code>,  如果至少要的都更多，那么肯定不会交上了，两个取 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>max</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mop">max</span></span></span></span> 即可。</p>
+<p>感觉这其实是巧妙的处理了前面的碰撞？</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+char st[1000005];
+int cnt, ans;
+int main() {
+	scanf(&quot;%s&quot;, st+1);
+	int n = strlen(st+1);
+	for(int i = n; i &gt;= 1; i--) 
+		if(st[i] == 'F') cnt++;
+		else if(cnt != 0) ans = std::max(ans+1, cnt);
+	printf(&quot;%d&quot;, ans);
+}
+</code></pre>
+<hr>
+<p>明天 NOI Online 加油！</p>
+<p>下次模拟赛加油！</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/exsmt/">
+              <h3 class="post-title">
+                下一篇：题解  【模板】进阶线段树
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

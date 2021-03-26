@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的小站</title>
-    <updated>2021-03-26T00:40:37.525Z</updated>
+    <updated>2021-03-26T07:12:04.494Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,259 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[3.26 校内模拟赛游记]]></title>
+        <id>https://acfboy.pw/20210326/</id>
+        <link href="https://acfboy.pw/20210326/">
+        </link>
+        <updated>2021-03-26T07:02:23.000Z</updated>
+        <summary type="html"><![CDATA[<p>完完全全 PJ 难度的比赛，居然给我玩炸了.......</p>
+<p>大概就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span> 分钟前两道，T3 是有些恶心的大模拟，写了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mtext mathvariant="sans-serif">h</mtext><mn>40</mn><mtext mathvariant="sans-serif">min</mtext></mrow><annotation encoding="application/x-tex">1\textsf{h} 40\textsf{min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord text"><span class="mord textsf">h</span></span><span class="mord">4</span><span class="mord">0</span><span class="mord text"><span class="mord textsf">min</span></span></span></span></span>，结果还挂在了俩傻傻的问题上。 T4 一道巧妙的题，但模拟样例时想歪了，最后没有做出来。所以赶紧写游记，下次不能再犯这样的错误了。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>完完全全 PJ 难度的比赛，居然给我玩炸了.......</p>
+<p>大概就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span> 分钟前两道，T3 是有些恶心的大模拟，写了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mtext mathvariant="sans-serif">h</mtext><mn>40</mn><mtext mathvariant="sans-serif">min</mtext></mrow><annotation encoding="application/x-tex">1\textsf{h} 40\textsf{min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord text"><span class="mord textsf">h</span></span><span class="mord">4</span><span class="mord">0</span><span class="mord text"><span class="mord textsf">min</span></span></span></span></span>，结果还挂在了俩傻傻的问题上。 T4 一道巧妙的题，但模拟样例时想歪了，最后没有做出来。所以赶紧写游记，下次不能再犯这样的错误了。</p>
+<!-- more -->
+<p>只讲 T3 &amp; T4.</p>
+<h2 id="t3">T3</h2>
+<p><a href="https://www.luogu.com.cn/problem/P2749">原题传送门</a></p>
+<p>考虑如何判断相似的情况，暴力的做法是要判断四次旋转和一个镜像共八种，但当然不会去真的旋转，不同的方向只是角度的不同，循环的时候变一下顺序就可以了。</p>
+<p>暴力判断会超时，我没有想到题解中的神奇定理，于是大力哈希了，将每个块抠出来，每行分开拼成一个二进制数。但这样是错的，如下面这种情况。</p>
+<pre><code class="language-plain">11
+11
+</code></pre>
+<p>二进制是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1111</mn></mrow><annotation encoding="application/x-tex">1111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">1</span><span class="mord">1</span></span></span></span>， 和 <code>1111</code> 的哈希值是一样的。为了解决这个问题，随便在换行的时候做点什么即可，如果您担心其它的重复，只要上多次哈希就好了，赛场上我写了三哈希，如果不是错误的哈希做法，这样重复的概率大概是很小的。</p>
+<p>染色的时候我本来想着反正也染了就不用来判重复了吧，但遗憾的是，不行。</p>
+<p>如这样子的数据。</p>
+<pre><code class="language-plain">1111
+1111
+1111
+1111
+...
+1111
+1111
+</code></pre>
+<p>就会被大量地重复塞入，因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 塞入了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(2, 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span>, 但先走到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(1, 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span>, 然后再次塞入了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(2, 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span>，这样会有大量的重复，最终超时和超空间。</p>
+<p>代码总长度达 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>180</mn></mrow><annotation encoding="application/x-tex">180</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">0</span></span></span></span> 行。但模块化做的非常的好 <s>自卖自夸</s> 思路特别的清晰。</p>
+<p>大概理一下思路(来自赛场草稿)：</p>
+<ol>
+<li>遍历</li>
+<li>抠出图形
+<ol>
+<li>bfs 找出联通的和起始块的相对位置</li>
+<li>修正坐标，让最小的 横/纵 都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
+</ol>
+</li>
+<li>哈希
+<ol>
+<li>包括镜像的共八个方向处理</li>
+<li>三个模数都跑一遍</li>
+<li>对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>24</mn></mrow><annotation encoding="application/x-tex">24</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">4</span></span></span></span> 个哈希值排序，以处理不同方向读到顺序不同的情况</li>
+</ol>
+</li>
+<li>比较
+<ol>
+<li>如果前面没有就新开一个</li>
+<li>染色</li>
+</ol>
+</li>
+</ol>
+<p>因为最多星座不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>26</mn></mrow><annotation encoding="application/x-tex">26</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">6</span></span></span></span> 所以时间复杂度是对的。</p>
+<p>主程序（没什么东西，就是遍历一遍，如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 就执行上面的操作）：</p>
+<pre><code class="language-cpp">int main() {
+	scanf(&quot;%d%d&quot;, &amp;m, &amp;n);
+	for(int i = 1; i &lt;= n; i++) 
+		scanf(&quot;%s&quot;, map[i]+1);
+	for(int i = 1; i &lt;= n; i++) 
+		for(int j = 1; j &lt;= m; j++) 
+			if(map[i][j] == '1') doit(i, j);
+	for(int i = 1; i &lt;= n; i++) {
+		for(int j = 1; j &lt;= m; j++) putchar(map[i][j]);
+		putchar('\n');
+	}
+	return 0;
+} 
+</code></pre>
+<p>然后是 <code>doit</code> 函数, 各个函数都是字面意思，就是把上面所说的给组织了一下。</p>
+<pre><code class="language-cpp">void doit(int i, int j) {
+	int x = 0, y = 0;
+	getClu(i, j, x, y);
+	twt a = hashClu(x, y);
+	int pos = findClu(a);
+	if(pos == -1) {
+		clusters.push_back(a);
+		pos = ++totC; 
+	}
+	Color(i, j, pos + 'a' - 1);
+	initClu(x, y);
+}
+</code></pre>
+<p>再看 <code>getClu</code>，同样没有什么东西</p>
+<pre><code class="language-cpp">void getClu(int sx, int sy, int &amp;n, int &amp;m) {
+	bfs(sx, sy);
+	revize(n, m);
+}
+</code></pre>
+<p>相信 <code>bfs</code> 很容易实现，来看 <code>revize</code>, 修正也很简单，就是找到最小的然后都加上它和一的差。</p>
+<pre><code class="language-cpp">void revize(int &amp;n, int &amp;m) {
+	n = 0, m = 0;
+	int minx = 0, miny = 0;
+	for(int i = 0; i &lt; (signed)tmp.size(); i++) {
+		minx = std::min(minx, tmp[i].x);
+		miny = std::min(miny, tmp[i].y);
+	}
+	int deltaX = 1 - minx, deltaY = 1 - miny;
+	for(int i = 0; i &lt; (signed)tmp.size(); i++) {
+		int x = tmp[i].x + deltaX, y = tmp[i].y + deltaY;
+		clu[x][y] = rclu[x][y] = 1;
+		n = std::max(n, x), m = std::max(m, y);
+	} 
+	for(int i = 1; i &lt;= n; i++) std::reverse(rclu[i]+1, rclu[i]+1+m);
+}
+</code></pre>
+<p>再看 <code>hashClu</code>, 这里我们需要把八个东西都哈希一遍。最后记得排序， <code>hash1-4</code> 就是四种不同的方向， <code>Z</code> 是正，<code>F</code> 是反。也不难写，是吧。</p>
+<pre><code class="language-cpp">twt hashClu(int n, int m) {
+	twt an;
+	for(int i = 1; i &lt;= 3; i++) { // 三哈希！
+		an.insert(i, hash1(Z, n, m, i)), an.insert(i, hash1(F, n, m, i));
+		an.insert(i, hash2(Z, n, m, i)), an.insert(i, hash2(F, n, m, i));
+		an.insert(i, hash3(Z, n, m, i)), an.insert(i, hash3(F, n, m, i));
+		an.insert(i, hash4(Z, n, m, i)), an.insert(i, hash4(F, n, m, i));
+	} 
+	an.Sort();
+	return an; 
+}
+</code></pre>
+<p><code>hash</code> 是要注意的，四种方向不是转换一个轴就可以的，赛场上我还因此而调试了一会儿，要根据实际的旋转情况定顺序，确保相似的图形遍历到每个元素的顺序都是一样的，处理行，我使用了乘十。</p>
+<pre><code class="language-cpp">int hash1(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int i = 1; i &lt;= n; i++) {
+		for(int j = 1; j &lt;= m; j++) 
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;		
+	}
+	return an;
+}
+int hash2(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int i = n; i &gt;= 1; i--) {
+		for(int j = m; j &gt;= 1; j--) 
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;
+	}
+	return an;
+}
+int hash3(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int j = 1; j &lt;= m; j++) {
+		for(int i = n; i &gt;= 1; i--)
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;
+	}
+	return an;
+}
+int hash4(int opt, int n, int m, int p) {
+	p = mods[p];
+	long long an = 0;
+	for(int j = m; j &gt;= 1; j--) {
+		for(int i = 1; i &lt;= n; i++)
+			if(opt == Z) an = (an * 2ll + (long long) clu[i][j]) % (long long) p;
+			else an = (an * 2ll + (long long) rclu[i][j]) % (long long) p;
+		an = an * 10 % p;
+	}
+	return an;
+}
+</code></pre>
+<p>然后是简单的查找和染色，没有什么好说的。</p>
+<p>最后是一堆同样重要的定义。</p>
+<pre><code class="language-cpp">const int N = 105, Z = 123, F = 321;
+char map[N][N];
+int clu[N][N], rclu[N][N], vis[N][N], n, m, totC, vis2[N][N];
+int dx[9] = {0, 1, 1, 1, -1, -1, -1, 0, 0},
+	dy[9] = {0, -1, 0, 1, -1, 0, 1, 1, -1},
+	mods[4] = {0, 998244353, 1000000007, 1000000009}; 
+struct point { int x, y; };
+std::queue&lt;point&gt; que;
+std::vector&lt;point&gt; tmp;
+struct twt {
+	std::vector&lt;int&gt; wc[3];
+	twt() { wc[0].clear(), wc[1].clear(), wc[2].clear(); }
+	void insert(int p, int x) {
+		p--;
+		wc[p].push_back(x);
+	}
+	void Sort() {
+		std::sort(wc[0].begin(), wc[0].end());
+		std::sort(wc[1].begin(), wc[1].end());
+		std::sort(wc[2].begin(), wc[2].end());
+	}
+	bool operator == (twt b) const {
+		for(int i = 0; i &lt; 3; i++) 
+			if(wc[i].size() != b.wc[i].size()) return false;
+		for(int i = 0; i &lt; 3; i++)	
+			for(int j = 0; j &lt; wc[i].size(); j++)
+				if(wc[i][j] != b.wc[i][j]) return false;
+		return true; 
+	}
+};
+std::vector&lt;twt&gt; clusters;
+
+</code></pre>
+<p>就完成了。</p>
+<p>赛场上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>180</mn></mrow><annotation encoding="application/x-tex">180</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">0</span></span></span></span> 行的代码准确地实现了自己的思路，还是让人很舒服的，尽管还是少考虑了一点。</p>
+<p>模块化的思路，化那么复杂的一个操作变为很好写的小操作，并在赛场上完成，体现了代码能力的增长和严密，还是让我很开心的。</p>
+<h3 id="t4">T4</h3>
+<p>这似乎是一道原创题，很好的好题，代码极短。</p>
+<p>赛场也模拟了较大的样例，但却想歪了，错失发现正解的机会。</p>
+<blockquote>
+<p>给定一个由 <code>M</code> 和 <code>F</code> 组成的序列，每一秒 <code>MF</code> 会交换成 <code>FM</code>，问多少次后不能交换。</p>
+</blockquote>
+<p>赛场上模拟了这样的一个数据。</p>
+<pre><code class="language-plain">MFFFFMMFFMMMFMFFF
+</code></pre>
+<p>大概是这样的（用 $0 $ 代替 <code>M</code>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 代替 <code>F</code>）</p>
+<pre><code class="language-plain">01111001100010111
+10111010100101011
+11011101001010101
+11101110010101010
+11110110101010100
+11111011010101000
+11111101101010000
+11111110110100000
+11111111011000000
+11111111101000000
+11111111110000000
+</code></pre>
+<p>然后画出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的运动路径（大概这个样）</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/6jgwRA"><img src="https://z3.ax1x.com/2021/03/26/6jgwRA.png" alt="6jgwRA.png" loading="lazy"></a></figure>
+<p>就发现相撞转折一直是单调递增的，而每个点最多被撞一次，所以用类似单调队列的方法找新的这一个撞到的。</p>
+<p>这似乎是对的，但是仔细观察，我们有更简单的方法。</p>
+<p>要求就是要把后面的 <code>M</code> 堆到后面的相应位置，所以至少要和 <code>F</code> 进行交换，主要是在多个 <code>M</code> 连在一起，这个就得等前面的移掉后再来，所以答案要加上 <code>1</code>,  如果至少要的都更多，那么肯定不会交上了，两个取 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>max</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mop">max</span></span></span></span> 即可。</p>
+<p>感觉这其实是巧妙的处理了前面的碰撞？</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+char st[1000005];
+int cnt, ans;
+int main() {
+	scanf(&quot;%s&quot;, st+1);
+	int n = strlen(st+1);
+	for(int i = n; i &gt;= 1; i--) 
+		if(st[i] == 'F') cnt++;
+		else if(cnt != 0) ans = std::max(ans+1, cnt);
+	printf(&quot;%d&quot;, ans);
+}
+</code></pre>
+<hr>
+<p>明天 NOI Online 加油！</p>
+<p>下次模拟赛加油！</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解  【模板】进阶线段树]]></title>
         <id>https://acfboy.pw/exsmt/</id>
@@ -743,108 +996,6 @@ int main() {
 	for(int i = 0; i &lt; (signed)edge.size(); i++) printf(&quot;%d %d %d\n&quot;, edge[i].u, edge[i].v, edge[i].c);
 } 
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[妙哉！Second Sum！]]></title>
-        <id>https://acfboy.pw/secondsum/</id>
-        <link href="https://acfboy.pw/secondsum/">
-        </link>
-        <updated>2021-03-17T08:01:17.000Z</updated>
-        <summary type="html"><![CDATA[<p>提供两种做法，一种是依赖于单调栈和 ST 表的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>lg</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n \lg n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">l<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 做法，思维难度较低；还有一个绝妙的做法，根本想不到，但不需要任何现成的 算法/数据结构， 时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
-<p><a href="https://www.luogu.com.cn/problem/AT5206">传送门</a></p>
-]]></summary>
-        <content type="html"><![CDATA[<p>提供两种做法，一种是依赖于单调栈和 ST 表的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>lg</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n \lg n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">l<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 做法，思维难度较低；还有一个绝妙的做法，根本想不到，但不需要任何现成的 算法/数据结构， 时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
-<p><a href="https://www.luogu.com.cn/problem/AT5206">传送门</a></p>
-<!-- more -->
-<h3 id="做法一">做法一</h3>
-<p>分别考虑每一个数在多少个区间内成为了次大值。</p>
-<p>最大值在前面时，能当最大值的只有离当前这一个（位置记为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>）最近的比他大的，当取到这个最大值（位置记为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span>）时，区间的最大和次大已确定，只需要把区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l, r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 取进去，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 左边和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 右边比他俩都小的去不去都无所谓。设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 左边第一个比 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">a_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 大的为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>l</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">l&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 右边第一个比 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">a_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 大的是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>r</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">r&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>, 则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">a_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 对答案的贡献是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>l</mi><mo>−</mo><msup><mi>l</mi><mo mathvariant="normal">′</mo></msup><mo>)</mo><mo>×</mo><mo>(</mo><msup><mi>r</mi><mo mathvariant="normal">′</mo></msup><mo>−</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(l - l&#x27;) \times (r&#x27; - r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span> 。</p>
-<p>实际做的时候还要再跑一遍最大值在后面的。</p>
-<p>用单调栈可以方便地维护 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> ，那么如何维护 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>l</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">l&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> 呢？ 可以使用 ST 表实现，类似倍增求 LCA 那样能跳的救跳，即若这一段最大值还是小于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">a_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 就跳。</p>
-<p>代码：</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;stack&gt;
-#include &lt;algorithm&gt;
-#define int long long
-const int N = 100005;
-int n, pre[N], suc[N], stL[N][20], stR[N][20], a[N], ans;
-std::stack&lt;int&gt; st;
-int findL(int now, int m) {
-	for(int i =  17; i &gt;= 0; i--) 
-		if(stL[now][i] &lt; m &amp;&amp; now - (1 &lt;&lt; i) &gt;= 1) now = now - (1 &lt;&lt; i);
-	return now;
-}
-int findR(int now, int m) {
-	for(int i =  17; i &gt;= 0; i--) 
-		if(stR[now][i] &lt; m &amp;&amp; now + (1 &lt;&lt; i) &lt;= n) now = now + (1 &lt;&lt; i);
-	return now;
-}
-signed main() {	
-	scanf(&quot;%lld&quot;, &amp;n);
-	for(int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]);
-	for(int i = 1; i &lt;= n; i++) stL[i][0] = a[i-1], stR[i][0] = a[i+1];
-	for(int j = 1; j &lt;= 17; j++)
-		for(int i = 1; i &lt;= n; i++)
-			if(i - (1 &lt;&lt; j) &gt;= 1) stL[i][j] = std::max(stL[i][j-1], stL[i - (1 &lt;&lt; (j-1))][j-1]);
-	for(int j = 1; j &lt;= 17; j++)
-		for(int i = n; i &gt;= 1; i--)
-			if(i + (1 &lt;&lt; j) &lt;= n) stR[i][j] = std::max(stR[i][j-1], stR[i + (1 &lt;&lt; (j-1))][j-1]);
-	a[0] = n+1, a[n+1] = n+1;
-	st.push(0);
-	for(int i = 1; i &lt;= n+1; i++) {
-		while(!st.empty() &amp;&amp; a[st.top()] &lt; a[i]) {
-			suc[st.top()] = i;
-			st.pop();
-		} 
-		pre[i] = st.top();
-		st.push(i);
-	}
-	for(int i = 1; i &lt;= n; i++) {
-		int lBer = pre[i], rBer = suc[i];
-		int tmpl = findL(lBer, a[i]), tmpr = findR(rBer, a[i]);
-		if(lBer &gt;= 1) ans += (lBer - tmpl + 1) * (rBer - i) * a[i];
-		if(rBer &lt;= n) ans += (tmpr - rBer + 1) * (i - lBer) * a[i];
-	}
-	printf(&quot;%lld&quot;, ans);
-	return 0;
-}
-</code></pre>
-<p><a href="https://www.luogu.com.cn/record/47982443">提交记录链接</a></p>
-<h3 id="做法二">做法二</h3>
-<p>来考虑如何优化做法一，或者你不会单调栈，也不会 ST 表怎么办？</p>
-<p>做法一看上去似乎没有可以优化的地方了，但实际上线性的做法特别的简洁，让人体会到算法竞赛的魅力：</p>
-<p><strong>换一种求解的顺序</strong></p>
-<p>在原来的做法里，我们先统计第一个对答案的贡献，再统计第二个对答案的贡献，没有什么是现成的，一切都需要重新求解。</p>
-<p>但如果我们从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 等于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的位置开始求解呢？</p>
-<p>这时候，其它所有的显然都比它大，不需要求解，而后面再求解的数显然都比这个要大，所以遇到这一个直接跳过就好了。</p>
-<p>细品一下这一段话，我们其实是利用了原先求解的结果，去掉了不必要的求解。因为原先做法中，用 ST 表就是为了跳过所有比当前这个小的，但用从小到大的求解顺序，只需要把原来求到过的都跳过就行了，不需要重新求解，所以降低了时间复杂度。</p>
-<p>每次更新时，比当前更小的都被跳过了，直接调用没跳过的就是大于当前的，所以这样是对的。</p>
-<p>具体的实现使用双向链表 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">L_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示这个去掉所有跳过的左边是什么，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示去掉跳过的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的右边是什么。最后更新一下，跳过当前这一个就可以了。</p>
-<p>代码：</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#define int long long
-const int N = 100005;
-int L[N], R[N], x, map[N], n;
-signed main() {
-    scanf(&quot;%lld&quot;, &amp;n);
-    for (int i = 1; i &lt;= n; i++) {
-        scanf(&quot;%lld&quot;, &amp;x);
-        map[x] = i;
-        L[i] = i - 1, R[i] = i + 1;
-    }
-    int ans = 0;
-    for (int i = 1; i &lt;= n; i++) {
-        int l = L[map[i]], r = R[map[i]];
-        if (l &gt;= 1) ans += i * (l - L[l]) * (r - map[i]);
-        if (r &lt;= n) ans += i * (R[r] - r) * (map[i] - l);
-        L[r] = l, R[l] = r;
-    }
-    printf(&quot;%lld&quot;, ans);
-    return 0;
-}
-</code></pre>
-<p>仅 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span> 行，从各个方面吊打原来的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>60</mn></mrow><annotation encoding="application/x-tex">60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">0</span></span></span></span> 行做法，妙不妙？</p>
 ]]></content>
     </entry>
 </feed>
