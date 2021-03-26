@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解  【模板】进阶线段树 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1616717050751">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1616717050751" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解  【模板】进阶线段树</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-03-26</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/xian-duan-shu/">
+                    线段树
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>其实是这道 <a href="https://www.luogu.com.cn/problem/P5494">线段树分裂</a> 的模板，但是涉及了很多进阶线段树，所以把它称为进阶线段树，包含的操作有动态开点、内存回收、线段树合并、线段树分裂、线段树上二分等。</p>
+<!-- more -->
+<h3 id="动态开点-与-内存回收">动态开点 与 内存回收</h3>
+<p>动态开点只需要将每个节点的儿子用一个数组存起来，然后每次若要访问儿子但儿子是空就给一个新的编号就可以了。</p>
+<p>涉及删除操作的，删除了的节点若没有用了，就可以放到一个垃圾桶中，若要开新节点，先从垃圾桶中取，再开新节点。</p>
+<p>上面两个的代码</p>
+<pre><code class="language-cpp">int newNode() {
+	if(sizeBin != 0) return bin[sizeBin--];
+	else return ++tot;
+}
+void del(int p) {
+	bin[++sizeBin] = p;
+	t[p][0] = t[p][1] = val[p] = 0;
+	return;
+}
+</code></pre>
+<p>动态开点的加操作和查询操作和原来没有什么区别，只是用表示左儿子的 <code>t[p][0]</code> 代替了 <code>p+p</code>, 用 <code>t[p][1]</code> 代替了 <code>p+p+1</code> 而已，记得如果这个点不存在就要新开出来。</p>
+<pre><code class="language-cpp">void add(int &amp;p, int l, int r, int x, int y) {
+	if(p == 0) p = newNode();
+	if(l == r) {
+		val[p] += y;
+		return;
+	}
+	int mid = l + (r-l)/2;
+	if(x &lt;= mid) add(t[p][0], l, mid, x, y);
+	else add(t[p][1], mid+1, r, x, y);
+	pushUp(p);
+	return;
+}
+int Query(int p, int l, int r, int x, int y) {
+	if(l == x &amp;&amp; r == y) return val[p];
+	int mid = l + (r-l) / 2;
+	if(y &lt;= mid) return Query(t[p][0], l, mid, x, y);
+	else if(x &gt; mid) return Query(t[p][1], mid+1, r, x, y);
+	else return Query(t[p][0], l, mid, x, mid) + Query(t[p][1], mid+1, r, mid+1, y);
+}
+</code></pre>
+<h3 id="线段树的合并与分裂">线段树的合并与分裂</h3>
+<p>合并的边界情况很好考虑，若一个没有了，那么就直接接上另一个，先把 <code>y</code> 的值合并到 <code>x</code>, 然后递归左右就好了，函数可以返回新的根节点编号。</p>
+<pre><code class="language-cpp">int merge(int x, int y) {
+	if(x == 0 || y == 0) return x^y;
+	val[x] += val[y];
+	t[x][0] = merge(t[x][0], t[y][0]);
+	t[x][1] = merge(t[x][1], t[y][1]);
+	del(y);
+	return x;
+}
+</code></pre>
+<p>分裂一般以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 大之后分裂出去来描述的，分三种情况讨论，如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 比左边的个数大，那么左边保持不变，向右边递归；如果恰好相等，则把当前点的右儿子和新节点的右儿子互换；不然就先互换再向左递归。记得更新点的权值。</p>
+<pre><code class="language-cpp">void split(int x, int &amp;y, int k) {
+	if(x == 0) return;
+	y = newNode();
+	if(k &gt; val[t[x][0]]) split(t[x][1], t[y][1], k - val[t[x][0]]);
+	else if(k == val[t[x][0]]) std::swap(t[x][1], t[y][1]);
+	else {
+		std::swap(t[x][1], t[y][1]);
+		split(t[x][0], t[y][0], k);
+	}
+	val[y] = val[x] - k;
+	val[x] = k;
+	return;
+}
+</code></pre>
+<h3 id="时间复杂度的正确性">时间复杂度的正确性</h3>
+<p>除了合并与分裂，其它操作和原来的线段树没有区别，都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_2 n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span> 的，只需要考虑分裂的时间。</p>
+<p>直接考虑一次分裂/合并那么时间显然是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O (n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的，但这样没有意义，要从均摊的角度来考虑时间，即所有点进行合并/分裂的总时间是多少。</p>
+<p>不大了解，大概是只有部分包含的需要建新的节点，全部包含的就直接移动了，所以总复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n \log_2 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的, 均摊一下一次就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_2 n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span> 的。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/cpujiankong/">
+              <h3 class="post-title">
+                下一篇：题解 [洛谷 4314]CPU监控
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
