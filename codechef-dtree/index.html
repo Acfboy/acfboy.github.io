@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 CodeChef-DTREE | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1617019085249">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1617019085249" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://img-blog.csdn.net/20180715124201842?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZvcmV2ZXJfZHJlYW1z/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70')">
+            </div>
+          
+          <h2 class="post-title">题解 CodeChef-DTREE</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-03-29</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/shu/">
+                    树
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>考验对数的直径的 dp 做法变形处理的好题目。</p>
+<!-- more -->
+<blockquote>
+<p>给定一棵树，求去掉一个点构成的森林中树的直径的最大值，输出对于对于每一个点，去掉它的结果。</p>
+</blockquote>
+<p>先想一想我们原来求树的直径的做法是怎么样的，能求出些什么。</p>
+<p>原来就是找出一个点向下最深的和次深的将它们连在一起，找出最大的。所以我们用原来的做法，假设删掉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>, 可以很容易地求出它的所有儿子所在子树的直径，以及它们的最大值，所以现在只需要考虑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 向上的子树的直径怎么计算。</p>
+<p>上面的直径没有办法直接计算，那么考虑它有哪些可能。参考原来的做法，可以想到从一个点的父亲出发一条向上的链再和经过这个点的父亲的某条向下的链可能可以拼成上面树的直径。所以先考虑向上的最长的链怎么求。</p>
+<p>令 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><msub><mi>p</mi><mi>u</mi></msub></mrow><annotation encoding="application/x-tex">up_u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 为起点向上最长的链的长度，可得一种情况是直接由原来向上的加一拼接而成，另一种情况是在这个点父亲那点转向了下方。如图，注意 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 指的是要更新点的父亲。</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/cCz5dA"><img src="https://z3.ax1x.com/2021/03/29/cCz5dA.png" alt="cCz5dA.png" loading="lazy"></a></figure>
+<p>那么这条链当然是要和经过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 号点的另一条链拼成的，所以我们需要记录除了父亲到当前点所在子树以外的最长的链和它拼在一起。</p>
+<p>当然，也有可能不向上延伸，就是当前点兄弟子树向下的最大直径，或上面本来就有的直径。</p>
+<p>还有可能是经过当前点的父亲拼起来的两条向下的最大的链。</p>
+<p>把它们画在一起就是这个样子的。</p>
+<figure data-type="image" tabindex="2"><a href="https://imgtu.com/i/cP9MrD"><img src="https://z3.ax1x.com/2021/03/29/cP9MrD.png" alt="cP9MrD.png" loading="lazy"></a></figure>
+<p>然后再用下面的更新就可以了。</p>
+<p>因为枚举的点是要空出来的，所以我们用当前点计算出来的一堆值其实是更新下面的点用的。</p>
+<p>注意判断当前的这个子树是 最大/次大 的情况，选其它的最大和次大不能把当前选进去，所以还需要取出 次次大，在最大或次大被占用时作为次大使用。</p>
+<p>代码。</p>
+<p>注意代码中向下的深度 最大/次大/次次大 值初值都为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> 是因为下面都计算了它们的根到当前点的连边，找不到的时候一加上恰好为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>, 而下面原有的子树(即 <code>maxf</code>) 初值是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 因为它们不需要有加上的运算，而是直接使用。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+const int N = 100005;
+int T, n, x, y, ans[N], down[N], f[N], up[N];
+std::vector&lt;int&gt; g[N];
+void init() {
+	memset(down, 0, sizeof down);
+	memset(up, 0, sizeof up);
+	memset(f, 0, sizeof f);
+	memset(ans, 0, sizeof ans);
+	for(int i = 1; i &lt; N; i++) g[i].clear();
+}
+void update2(int x, int &amp;max, int &amp;sax) {
+	if(x &gt; max) sax = max, max = x;
+	else if(x &gt; sax) sax = x;
+}
+void update3(int x, int &amp;max1, int &amp;max2, int &amp;max3) {
+	if(x &gt; max1) max3 = max2, max2 = max1, max1 = x;
+	else if(x &gt; max2) max3 = max2, max2 = x;
+	else if(x &gt; max3) max3 = x;
+}
+void dfs1(int u, int fa) {
+	int max = 0, sax = -1;
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		dfs1(v, u);
+		update2(down[v]+1, max, sax);
+		f[u] = std::max(f[u], f[v]);
+	}
+	down[u] = max;
+	f[u] = std::max(f[u], max + sax);
+}
+void dfs2(int u, int fa) {
+	int maxd1 = -1, maxd2 = -1, maxd3 = -1,
+		maxf1 = 0, maxf2 = 0;
+	int tmp = ans[u]; // 记下仅上面部分的答案，以便更新需要
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		ans[u] = std::max(ans[u], f[v]);
+		update3(down[v], maxd1, maxd2, maxd3);
+		update2(f[v], maxf1, maxf2);
+	}
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		up[v] = std::max(up[u] + 1, (down[v] == maxd1) ? maxd2 + 2 : maxd1 + 2); // 求出向上的最长链
+		ans[v] = tmp; // 上面本来就有的 
+		ans[v] = std::max(ans[v], (f[v] == maxf1) ? maxf2 : maxf1); // 兄弟本来就有的情况
+		ans[v] = std::max(ans[v], (down[v] == maxd1) ? (maxd2 + up[u] + 1) : (up[u] + maxd1 + 1)); // 上下拼起来的情况
+		if(down[v] == maxd1) ans[v] = std::max(ans[v], maxd2 + maxd3 + 2); 
+		else if(down[v] == maxd2) ans[v] = std::max(ans[v], maxd1 + maxd3 + 2);
+		else ans[v] = std::max(ans[v], maxd1 + maxd2 + 2);
+      // 经过这点下面的链拼起来的情况
+		dfs2(v, u);
+	}
+}
+int main() {
+	scanf(&quot;%d&quot;, &amp;T);
+	while(T--) {
+		init();
+		scanf(&quot;%d&quot;, &amp;n);
+		for(int i = 1; i &lt; n; i++) {
+			scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+			g[x].push_back(y), g[y].push_back(x);
+		}
+		dfs1(1, 0);
+		dfs2(1, 0);
+		for(int i = 1; i &lt;= n; i++) printf(&quot;%d &quot;, ans[i]);
+		puts(&quot;&quot;);
+	}
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/arc116/">
+              <h3 class="post-title">
+                下一篇：AtCoder Regular Contest 116 游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
