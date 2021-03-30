@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 [ICPC2014 牡丹江区域赛] Building Fire Station | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1617088066052">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1617088066052" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 [ICPC2014 牡丹江区域赛] Building Fire Station</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-03-30</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/shu/">
+                    树
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>题目来源的原文是 <code>2014 ACM-ICPC Asia Mudanjiang Regional Contest</code>, 大概就叫这个名字了。</p>
+<p>这题考察了对树直径的性质的理解和运用，有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n \log_2 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的二分做法，但是巧妙运用性质就可以做到线性。</p>
+<!-- more -->
+<blockquote>
+<p>在树上标记两个点，使树上点到最近的标记点的距离最大的最小</p>
+</blockquote>
+<p>看到最大值最小，很快想到二分，二分确实也可以做，但这有一种奇妙的做法可以让它变成线性。</p>
+<p>在讲树的直径的时候肯定已经证明过，树上离一个点距离最远的点一定是直径的一个端点，由这个性质我们很容易可以得到直径旁边伸出去的枝节一定没有直径深，所以如果标记的点在那些枝节上，把它靠近直径移动不会使它离它的最长点变长，而会使它到直径端点的距离变短，所以标记一定在树的直径上。</p>
+<p>有了这个结论，只要把直径劈成两半，然后在两边求中心就可以了。仔细想想为什么，还是很妙的。</p>
+<p>注意是中心，不是重心。</p>
+<p>求中心的方法可以借鉴我 CodeChef 一道题的题解。至于劈开树，只需要在 dfs 开始的时候把父亲设为不能去的隔壁那个就可以了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int N = 200005, F = 1, INF = 0x3f3f3f3f;
+int TWT, n, x, y, S, T, ans, ansu1, ansu2, anss, dep[N], size[N], pre[N], up[N], down[N], maxL;
+std::vector&lt;int&gt; g[N], d;
+void init() {
+	for(int i = 0; i &lt; N; i++) g[i].clear();
+	memset(dep, 0, sizeof dep);
+	d.clear();
+}
+void dfs(int u, int fa, int opt) {
+	if(opt == F &amp;&amp; dep[u] &gt; dep[S]) S = u;
+	else if(opt != F &amp;&amp; dep[u] &gt; dep[T]) T = u;
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		dep[v] = dep[u] + 1;
+		dfs(v, u, opt);
+	}
+}
+void color(int u, int fa) {
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		color(v, u);
+		pre[v] = u;
+	}
+}
+void getdown(int u, int fa) {
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		getdown(v, u);
+		down[u] = std::max(down[u], down[v] + 1);
+	}
+}
+void getup(int u, int fa) {
+	int max = -1, sax = -1;
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		if(down[v] + 1 &gt; max) sax = max, max = down[v] + 1;
+		else if(down[v] + 1 &gt; sax) sax = down[v] + 1;
+	}
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		up[v] = std::max(up[u] + 1, (max == down[v]+1) ? (sax+2) : (max+2));
+		getup(v, u);
+	}
+}
+void getans(int u, int fa, int &amp;ans) {
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		getans(v, u, ans);
+	}
+	int max = std::max(down[u], up[u]);
+	if(max &lt; maxL) maxL = max, ans = u;
+}
+void findCe(int u, int fa, int &amp;ans) {
+	maxL = 0x3f3f3f3f;
+	memset(up, 0, sizeof up);
+	memset(down, 0, sizeof down);
+	getdown(u, fa);
+	getup(u, fa);
+	getans(u, fa, ans);
+}
+int main() {
+	scanf(&quot;%d&quot;, &amp;TWT);
+	while(TWT--) {
+		init();
+		scanf(&quot;%d&quot;, &amp;n);
+		for(int i = 1; i &lt; n; i++) {
+			scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+			g[x].push_back(y), g[y].push_back(x);
+		}
+		dfs(1, 0, F);
+		memset(dep, 0, sizeof dep); 
+		dfs(S, 0, !F);
+		color(S, 0);
+		for(int i = T; i != S; i = pre[i]) d.push_back(i);
+		d.push_back(S);
+		findCe(d[d.size() / 2], d[d.size()/2-1], ansu2);
+		findCe(d[d.size() / 2 - 1], d[d.size()/2], ansu1);
+		ans = std::max(dep[T] - dep[ansu1], 
+		      std::max(dep[ansu2], 
+		      std::max(dep[ansu1] - dep[d[d.size()/2-1]], 
+		      		   dep[d[d.size()/2]] - dep[ansu2])));
+		printf(&quot;%d %d %d&quot;, ans, ansu1, ansu2);
+		if(TWT != 0) puts(&quot;&quot;);
+	}
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/codechef-dtree/">
+              <h3 class="post-title">
+                下一篇：题解 CodeChef-DTREE
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
