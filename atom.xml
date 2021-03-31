@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的小站</title>
-    <updated>2021-03-30T07:09:37.514Z</updated>
+    <updated>2021-03-31T00:34:00.301Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,84 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 [2019 ICPC 上海网络赛] Lighting Routing I]]></title>
+        <id>https://acfboy.pw/lightingrouting/</id>
+        <link href="https://acfboy.pw/lightingrouting/">
+        </link>
+        <updated>2021-03-31T00:26:37.000Z</updated>
+        <summary type="html"><![CDATA[<p><s>封面图是随便找的真实的 Lighting Routing</s></p>
+<p>据说这题有神奇的 LCT 和 树套树 的做法，很可惜，我都不会。</p>
+<p>于是搞了一个用欧拉序来维护直径的做法，搭配线段树和倍增 LCA 来解决这题。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><s>封面图是随便找的真实的 Lighting Routing</s></p>
+<p>据说这题有神奇的 LCT 和 树套树 的做法，很可惜，我都不会。</p>
+<p>于是搞了一个用欧拉序来维护直径的做法，搭配线段树和倍增 LCA 来解决这题。</p>
+<!-- more -->
+<blockquote>
+<p>支持边的修改操作，每次询问树上离一个点最远的点和它的距离。</p>
+</blockquote>
+<p>我们知道从树上任意一个点出发，能到达的最远的点一定是树的直径的一个端点，所以这题也就是要动态维护树的直径，然后求一下距离就可以了。</p>
+<p>那么怎么维护树的直径呢？这里介绍一下一个神奇的做法，欧拉序。</p>
+<p>欧拉序是一个类似 DFS 序的东西，不同的是，欧拉序在遍历完一个点的子树的时候还会把这个点加入欧拉序中，相当于一个人沿 DFS 的顺序走完树上所有点的路径。欧拉序的长度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 因为每一条边两个端点都要算一次，最后退出的时候根节点过算了一次。</p>
+<p>求得欧拉序的代码, 其中 <code>pos[(i+1)/2] = v</code> 是将输入边的编号和指向的点对应起来，因为是双向建边的，所以要除以二上取整。而且这样子给这条边定的指向的点是以我们定的根为根的，这个处理其实挺妙。</p>
+<p><code>tin</code> 和 <code>tout</code> 用来记录一个子树在欧拉序中的起点和终点。</p>
+<pre><code class="language-cpp">void dfs(int u, int fa) {
+	dfn[++tot] = u; tin[u] = tot;
+	for(int i = head[u]; i; i = next[i]) {
+		int v = vet[i];
+		if(v == fa) continue;
+		pos[(i+1)/2] = v, dep[v] = dep[u] + len[i];
+		dfs(v, u);
+		dfn[++tot] = u;
+	}
+	tout[u] = tot;
+}
+</code></pre>
+<p>那么使用欧拉序有什么好处呢？</p>
+<p>在两个点的欧拉序之间，深度最小的一定就是它们的 LCA 了，这很好理解，因为欧拉序就是走过每一个点的路径嘛，你要走过两个点，肯定是要先到一个，然后退出来，再接着到第二个。这样就把 LCA 的问题转换成了 RMQ 问题。因为欧拉序也具有 dfs 序子树都在一起的性质，所以给一条边的边权加上一个数就是给一段区间的 <code>dep</code> 都加上一个数。</p>
+<p>然后考虑在欧拉序上维护直径。</p>
+<p>我们在树形 DP 求直径的时候是到每一个点把它们最深的两个拼在了一起，链的长度是两个点的距离，即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>x</mi></msub><mo>+</mo><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>y</mi></msub><mo>−</mo><mn>2</mn><mi>d</mi><mi>e</mi><msub><mi>p</mi><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow></msub></mrow><annotation encoding="application/x-tex">dep_x + dep_y - 2dep_{lca}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，经过每一个点时，就是要让这个东西最大，或者直接采用下面的答案。</p>
+<p>可以用线段树来维护这样几个东西。</p>
+<ul>
+<li>最大的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">dep</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">p</span></span></span></span>, 记作 <code>maxd</code></li>
+<li>最大的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>2</mn><mi>d</mi><mi>e</mi><msub><mi>p</mi><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow></msub></mrow><annotation encoding="application/x-tex">-2dep_{lca}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, 记作 <code>vlca</code></li>
+<li>最大的左边和中间拼起来的，即最大的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>x</mi></msub><mo>−</mo><mn>2</mn><mi>d</mi><mi>e</mi><msub><mi>p</mi><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow></msub></mrow><annotation encoding="application/x-tex">dep_x - 2dep_{lca}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, 记作 <code>lm</code></li>
+<li>同理 <code>mr</code></li>
+<li>还有当前子树的直径 <code>lmr</code></li>
+</ul>
+<p>因为一段欧拉序代表的都是树的一部分，所以可以这样来维护，也可以合并。<br>
+<code>pushup</code> 的时候 <code>maxd</code> 和 <code>vlca</code> 显然都是子树取 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>max</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mop">max</span></span></span></span> 就可以了，<code>lm</code> 要考虑左边的 <code>maxd</code> 和 <code>vlca</code> 拼成或直接用下面的答案，<code>mr</code> 同理， <code>lmr</code> 要考虑直接用下面的答案或左边的 <code>lm</code> 拼右边的 <code>maxd</code> 或者右边的 <code>mr</code> 配左边的 <code>maxd</code>。</p>
+<p>但这样怎么记录方案呢？我们可以参考 dp 的时候记录方案的做法，从哪边转移过来就继承哪边的结果。然后我们就可以得到以下的 <code>pushup</code> 代码。</p>
+<pre><code class="language-cpp">void pushUp(int p) {
+	maxd[p] = std::max(maxd[p+p], maxd[p+p+1]);
+	vlca[p] = std::max(vlca[p+p], vlca[p+p+1]);
+	lm[p] = std::max(std::max(lm[p+p], lm[p+p+1]), maxd[p+p] + vlca[p+p+1]);
+	mr[p] = std::max(std::max(mr[p+p], mr[p+p+1]), vlca[p+p] + maxd[p+p+1]);
+	lmr[p] = std::max(std::max(lmr[p+p], lmr[p+p+1]), std::max(lm[p+p]+maxd[p+p+1], maxd[p+p]+mr[p+p+1]));
+	
+	if(maxd[p] == maxd[p+p]) vd[p] = vd[p+p];
+	else vd[p] = vd[p+p+1];
+	
+	if(lm[p] == lm[p+p]) vl[p] = vl[p+p];
+	else if(lm[p] == lm[p+p+1]) vl[p] = vl[p+p+1];
+	else vl[p] = vd[p+p];
+	
+	if(mr[p] == mr[p+p]) vr[p] = vr[p+p];
+	else if(mr[p] == mr[p+p+1]) vr[p] = vr[p+p+1];
+	else vr[p] = vd[p+p+1];
+	
+	if(lmr[p] == lmr[p+p]) s[p] = s[p+p], t[p] = t[p+p];
+	else if(lmr[p] == lmr[p+p+1]) s[p] = s[p+p+1], t[p] = t[p+p+1];
+	else if(lmr[p] == lm[p+p] + maxd[p+p+1]) s[p] = vl[p+p], t[p] = vd[p+p+1];
+	else s[p] = vd[p+p], t[p] = vr[p+p+1];
+}
+</code></pre>
+<p>这是整道题的核心。</p>
+<p>剩下的部分就是普通的线段树以及求两点间距离了(线段树中单个点的 <code>maxd</code> 其实就是 <code>dep</code>)， 不难实现， 要注意区分欧拉序编号和原始编号，我为这个调了很久。</p>
+<p><a href="https://vjudge.net/solution/30295703">完整代码链接</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 [ICPC2014 牡丹江区域赛] Building Fire Station]]></title>
         <id>https://acfboy.pw/gym10054b/</id>
@@ -939,150 +1017,6 @@ signed main() {
     return 0;
 }
 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [SDOI2013]城市规划]]></title>
-        <id>https://acfboy.pw/sdoi2013city/</id>
-        <link href="https://acfboy.pw/sdoi2013city/">
-        </link>
-        <updated>2021-03-24T00:53:52.000Z</updated>
-        <summary type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
-<p>因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 非常的小，很容易维护，所以可以按行建立一颗线段树，维护其中联通块的数量。处理联通块的时候用并查集记录上下两个边界的联通状况以及是否有建筑物。</p>
-<p>难点在于如何合并，即 <code>pushup</code>。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
-<p>因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 非常的小，很容易维护，所以可以按行建立一颗线段树，维护其中联通块的数量。处理联通块的时候用并查集记录上下两个边界的联通状况以及是否有建筑物。</p>
-<p>难点在于如何合并，即 <code>pushup</code>。</p>
-<!-- more -->
-<ol>
-<li>将两边块的 <code>ans</code> 合起来。</li>
-<li>将新的左端点设为左边的左端点，右端点设为右边的右端点。</li>
-<li>现在合并并查集
-<ol>
-<li>左边的并查集复制一份，存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1, 2m]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span>, 将右边复制一份，存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>2</mn><mi>m</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mn>4</mn><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[2m+1, 4m]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">2</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span>。</li>
-<li>枚举两块交界处的，若可以合并，则将其合并，若两边都有建筑物，则 <code>ans--</code>。</li>
-<li>经过上面的操作，并查集被合并成了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>4</mn><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,4m]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span> 的并查集，但是我们只要存上面的边界和下面的边界的联通性。</li>
-<li>建立一个新数组，将上下边界的 <code>fa</code> 都连向它们。</li>
-<li>然后将每一个的 <code>fa</code> 都改为它的 <code>fa</code> 所指向的。</li>
-<li>经过这些操作，所有点集合的根都在上边界和下边界了，可以直接返回。</li>
-</ol>
-</li>
-</ol>
-<p>其实思路清晰的话也没有很多难写的细节，代码也不至于长达 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>200</mn></mrow><annotation encoding="application/x-tex">200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 行。</p>
-<p>代码如下。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-const int N = 100005, M = 8;
-int n, m, q, l, r, x, y, tmpfa[M*4], tmpflag[M*4], v[M*4];
-char opt[5], z[5], map[N][M];
-struct node {
-	int l, r, ans;
-	int fa[2*M], flag[2*M];
-	node() {
-		for(int i = 1; i &lt;= m; i++) fa[i] = fa[i+i] = 0, flag[i] = 0; 
-	}
-	void init() {
-		ans = 0;
-		for(int i = 1; i &lt;= m; i++) fa[i] = fa[i+m] = i;
-		for(int i = 1; i &lt;= m; i++) flag[i] = (map[l][i] == 'O') ? 1 : 0;
-	}
-	int find(int x) {
-		if(fa[x] != x) fa[x] = find(fa[x]);
-		return fa[x]; 
-	}
-	void merge(int x, int y) {
-		int fx = find(x), fy = find(y);
-		if(fx == fy) return;
-		fa[fy] = fx;
-		flag[fx] |= flag[fy];
-	}
-	void makeNode() { // 构造线段树的叶子
-		init();
-		for(int i = 1; i &lt; m; i++) {
-			char now = map[l][i], next = map[l][i+1];
-			if(now != '|' &amp;&amp; now != '.' &amp;&amp; next != '|' &amp;&amp; next != '.') merge(i, i+1);
-		}
-		for(int i = 1; i &lt;= m; i++) find(i+m);
-		for(int i = 1; i &lt;= m; i++) 
-			if(fa[i] == i &amp;&amp; flag[i]) ans++;			
-	}
-} tree[N &lt;&lt; 2];
-int findTmp(int x) {
-	if(x != tmpfa[x]) tmpfa[x] = findTmp(tmpfa[x]);
-	return tmpfa[x];
-}
-node mergeAns(node x, node y) { // 合并过程上面写得很详细了
-	node an;
-	an.l = x.l, an.r = y.r;
-	an.ans = x.ans + y.ans;
-	for(int i = 1; i &lt;= 2*m; i++) tmpfa[i] = x.fa[i], tmpflag[i] = x.flag[i];
-	for(int i = 1; i &lt;= 2*m; i++) tmpfa[i+2*m] = y.fa[i]+2*m, tmpflag[i+2*m] = y.flag[i];
-	for(int i = 1; i &lt;= m; i++) {
-		char lval = map[x.r][i], rval = map[y.l][i];
-		if(lval != '.' &amp;&amp; lval != '-' &amp;&amp; rval != '.' &amp;&amp; rval != '-') {
-			int fx = findTmp(i+m), fy = findTmp(i+2*m);
-			if(fx == fy) continue;
-			if(tmpflag[fx] &amp;&amp; tmpflag[fy]) an.ans--;
-			tmpfa[fy] = fx;
-			tmpflag[fx] |= tmpflag[fy];
-		}
-	}
-	memset(v, 0, sizeof v);
-	for(int i = 1; i &lt;= m; i++) {
-		int fi = findTmp(i);
-		if(!v[fi]) v[fi] = i, an.flag[i] = tmpflag[fi];
-		fi = findTmp(i+3*m);
-		if(!v[fi]) v[fi] = i+m, an.flag[i+m] = tmpflag[fi];
-	}
-	for(int i = 1; i &lt;= m; i++) an.fa[i] = v[findTmp(i)], an.fa[i+m] = v[findTmp(i+3*m)];
-	return an;
-}
-void pushUp(int p) { tree[p] = mergeAns(tree[p+p], tree[p+p+1]); }
-void build(int p = 1, int l = 1, int r = n) {
-	tree[p].l = l, tree[p].r = r;
-	if(l == r) return tree[p].makeNode();
-	int mid = l + (r-l) / 2;
-	build(p+p, l, mid);
-	build(p+p+1, mid+1, r);
-	pushUp(p);
-}
-void Change(int p, int x, int y, char z) {
-	if(tree[p].l == tree[p].r) {
-		map[tree[p].l][y] = z;
-		return tree[p].makeNode(); // 修改的时候重新构造即可
-	}
-	int mid = tree[p].l + (tree[p].r - tree[p].l) / 2;
-	if(x &lt;= mid) Change(p+p, x, y, z);
-	else Change(p+p+1, x, y, z);
-	pushUp(p);
-}
-node Query(int p, int l, int r) {
-	if(l == tree[p].l &amp;&amp; r == tree[p].r) return tree[p];
-	int mid = tree[p].l + (tree[p].r - tree[p].l) / 2;
-	if(l &gt; mid) return Query(p+p+1, l, r);
-	else if(r &lt;= mid) return Query(p+p, l, r);
-	else return mergeAns(Query(p+p, l, mid), Query(p+p+1, mid+1, r));
-}
-int main() {
-	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
-	for(int i = 1; i &lt;= n; i++)
-		scanf(&quot;%s&quot;, map[i]+1);
-	build();
-	scanf(&quot;%d&quot;, &amp;q);
-	while(q--) {
-		scanf(&quot;%s&quot;, opt);
-		if(opt[0] == 'Q') {
-			scanf(&quot;%d%d&quot;, &amp;l, &amp;r);
-			printf(&quot;%d\n&quot;, Query(1, l, r).ans);
-		}
-		else {
-			scanf(&quot;%d%d%s&quot;, &amp;x, &amp;y, z);
-			Change(1, x, y, z[0]);
-		}
-	}
-}
 </code></pre>
 ]]></content>
     </entry>
