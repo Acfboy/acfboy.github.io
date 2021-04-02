@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 [CF -1172D]Nauuo and Binary Tree | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1617334815062">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1617334815062" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 [CF -1172D]Nauuo and Binary Tree</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-02</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/shu-lian-pou-fen/">
+                    树链剖分
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/shu/">
+                    树
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>清新的好题，考验了对树剖的总和理解和运用。</p>
+<p>只可惜 <a href="https://ouuan.github.io/post/bad-round-%E4%B8%8E%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E5%9D%9A%E5%AE%88/">赛前四天撞题</a>，这道题没能出现在真正的 CF 里。</p>
+<!-- more -->
+<blockquote>
+<p><strong>交互题</strong>。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个节点的二叉树，每次可以询问两个点的距离，求这个二叉树的结构。树的大小不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3000</mn></mrow><annotation encoding="application/x-tex">3000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>, 可以询问 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>30000</mn></mrow><annotation encoding="application/x-tex">30000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 次。</p>
+</blockquote>
+<p>看到这个题面我是没有一点想法，甚至连暴力做法都不太清楚。</p>
+<p>看了题解直呼好题。</p>
+<ol>
+<li>
+<p>首先可以询问出每一个点的深度，这样可以按照深度确定点，从而确保去确定一个点的时候它的祖先都已经确定了。</p>
+</li>
+<li>
+<p>每次确定一个点时</p>
+<ol>
+<li>先用 dfs 维护已知树上的轻重链。注意，因为是二叉树，所以一个点若有两个儿子，那么必定是一条轻边一条重边。如果只有一个儿子，我们规定连向它的是重边。这个性质非常有用。</li>
+<li>在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 的子树中找 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 时，若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 已经没有儿子了，肯定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的父亲。</li>
+<li>否则询问当前的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 所在重链底部的距离记作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>, 通过类似通过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">LCA</mtext></mrow><annotation encoding="application/x-tex">\texttt{LCA}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">LCA</span></span></span></span></span> 求两点距离的那个式子可以求出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">LCA</mtext></mrow><annotation encoding="application/x-tex">\texttt{LCA}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">LCA</span></span></span></span></span> 的深度，进而求出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">LCA</mtext></mrow><annotation encoding="application/x-tex">\texttt{LCA}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">LCA</span></span></span></span></span>, 然后就可以确定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 所在的新子树，递归求解。</li>
+<li>如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 只有一个儿子，那它就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 了，因为只有一个儿子那么肯定是重边，那么 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 所在重链的最底端也是它自己。</li>
+</ol>
+</li>
+</ol>
+<p>具体可以见下图。</p>
+<figure data-type="image" tabindex="1"><img src="https://oi-wiki.org/graph/images/hld2.png" alt="" loading="lazy"></figure>
+<p>时间复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的，询问由于每次都会确定一个子树，所以是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span> 级别的，具体分析可以去看 OI-wiki</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+const int N = 3005;
+struct twt {
+	int dep, id;
+	bool operator &lt; (twt b) const {
+		return dep &lt; b.dep;
+	}
+} a[N];
+int n, ch[N][2], son[N], fa[N], bot[N], deep[N], size[N];
+void Print() {
+	std::cout &lt;&lt; &quot;! &quot;;
+	for(int i = 2; i &lt;= n; i++) std::cout &lt;&lt; fa[i] &lt;&lt; &quot; &quot;;
+	std::cout &lt;&lt; std::endl;
+}
+int ask(int u, int v) {
+	std::cout &lt;&lt; &quot;? &quot; &lt;&lt; u &lt;&lt; &quot; &quot; &lt;&lt; v &lt;&lt; std::endl;
+	int d;
+	std::cin &gt;&gt; d;
+	return d;
+}
+void add(int u, int v) {
+	fa[v] = u;
+	if(ch[u][0] != 0) ch[u][1] = v;
+	else ch[u][0] = v;
+}
+void dfs(int u) {
+	if(ch[u][0]) dfs(ch[u][0]);
+	if(ch[u][1]) dfs(ch[u][1]);
+	size[u] = size[ch[u][0]] + size[ch[u][1]] + 1;
+	if(ch[u][1] != 0) son[u] = size[ch[u][1]] &gt; size[ch[u][0]];
+	else son[u] = 0;
+	if(ch[u][son[u]] != 0) bot[u] = bot[ch[u][son[u]]];
+	else bot[u] = u;
+}
+void solve(int u, int k) {
+	if(ch[u][0] == 0) {
+		add(u, k);
+		return;
+	}
+	int d = ask(k, bot[u]), v = bot[u];
+	while(deep[v] &gt; (deep[k] + deep[bot[u]] - d) / 2) v = fa[v];
+	int w = ch[v][son[v] ^ 1];
+	if(w != 0) solve(w, k);
+	else add(v, k);
+}
+int main() {
+	std::cin &gt;&gt; n;
+	for(int i = 2; i &lt;= n; i++) {
+		a[i].id = i;
+		a[i].dep = ask(1, i);
+		deep[i] = a[i].dep;
+	}
+	std::sort(a+2, a+1+n);
+	for(int i = 2; i &lt;= n; i++) {
+		dfs(1);
+		solve(1, a[i].id);
+	}
+	Print();
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/2021331/">
+              <h3 class="post-title">
+                下一篇：2021.3.31 校内模拟赛游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
