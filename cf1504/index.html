@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Codeforces Round #712 (Div. 2) 游记 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1617579129841">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1617579129841" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Codeforces Round #712 (Div. 2) 游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-04</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>掉分。</p>
+<p>本想着破釜沉舟成 expert, 结果差点掉成 pupil。</p>
+<!-- more -->
+<p>因为上次打得比较好，所以感觉离蓝名不远了，所以直接开了 C 题，希望能通过 CBAD 的做题顺序获得更高的分数。</p>
+<p>然后 C 题就翻车了，一开始想了一个复杂而错误的解法，WA 了两发才发觉做法不对。</p>
+<p>后来发现是我想难了，这其实是一道很简单的题。</p>
+<h2 id="c">C</h2>
+<p>看题，观察了一下样例和自己的小数据，发现了一个似乎显而易见的结论，如果原串可以被分成几个长度为偶数的，一开头的回文，那么上面类似 <code>()()</code> 的结构，下面用根据 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span> 串来做就可以了。</p>
+<p>判断回文我选择了字符串哈希。</p>
+<p>想到这个用的时间就比较的久，写得也比较慢，哈希最开始也写错了。然后到快一个小时才交第一发，当然，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">Wrong</mtext><mtext> </mtext><mtext mathvariant="monospace">answer</mtext><mtext> </mtext><mtext mathvariant="monospace">on</mtext><mtext> </mtext><mtext mathvariant="monospace">pretest</mtext><mtext> </mtext><mtext mathvariant="monospace">2</mtext></mrow><annotation encoding="application/x-tex">\texttt{Wrong answer on pretest 2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">Wrong answer on pretest 2</span></span></span></span></span>。</p>
+<p>然后还抱着这个想法不肯放手，发现了一个小问题，但改完继续 WA, 代码也放一放吧，纪念。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int N = 200005, p = 998244353;
+std::vector&lt;char&gt; ans1, ans2;
+char st[N];
+int hashb[N], hashf[N], pow[N], T, n;
+void init() {
+    memset(hashb, 0, sizeof hashb);
+    memset(hashf, 0, sizeof hashf);
+    ans1.clear();
+    ans2.clear();
+}
+bool check(int l, int r) {
+    int mid = l + (r-l)/2;
+    int hf = (hashf[mid] - hashf[l-1] + p) % p, hb = (hashb[mid+1] - hashb[r+1] + p) % p;
+    int len0f = l-1, len0b = n-r;
+    if(len0f &gt; len0b) hb = hb * pow[len0f - len0b] % p;
+    else hf = hf * pow[len0b - len0f] % p;
+    if(hf == hb) return true;
+    else return false;
+}
+void getans(int l, int r) {
+    for(int i = l; i &lt;= r; i++) ans1.push_back(((i-l) % 2 == 0) ? '(' : ')');
+    for(int i = l; i &lt;= r; i++) 
+        if(st[i] == '1') ans2.push_back(((i-l) % 2 == 0) ? '(' : ')');
+        else ans2.push_back(((i-l) % 2 == 0) ? ')' : '(');
+}
+signed main() {
+    scanf(&quot;%lld&quot;, &amp;T);
+    while(T--) {
+        scanf(&quot;%lld&quot;, &amp;n);
+        scanf(&quot;%s&quot;, st+1);
+        init();
+        pow[0] = 1;
+        for(int i = 1; i &lt;= n; i++) pow[i] = pow[i-1] * 2 % p;
+        for(int i = n; i &gt;= 1; i--) hashb[i] = (hashb[i+1]  + (st[i] - '0' + p) % p * pow[n-i] % p) % p;
+        for(int i = 1; i &lt;= n; i++) hashf[i] = (hashf[i-1]  + (st[i] - '0' + p) % p * pow[i-1] % p) % p;
+        int now = 0;
+        st[n+1] = '1';
+        for(int i = 1; i &lt;= n; i++) 
+            if((i - now) % 2 == 0 &amp;&amp; st[now+1] == '1' &amp;&amp; check(now+1, i) ) {
+                getans(now+1, i);
+                now = i;
+            }
+        if((signed)ans1.size() &lt; n) puts(&quot;NO&quot;);
+        else {
+            puts(&quot;YES&quot;);
+            for(int i = 0; i &lt; (signed)ans1.size(); i++) printf(&quot;%c&quot;, ans1[i]);
+            puts(&quot;&quot;);
+            for(int i = 0; i &lt; (signed)ans2.size(); i++) printf(&quot;%c&quot;, ans2[i]);
+            puts(&quot;&quot;);
+        }
+    }
+}
+</code></pre>
+<p>哈希来判这样的回文倒是挺棒的想法，但是 hack 数据很显然。</p>
+<pre><code class="language-plain">11110011
+</code></pre>
+<p>虽然仍然是可以划分，但是我们的程序并不知道正确的划分位置，而且就算正确划分了，也不能得到正确答案。</p>
+<p>写了那么多的代码，当然不肯放弃，觉得可能就是个小问题，所以一直想改改解决。</p>
+<p>然后发现解决不了，终于放弃。</p>
+<p>接着发现有很简单的做法。</p>
+<p>即中间的 <code>0</code> 的部分反转后都是可以匹配的，只需要左右有多出来的就可以了，但是左右仍然要匹配。</p>
+<p>所以找左右 <code>0</code> 之前较少的 <code>1</code> 的个数，括号向中间靠拢，其它的 <code>0</code> 和 <code>1</code> 分开正常匹配就可以了。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+const int N = 200005;
+int T, n;
+char st[N], ans1[N];
+int main() {
+    scanf(&quot;%d&quot;, &amp;T);
+    while(T--) {
+        scanf(&quot;%d&quot;, &amp;n);
+        scanf(&quot;%s&quot;, st+1);
+        int num1f = 0, num1b = 0;
+        for(int i = 1; i &lt;= n; i++) {
+            if(st[i] == '0') break;
+            num1f ++;
+        }
+        for(int i = n; i &gt;= 1; i--) {
+            if(st[i] == '0') break;
+            num1b ++;
+        }
+        if(num1f == 0 || num1b == 0) {
+            puts(&quot;NO&quot;);
+            continue;
+        }
+        int k = 0, flag1 = 0, flag0 = 0;
+        if(num1b != n) k = std::min(num1f, num1b);
+        for(int i = 1; i &lt;= k; i++) ans1[i] = '(';
+        for(int i = n; i &gt;= n-k+1; i--) ans1[i] = ')';
+        for(int i = k+1; i &lt;= n-k; i++) 
+            if(st[i] == '1') {
+                if(flag1) ans1[i] = ')';
+                else ans1[i] = '(';
+                flag1 = 1^flag1;
+            }
+            else {
+                if(flag0) ans1[i] = ')';
+                else ans1[i] = '(';
+                flag0 = 1^flag0;
+            }
+        if(flag1 || flag0) puts(&quot;NO&quot;);
+        else {
+            puts(&quot;YES&quot;);
+            for(int i = 1; i &lt;= n; i++) printf(&quot;%c&quot;, ans1[i]);
+            puts(&quot;&quot;);
+            for(int i = 1; i &lt;= n; i++) 
+                if(st[i] == '1') printf(&quot;%c&quot;, ans1[i]);
+                else printf(&quot;%c&quot;, (ans1[i] == '(') ? ')' : '(');
+            puts(&quot;&quot;);
+        }
+    }
+}
+</code></pre>
+<p>A 题是道有些细节的题，也花了我一定的时间，最后没有机会做 B 了，于是惨痛掉分。</p>
+<p>所以题目开始写代码之前一定要想清楚，一定要验证好正确性，不然只会浪费大量的时间。</p>
+<hr>
+<p>虽然陷入了一个低谷，但不可被此打倒而整天郁郁寡欢，振作起来，去完成目标，去实现梦想！</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/agc009b/">
+              <h3 class="post-title">
+                下一篇：题解 [AGC009B] Tournament
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

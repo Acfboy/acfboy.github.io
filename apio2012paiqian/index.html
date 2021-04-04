@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 [APIO2012]派遣 &amp; [JLOI2015]城池攻占 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1617579129841">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1617579129841" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 [APIO2012]派遣 &amp; [JLOI2015]城池攻占</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-02</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/dui/">
+                    堆
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>左偏树的基本运用加上一点点的树形 dp。</p>
+<p>堆里也可以懒标记。</p>
+<!-- more -->
+<h2 id="apio2012派遣">[APIO2012]派遣</h2>
+<blockquote>
+<p>给定一棵数，每个点有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 值和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span>, 选定一棵子树，在其中选一些根节点，记子树的根为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>, 求满足 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∑</mo><mi>c</mi><mo>≤</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">\sum c \le m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的情况瞎 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>l</mi><mi>u</mi></msub><mo>×</mo></mrow><annotation encoding="application/x-tex">l_u \times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">×</span></span></span></span> 选中点个数 的最大值。</p>
+</blockquote>
+<p>我们要选的点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span> 肯定要尽可能的小，因为这样才能选用更多的点，于是可以利用堆。</p>
+<p>但是对于每个子树重新建堆太慢了，需要快速地合并两个堆，所以介绍左偏树(可并堆)。</p>
+<p>左偏树是这样的一棵树:</p>
+<ol>
+<li>满足堆的性质</li>
+<li>任意一点左儿子到儿子不全的点的距离(简称“距离”)大于右儿子的</li>
+</ol>
+<p>显然对于合并两棵左偏树(根为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo separator="true">,</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x,y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>)，可以这样(假设小根)：</p>
+<ol>
+<li>若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>v</mi><mi>x</mi></msub><mo>&gt;</mo><msub><mi>v</mi><mi>y</mi></msub></mrow><annotation encoding="application/x-tex">v_x &gt; v_y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 交换 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo separator="true">,</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x, y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span></li>
+<li>将 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 并到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 的右儿子</li>
+<li>递归求解</li>
+<li>若不满足左偏性质就交换左右儿子。</li>
+<li>返回新的根 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span></li>
+</ol>
+<p>就是这样, <code>dis</code> 就是前文所说距离。</p>
+<pre><code class="language-cpp">int merge(int x, int y) {
+	if(x == 0 || y == 0) return x+y;
+	if(c[x] &lt; c[y]) std::swap(x, y);
+	rs[x] = merge(rs[x], y);
+	if(dis[ls[x]] &lt; dis[rs[x]]) std::swap(ls[x], rs[x]);
+	dis[x] = dis[rs[x]] + 1;
+	return x;
+}
+</code></pre>
+<p>其实这样确保树 ”左偏“ 以及在右边合并都是为了确保个堆在整个过程中尽可能平衡，避免退化成链的情况，又用了动态的儿子分配方式，方便合并，又好写，感觉完胜原来的堆啊。</p>
+<p>但这题还需要记录一个堆中的元素的和，怎么办，记在堆顶上是不行的，因为这个被删掉了就完了。</p>
+<p>这里采用类似树形 dp 的方式，直接用 <code>size</code> 和 <code>sum</code> 标记在一个节点上来表示以其为根当前的堆大小和元素和。</p>
+<p>这题由于保证了边一定从小连到大，所以 dfs 都不需要，直接从后往前扫描一遍来建树就可以了。</p>
+<p>注意我们每次直接更新了父亲，所以只选叶子节点的答案没有被算进，需要先计算。</p>
+<p>代码</p>
+<pre><code class="language-cpp">signed main() {
+	dis[0] = -1; // 空节点
+	scanf(&quot;%lld%lld&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= n; i++) {
+		scanf(&quot;%lld%lld%lld&quot;, &amp;fa[i], &amp;c[i], &amp;l[i]);
+		rt[i] = i, sum[i] = c[i], size[i] = 1;
+		ans = std::max(ans, l[i]);
+	}
+	for(int i = n; i &gt; 1; i--) {
+		rt[fa[i]] = merge(rt[fa[i]], rt[i]);
+		size[fa[i]] += size[i], sum[fa[i]] += sum[i];
+		while(sum[fa[i]] &gt; m) {
+			sum[fa[i]] -= c[rt[fa[i]]];
+			rt[fa[i]] = merge(ls[rt[fa[i]]], rs[rt[fa[i]]]);
+			size[fa[i]] --;
+		}
+		ans = std::max(ans, l[fa[i]] * size[fa[i]]);
+	}
+	printf(&quot;%lld&quot;, ans);
+}
+</code></pre>
+<h2 id="jloi2015城池攻占">[JLOI2015]城池攻占</h2>
+<p>其实也是维护树上每一个点都开一个堆，然后进行合并，这里是小根堆，每次把不符合要求的就弹出。</p>
+<p>但是对于攻击力的值怎么变化呢？更新所有会超时。每个堆的中数的变化方式是一样的，可如果记录下来变化方式的话，又记录在哪里呢？</p>
+<p>这时就可以用到我们的老朋友，懒惰标记。对于堆，同样也是只要用到的进行处理就可以了啊，为什么每次要更新所有？只要在根节点打个懒标记，要删了时，直接把懒标记下传再合并两个就可以了。</p>
+<p>注意，合并的时候也先给把懒标记下传， 因为合来合去的要依靠当前的根，而且树形会发生变化，所以处理之前得先把标记给儿子。</p>
+<p>同时乘和加相同的数，不会改变元素间大小关系，所以这样子是对的。</p>
+<p>带懒标记的代码。</p>
+<pre><code class="language-cpp">void cov(int x, int mu, int ad) {
+    if(x == 0) return;
+    s[x] *= mu, s[x] += ad;
+    mul[x] *= mu, add[x] *= mu, add[x] += ad;
+}
+void pushdown(int x) {
+    // printf(&quot;*%lld\n&quot;, x);
+    cov(ls[x], mul[x], add[x]);
+    cov(rs[x], mul[x], add[x]);
+    mul[x] = 1, add[x] = 0;
+}
+int merge(int x, int y) {
+    if(x == 0 || y == 0) return x + y;
+    pushdown(x); pushdown(y);
+    if(s[x] &gt; s[y]) std::swap(x, y);
+    rs[x] = merge(rs[x], y);
+    if(dis[ls[x]] &lt; dis[rs[x]]) std::swap(ls[x], rs[x]);
+    dis[x] = dis[rs[x]] + 1;
+    return x;
+}
+</code></pre>
+<p>删除操作：</p>
+<pre><code class="language-cpp">pushdown(rt[u]);
+rt[u] = merge(ls[rt[u]], rs[rt[u]]);
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/20210422/">
+              <h3 class="post-title">
+                下一篇：4.2 校内模拟赛游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
