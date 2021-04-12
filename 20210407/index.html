@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2021.4.7 校内模拟赛游记 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1618197268948">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1618197268948" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2021.4.7 校内模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-07</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>似乎全是水题，但我还是没有做出来......</p>
+<!-- more -->
+<h2 id="a">A</h2>
+<blockquote>
+<p>求将 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 分解为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个不同质数的和的方案数</p>
+</blockquote>
+<p>考虑 dp, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 表示将 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 分解为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个的方案，但因为要求不同，所以没有办法确定枚举范围，开始时我傻乎乎的以为只要枚举的质数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">pr</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>−</mo><mi>p</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">i-pr</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 就可以了，但这样显然是错的。反例是 <code>15 3</code>。</p>
+<p>于是加一个维度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][j][k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span> 表示用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个质数，最后一个是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span>, 拼出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的方案数，转移的时候再枚举上个最后一个就好了，这样子要三维状态加一维转移，实在太慢，无法忍受。观察发现转移时需要的都是从头开始的一段的和，答案是所有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mi>K</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[n][j][K]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">n</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mclose">]</span></span></span></span> 的和，所以直接把这玩意儿做成前缀和就好了。</p>
+<p>代码。(把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 放到了最后一个维度，为了方便。)</p>
+<pre><code class="language-cpp">Seive(n);
+for(int i = 1; i &lt;= nump; i++) 
+	for(int j = i; j &lt;= nump; j++) f[pr[i]][1][j] = 1;
+for(int i = 1; i &lt;= n; i++)
+	for(int j = 2; j &lt;= k; j++)
+		for(int k = 1; k &lt;= nump; k++) {
+			f[i][j][k] = f[i][j][k-1];
+			if(i - pr[k] &gt;= 0) f[i][j][k] += f[i-pr[k]][j-1][k-1];
+		}
+printf(&quot;%lld\n&quot;, f[n][k][nump]); 
+</code></pre>
+<h2 id="b">B</h2>
+<p>bfs 基础题，没有技术含量。</p>
+<h2 id="c">C</h2>
+<blockquote>
+<p>给定一个矩阵，只能向下和向右走，求路径上数的乘积最后的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的最少数量。</p>
+</blockquote>
+<p>最少的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 就是经过的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 因子个数和 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 因子个数和中最小的那个，所以题目要求就是最小的最小，最小的最小不就是最小吗！直接分开跑一遍取最小就可以了。</p>
+<p>可是我比赛的时候很呆的没想到，只想着若确定了一个最小，则另一个数字最小的状态是最优的，于是还记了经过的具体 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 的数量，写出来的代码复杂得多， 浪费了一些时间来调试。</p>
+<p>代码也放着留作纪念吧。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt; 
+const int N = 1005, INF = 100000000;
+int n, x, num2[N][N], num5[N][N];
+struct twt2 {
+	int sum2, sum5;
+	bool operator &lt; (twt2 b) const {
+		return sum2 &lt; b.sum2 ||
+			  (sum2 == b.sum2 &amp;&amp; sum5 &lt; b.sum5);
+	}
+} f2[N][N];
+struct twt5 {
+	int sum2, sum5;
+	bool operator &lt; (twt5 b) const {
+		return sum5 &lt; b.sum5 ||
+			  (sum5 == b.sum5 &amp;&amp; sum2 &lt; b.sum2);
+	}
+} f5[N][N];
+int main() {
+	scanf(&quot;%d&quot;, &amp;n);
+	for(int i = 1; i &lt;= n; i++) 
+		for(int j = 1; j &lt;= n; j++) {
+			scanf(&quot;%d&quot;, &amp;x);
+			if(x == 0) { num2[i][j] = -1; continue; }
+			while(x % 2 == 0) num2[i][j] ++, x /= 2;
+			while(x % 5 == 0) num5[i][j] ++, x /= 5;
+		}
+	for(int i = 1; i &lt;= n; i++) 
+		f2[0][i].sum2 = INF, f5[0][i].sum5 = INF,
+		f2[i][0].sum2 = INF, f5[i][0].sum5 = INF;
+	f2[1][1].sum2 = num2[1][1], f2[1][1].sum5 = num5[1][1];
+	f5[1][1].sum2 = num2[1][1], f5[1][1].sum5 = num5[1][1];	
+	for(int i = 1; i &lt;= n; i++)	
+		for(int j = 1; j &lt;= n; j++) {
+			if(i == 1 &amp;&amp; j == 1) continue; 
+			if(num2[i][j] == -1) {
+				f2[i][j].sum2 = INF;
+				continue;
+			}
+			f2[i][j] = std::min(f2[i-1][j], f2[i][j-1]);
+			f2[i][j].sum2 += num2[i][j], f2[i][j].sum5 += num5[i][j];
+		}
+	for(int i = 1; i &lt;= n; i++)	
+		for(int j = 1; j &lt;= n; j++) {
+			if(i == 1 &amp;&amp; j == 1) continue; 
+			if(num2[i][j] == -1) {
+				f5[i][j].sum5 = INF;
+				continue;
+			}
+			f5[i][j] = std::min(f5[i-1][j], f5[i][j-1]);
+			f5[i][j].sum2 += num2[i][j], f5[i][j].sum5 += num5[i][j];
+		} 
+	return 0;
+} 
+</code></pre>
+<h2 id="d">D</h2>
+<p>题目未修改全文如下。</p>
+<blockquote>
+<p>恭喜你，成为了牛牛航空公司的老板。<br>
+公司中有N个飞行员，有N/2架飞机。每架飞机需要配置两个飞行员，一个是机长，一个是助手。</p>
+<p>现在你了解到了一些信息，比如每个飞行员当机长时希望获得的工资，和当助手时希望获得的工资。且每个飞行员都只愿意为比自己年纪大的人当助手。</p>
+<p>现在需要你安排着N个人，到指定的飞机工作。如何做才能使得你需要支付的工资总数最小呢？</p>
+</blockquote>
+<p>刚看到这个题目的时候就很奇怪这是什么年代的题目，为什么不是副驾驶 (co-polit/first officer) 而是助手？难道和 &quot;Berd and his man&quot; 是同一个年代的？</p>
+<p>那么有没有具体规定应该怎么叫呢？</p>
+<p>找了行情资料汇编并没有找到，看了民航法也没有规定具体的称呼，不过 ICAO 有一个 Q&amp;A 中提到了</p>
+<blockquote>
+<p>What is the MPL?</p>
+<p>The MPL allows a pilot to exercise the privileges of a co-pilot in a commercial air transportation on multi-crew aeroplanes. It provides the aviation community with an opportunity to train pilots directly for co-pilot duties.</p>
+</blockquote>
+<p>其中说了一个是机长，另一个是 co-polit 或 first officer。</p>
+<p>在 CAAC 的网站能搜索到很多关于副驾驶的资料，如 <a href="http://www.caac.gov.cn/XXGK/XXGK/ZCJD/202006/t20200609_203001.html">这个</a></p>
+<p><strong>好了，接下来才是正经事。</strong></p>
+<p>其实这题就是要每组两个数选一个，只不过有一些限制。</p>
+<p>如果没有限制，直接 dp 很简单，但有限制后有后效性。一般解决后效性的办法是改变转移顺序，对于这题，从后往前就好了。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int N = 1e4 + 10;
+int n, f[2][N], a[N], b[N];
+signed main() {
+    memset(f, 0x7f, sizeof(f));
+    scanf(&quot;%lld&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%lld%lld&quot;, &amp;a[i], &amp;b[i]);
+    f[0][0] = a[n];
+    for (int i = n - 1; i &gt;= 1; i--) {
+        f[i &amp; 1][0] = f[i &amp; 1 ^ 1][0] + a[i];
+        for (int j = 1; j &lt;= (n - i + 1) / 2; j++)
+            f[i &amp; 1][j] = std::min(f[i &amp; 1 ^ 1][j] + a[i], f[i &amp; 1 ^ 1][j - 1] + b[i]);
+    }
+    printf(&quot;%lld&quot;, f[1][n / 2]);
+}
+</code></pre>
+<p>比赛时一直在想着匹配的问题，没有想到 dp, 一直纠结于匹配了，最后搞了一个显然错的贪心，用 FTT（Fast Tanweitan Transform,快速谭炜谭变换）后获得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 分。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/apio2007dongwuyuan/">
+              <h3 class="post-title">
+                下一篇：题解 [APIO2007]动物园
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

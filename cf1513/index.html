@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Codeforces Round #714 (Div. 2) 游记 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1618197268948">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1618197268948" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Codeforces Round #714 (Div. 2) 游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-12</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>题目质量棒极了！！！乍一看很不可做，仔细想想问题就迎刃而解，没有一道是秒杀的。</p>
+<!-- more -->
+<h2 id="a">A</h2>
+<blockquote>
+<p>求一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的排列使有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个山峰。</p>
+</blockquote>
+<p>先按 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>→</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1 \rightarrow n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的顺序排好，然后 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>i</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2i+2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 交换就可以产生一个山峰，而这种方案肯定能尽可能多的产生山峰。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+int T, n, k, a[105];
+int main() {
+    scanf(&quot;%d&quot;, &amp;T);
+    while(T--) {
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
+        if(k &gt; (n+1)/2-1) {
+            puts(&quot;-1&quot;);
+            continue;
+        }
+        for(int i = 1; i &lt;= n; i++) a[i] = i;
+        for(int i = 2, cnt = 0; i &lt;= n &amp;&amp; cnt &lt; k; i += 2, cnt += 1)
+            std::swap(a[i], a[i+1]);
+        for(int i = 1; i &lt;= n; i++) printf(&quot;%d &quot;, a[i]);
+        puts(&quot;&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="b">B</h2>
+<blockquote>
+<p>一列数，从任意一点断开，若左边的全部 <code>and</code> 起来和右边的全部 <code>and</code> 起来都一样就说它是好的，问将输入的数列任意打乱有多少个是好的。</p>
+</blockquote>
+<p>一看是没有什么思路的。</p>
+<p>仔细想想可以发现，那些哪一位其它数有一而它这一位是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的都得放在前后，不然的话在它前面断开就会一边有这样一位没有边为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 而另一边变为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 了， 不能称为好的序列， 所以这样的选俩放首尾，其它的中间随便排就可以了。</p>
+<p>代码还是有些细节的。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int N = 200005, p = 1000000007;
+int a[N], T, n;
+bool vis[N];
+signed main() {
+    scanf(&quot;%lld&quot;, &amp;T);
+    while(T--) {
+        scanf(&quot;%lld&quot;, &amp;n);
+        for(int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]);
+        memset(vis, 0, sizeof vis);
+        bool twt = 0, did = 0;
+        for(int i = 0; i &lt;= 30; i++) {
+            bool flag = 0, tw = 0;
+            for(int j = 1; j &lt;= n; j++) 
+                if((1ll &lt;&lt; i) &amp; a[j]) tw = 1;
+                else flag = 1;
+            flag = flag &amp;&amp; tw;
+            if(!flag) {
+                for(int j = 1; j &lt;= n; j++) 
+                    if(did &amp;&amp; vis[j] == 0) vis[j] = 0;
+                    else vis[j] = 1;
+                continue;
+            }
+            for(int j = 1; j &lt;= n; j++)
+                if(((1ll &lt;&lt; i) &amp; a[j]) == 0ll) {
+                    if(did &amp;&amp; vis[j] == 0) vis[j] = 0;
+                    else vis[j] = 1;
+                }
+                else vis[j] = 0;
+            did = 1;
+            if(twt) break;
+        }
+        if(twt) {
+            puts(&quot;0&quot;);
+            continue;
+        }
+        int cnt = 0;
+        for(int j = 1; j &lt;= n; j++) cnt += vis[j];
+        int ans = cnt * (cnt-1) % p;
+        int tans = 1;
+        for(int i = 1; i &lt;= n-2; i++) tans = tans * i % p;
+        ans = ans * tans % p;
+        printf(&quot;%lld\n&quot;, ans);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="c">C</h2>
+<blockquote>
+<p>把一个整数中每一个位都变为其加上一的数字， <code>9</code> 变为 <code>10</code>, 问变 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 次后数字长度是多少。</p>
+</blockquote>
+<p>可怜的孩子没看清数据范围，看成保证所有的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 和不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">2 \times 10^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>, 以为这是一个简单 dp, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 次后 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 出现了几次，最后 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∑</mo><mi>f</mi><mo>[</mo><mi>m</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">\sum f[m][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">m</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 就是答案，然后顺利 T 飞。</p>
+<p>不过这样的 DP 还有没有救呢？枚举几个小样例发现每个数都是独立变化的，既然独立变化，那么分开考虑，发现 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn><mo>−</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">10-d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> 次后都变成 <code>10</code> 继续变换了，那么只要能快速处理出 <code>10</code> 的变化就可以快速得出所有的变化。</p>
+<p>一开始我一直想着有啥数学方法可做，后来一看，直接预处理一遍把所有次数以后的变换处理完不就得了。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int p = 1000000007;
+int T, x, m, f[200005][10];
+int get(int x) {
+    if(x &lt; 0) return 1;
+    int an = 0;
+    for(int i = 0; i &lt;= 9; i++) an = (an + f[x][i]) % p;
+    return an;
+}
+signed main() {
+    scanf(&quot;%lld&quot;, &amp;T);
+    f[0][1] = f[0][0] = 1;
+    for(int i = 1; i &lt;= 200000; i++) {
+        for(int j = 9; j &gt;= 1; j--) f[i][j] = f[i-1][j-1];
+        f[i][0] = 0;
+        f[i][0] = (f[i][0] + f[i-1][9]) % p;
+        f[i][1] = (f[i][1] + f[i-1][9]) % p;
+    }
+    while(T--) {
+        scanf(&quot;%lld%lld&quot;, &amp;x, &amp;m);
+        int ans = 0;
+        while(x) {
+            int d = x % 10;
+            ans = (ans + get(m - (10-d))) % p;
+            x /= 10;
+        }
+        printf(&quot;%lld\n&quot;, ans);
+    }
+    return 0;
+}
+</code></pre>
+<hr>
+<p>本想着上 expert, 结果卡在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="#5ac5ac"><mn>1596</mn></mstyle></mrow><annotation encoding="application/x-tex">\color{#5ac5ac}1596</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord" style="color:#5ac5ac;">1</span><span class="mord" style="color:#5ac5ac;">5</span><span class="mord" style="color:#5ac5ac;">9</span><span class="mord" style="color:#5ac5ac;">6</span></span></span></span> ! 太让我失望了，要是看清题目，那 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span> 分不扣说不定就上蓝了。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/abc198/">
+              <h3 class="post-title">
+                下一篇：AtCoder Beginner Contest 198 游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
