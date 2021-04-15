@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的小站</title>
-    <updated>2021-04-15T00:46:53.989Z</updated>
+    <updated>2021-04-15T06:26:49.490Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,65 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 [AGC017E] Jigsaw]]></title>
+        <id>https://acfboy.pw/agc017e/</id>
+        <link href="https://acfboy.pw/agc017e/">
+        </link>
+        <updated>2021-04-15T06:25:24.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/AT2668">题目翻译传送门</a></p>
+<p>这题其实十分的妙，尽管代码很短，但确实对得起它紫题的难度。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/AT2668">题目翻译传送门</a></p>
+<p>这题其实十分的妙，尽管代码很短，但确实对得起它紫题的难度。</p>
+<!-- more -->
+<p>看到这样的一道题，首先一个很自然的想法就是按照能拼上的关系建图，然后通过一个神奇的方式找到一条路径。</p>
+<p>但这样一来光建图就需要 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的时间，没有办法满足题目的需要。然后发现虽然 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 很大，但是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span></span></span></span> 是很小的，那么下一个想法是，能不能使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span></span></span></span> 进行建图。</p>
+<p>然后就有一个很妙的转换方式，其它题解里讲了一些转换为负的方法，很妙，其实不用这样，还得去处理负下标的问题，只需要确保两种会被映射到不相交的区间里就可以了，所以这样转化就可以了：</p>
+<ul>
+<li>若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">d &gt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>, 则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>=</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">r = d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>, 否则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>=</mo><mi>b</mi><mo>+</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">r = b+h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span>。</li>
+<li>若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">c &gt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>, 则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>=</mo><mi>c</mi><mo>+</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">l = c+h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span> 否则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">l = a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>。</li>
+</ul>
+<p>经过这样的转换，右边的若和左边可以相接，它们就会变成一个一样的值，然后就可以用一条边来表示一块积木，这样边数和点数都在一个可接受的范围内。</p>
+<p>然后就是要到若干条路径从小于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span> 的点到大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span> 的点并经过所有边的问题了，找到经过每一条边的路径那么直接就可以想到欧拉回路，但这题目中不要求回到原点，也不一定是全部连通的（对应原来的积木中不一定全部是以凹凸的方式拼接的），所以又有了一个很巧妙的构造方式。</p>
+<p>建立一个新的点，对于要构造的每一段路径将这个新点和它起点相连，在把终点与新点相连，然后找到一条欧拉回路，在把这新脸上的边和点给去掉就可以了。</p>
+<p>所以可以根据欧拉回路要求满足的条件来判断是否能构造成功。有向图有欧拉回路的条件是每个点入度等于出度。</p>
+<ol>
+<li>对于小于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span> 的点， 入度要小于等于出度，因为构造的时候还要和新点连边， 但不一定是最多只能小 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 因为我们要找出若干条路径而不一定只有一条。</li>
+<li>对于大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span> 的点同理。</li>
+<li>每一块至少得有一个点入度出度不相等，因为全相等了再和新点连边就没有欧拉回路了。</li>
+</ol>
+<p>满足以上条件的就可以按上面数的构造出来，不满足的就肯定 <code>No</code> 了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int H = 405;
+int n, h, fa[H], a, b, c, d, l, r, in[H], out[H], ok[H];
+int find(int x) {
+	if(x != fa[x]) fa[x] = find(fa[x]);
+	return fa[x];
+}
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;h);
+	for(int i = 1; i &lt;= 2*h; i++) fa[i] = i;
+	for(int i = 1; i &lt;= n; i++) {
+		scanf(&quot;%d%d%d%d&quot;, &amp;a, &amp;b, &amp;c, &amp;d);
+		if(d) r = d; else r = b+h;
+		if(c) l = c+h; else l = a;
+		out[l] ++, in[r] ++;
+		int fx = find(l), fy = find(r);
+		if(fx == fy) continue;
+		fa[fx] = fy;
+	}
+	for(int i = 1; i &lt;= h; i++) if(in[i] &gt; out[i]) return puts(&quot;NO&quot;), 0;
+	for(int i = h+1; i &lt;= 2*h; i++) if(in[i] &lt; out[i]) return puts(&quot;NO&quot;), 0;
+	for(int i = 1; i &lt;= 2*h; i++) if(in[i] != out[i] || !in[i] &amp;&amp; !out[i]) ok[find(i)] = 1;
+	for(int i = 1; i &lt;= 2*h; i++) if(fa[i] == i &amp;&amp; !ok[i]) return puts(&quot;NO&quot;), 0;
+	puts(&quot;YES&quot;);
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[4.14 校内模拟赛游记]]></title>
         <id>https://acfboy.pw/20210414/</id>
@@ -875,31 +934,6 @@ signed main() {
 }
 </code></pre>
 <p>比赛时一直在想着匹配的问题，没有想到 dp, 一直纠结于匹配了，最后搞了一个显然错的贪心，用 FTT（Fast Tanweitan Transform,快速谭炜谭变换）后获得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 分。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [APIO2007]动物园]]></title>
-        <id>https://acfboy.pw/apio2007dongwuyuan/</id>
-        <link href="https://acfboy.pw/apio2007dongwuyuan/">
-        </link>
-        <updated>2021-04-04T23:29:46.000Z</updated>
-        <summary type="html"><![CDATA[<p>感觉对这类在环上的状压问题很不熟悉（其实也不是环的原因），来记录一下心得。</p>
-<p>其实，这不是一篇题解。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>感觉对这类在环上的状压问题很不熟悉（其实也不是环的原因），来记录一下心得。</p>
-<p>其实，这不是一篇题解。</p>
-<!-- more -->
-<p>题面……难以概括。</p>
-<p>这题的第一篇题解写的非常清楚，只是令我不太理解的是为什么这样的一个仅有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 为状压的状态能代表最后的结果。</p>
-<p>展示一下方程。</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>S</mi></mrow></msub><mo>=</mo><mi>max</mi><mo>⁡</mo><mo>{</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mo>(</mo><mi>S</mi><mi mathvariant="normal">&amp;</mi><mn>15</mn><mo>)</mo><mo>×</mo><mn>2</mn></mrow></msub><mo separator="true">,</mo><msub><mi>f</mi><mrow><mo>(</mo><mi>S</mi><mi mathvariant="normal">&amp;</mi><mn>15</mn><mo>)</mo><mo>×</mo><mn>2</mn><mo>+</mo><mn>1</mn></mrow></msub><mo>}</mo><mo>+</mo><mi>n</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>S</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f_{i,S} = \max\{f_{i-1, (S\&amp;15) \times2}, f_{(S\&amp; 15) \times 2 + 1}\} + num[i][S]
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mop">max</span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mtight">&amp;</span><span class="mord mtight">1</span><span class="mord mtight">5</span><span class="mclose mtight">)</span><span class="mbin mtight">×</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mtight">&amp;</span><span class="mord mtight">1</span><span class="mord mtight">5</span><span class="mclose mtight">)</span><span class="mbin mtight">×</span><span class="mord mtight">2</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">]</span></span></span></span></span></p>
-<p>写出这个方程的精髓就在于，记录了当前之前的 若干个有用状态，并能从前面的状态继承答案，又能利于推出下面的状态。</p>
-<p>意思是说，虽然只记录了五个东西的状态，但是记录的是到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 为止的答案，因为无后效性，使得这样子继承前面的答案并转移可以得到到当前这一位的答案，感觉很神奇的样子。</p>
-<p>其实和 [NOI2001] 炮兵阵地 是同理的，只记录当前两行的状态，却能得到前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 行的答案，状压说白了就是将有后效性的部分状压掉放进状态里，使剩下的没有后效性。</p>
-<p>另一个使我注意的地方在于，一类问题是形成环的，即开始的状态和结尾的状态时一模一样的。如这道题和 [SCOI2009]围豆豆。</p>
-<p>处理这个问题的方法在这道题中表现为将除了初始状态的其它状态都设置为负无穷，并在最外层枚举起始/终结点，这是要求起始和结束状态完全一样的情况。</p>
-<p>但在豆豆那题中，起始和结尾状态时可以不一样的，也可以一样，所以直接看做不同的点按照原来的 bfs 处理就可以了。</p>
 ]]></content>
     </entry>
 </feed>
