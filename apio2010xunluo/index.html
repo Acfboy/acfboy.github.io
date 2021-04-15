@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 [APIO2010]巡逻 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1618445134395">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1618445134395" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 [APIO2010]巡逻</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-15</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/shu/">
+                    树
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>一个有些妙的想法，刷新了我对树的直径的一些认知。</p>
+<!-- more -->
+<blockquote>
+<p>从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 号店出发遍历每一条路，再回到起点， 可以添加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span></span></span></span> 条边，问最小的经过边的次数。必须要经过加上的边。 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mo>∈</mo><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">K \in[1, 2]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span></span></p>
+</blockquote>
+<p>考虑加上一条边改变了什么。显然，本来要一个个退回去的现在直达就好了，中间那些边都减掉了，那么减掉的越多越好，把直径俩端点一连完事儿。</p>
+<p>重点在如何连第二条。</p>
+<ol>
+<li>若环不重合，那么直接再来一条新直径就可以了。</li>
+<li>若重合，因为新建的是必需要跑的，环上重合的也就必需跑两次，等于对于那些东西，第一条就白连了。</li>
+</ol>
+<p>怎么解决？</p>
+<p>很妙：把第一次直径上的边权改成负的然后直接求直径就可以了。</p>
+<p>很妙，想不到，但告诉你了就很好理解了。</p>
+<p>注意有负权的直径就不能使用 dfs 了，只能 dp，因为证明中那个交点就不能断开重组了，因为可以能一边负的而另一边有很多正的。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int N = 100005, M = 2*N;
+int n, k, x, y, S, T, len[M], vet[M], next[M], head[N],
+	dis[N], f[N], tmax, num, dep[N];
+void add(int x, int y, int c) {
+	num++;
+	vet[num] = y, len[num] = c;
+	next[num] = head[x];
+	head[x] = num;
+}
+void dfs(int u, int fa, int &amp;x) {
+	if(dis[u] &gt; dis[x]) x = u;
+	f[u] = fa;
+	for(int i = head[u]; i; i = next[i]) {
+		int v = vet[i];
+		if(v == fa) continue;
+		dis[v] = dis[u] + 1;
+		dfs(v, u, x);
+	}
+}
+void change(int u, int v) {
+	for(int i = head[u]; i; i = next[i]) {
+		int vv = vet[i];
+		if(vv == v) { len[i] = -1; break; }
+	}
+}
+void dp(int u, int fa, int &amp;x) {
+	int max = -N, sax = -N;
+	for(int i = head[u]; i; i = next[i]) {
+		int v = vet[i];
+		if(v == fa) continue;
+		dp(v, u, x);
+		dep[u] = std::max(dep[u], dep[v] + len[i]);
+		if(dep[v]+len[i] &gt; max) sax = max, max = dep[v]+len[i];
+		else if(dep[v]+len[i] &gt; sax) sax = dep[v]+len[i];
+	}
+	// if(u == 5) printf(&quot;*%d %d\n&quot;, max, sax);
+	if(sax == -N) sax = 0;
+	x = std::max(x, max + sax);
+}
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
+	for(int i = 1; i &lt; n; i++) {
+		scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+		add(x, y, 1), add(y, x, 1);
+	}
+	if(k == 1) {
+		dfs(1, 0, S);
+		memset(dis, 0, sizeof dis);
+		dfs(S, 0, T);
+		printf(&quot;%d\n&quot;, 2*n - dis[T] - 1);
+	}
+	else {
+		dfs(1, 0, S);
+		memset(dis, 0, sizeof dis);
+		dfs(S, 0, T);
+		int L1 = dis[T], L2 = 0;
+		for(int now = T; now != S; now = f[now]) change(now, f[now]), change(f[now], now);
+		dp(1, 0, L2);
+		// printf(&quot;*%d\n&quot;, L2);
+		printf(&quot;%d\n&quot;, n*2 - L1 - L2);
+	}
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/shang-di-zao-ti-de-qi-fen-zhong-2/">
+              <h3 class="post-title">
+                下一篇：题解 上帝造题的七分钟2
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 上帝造题的七分钟2 | Acfboy 的小站</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1618445134395">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1618445134395" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 上帝造题的七分钟2</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-15</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/shu-zhuang-shu-zu/">
+                    树状数组
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/bing-cha-ji/">
+                    并查集
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>这题和上次有一场 CF 的 C 题有那么一些异曲同工之妙。</p>
+<p>还巧妙运用了并查集。</p>
+<!-- more -->
+<blockquote>
+<p>输入一个序列，维护两种操作，查询一段区间内数的和 以及 对一段区间内的所有数开方。</p>
+</blockquote>
+<p>虽然不会支持开方的神奇数据结构，但开方是一个很好的运算，因为开方没几次就会到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 以下，这样就没有继续开方的必要了。</p>
+<p>所以考虑怎么跳过这样的一个过程。</p>
+<p>大概是要使用一种类似链表的东西，如果变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 了就直接链接到下一个，并且能够把这种下一个的都合起来到最后，那么并查集就非常的合适了，路径压缩的过程就是合起来的过程。</p>
+<p>这里还有一个小 trick，那就是如果一个变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 把它之前的连到后面的可能会有更多细节问题要处理，比如说这样的连接交叉的时候。那么其实跳过不用这么严格，头尾都改一下也就两次，所以只需要把这个连接到下一个就可以了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#define int long long
+const int N = 100005;
+int a[N], fa[N], n, q, opt, l, r, t[N];
+int Query(int x) {
+	int an = 0;
+	while(x) {
+		an += t[x];
+		x -= x &amp; -x;
+	}
+	return an;
+}
+void add(int p, int x) {
+	while(p &lt;= n) {
+		t[p] += x;
+		p += p &amp; -p;
+	}
+}
+int find(int x) {
+	if(x != fa[x]) fa[x] = find(fa[x]);
+	return fa[x];
+}
+signed main() {
+	scanf(&quot;%lld&quot;, &amp;n);
+	for(int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]), fa[i] = i, add(i, a[i]);
+	scanf(&quot;%lld&quot;, &amp;q);
+	while(q--) {
+		scanf(&quot;%lld%lld%lld&quot;, &amp;opt, &amp;l, &amp;r);
+		if(l &gt; r) std::swap(l, r);
+		if(opt == 1) printf(&quot;%lld\n&quot;, Query(r) - Query(l-1));
+		else {
+			int i = l;
+			while(i &lt;= r) {
+				add(i, (int)sqrt(a[i]) - a[i]);
+				a[i] = (int)sqrt(a[i]);
+				fa[i] = (a[i] &lt;= 1) ? (i+1) : i;
+				i = (fa[i] == i) ? (i+1) : find(fa[i]);
+			}
+		}
+	}
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/apio2019qiangluejihua/">
+              <h3 class="post-title">
+                下一篇：题解 [APIO2009]抢掠计划
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
