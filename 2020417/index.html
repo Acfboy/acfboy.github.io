@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2020.4.17 校内模拟赛游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1618799416827">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1618799416827" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2020.4.17 校内模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-17</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>研究了 T2 一会儿居然写快速谭炜谭变换去了，结果后来发现这题……</p>
+<p>以后得改变做题的模式了。</p>
+<!-- more -->
+<h2 id="a">A</h2>
+<blockquote>
+<p>一只马，在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n \times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的棋盘中能跳到几个点。</p>
+</blockquote>
+<p>对于大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>×</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">3 \times 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 的棋盘是都可以跳到的，因为在 上/下 和 右边 有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3 \times 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 的格子时就可以移动到右边的一个。</p>
+<p>剩下的判掉就好了。</p>
+<h2 id="b">B</h2>
+<blockquote>
+<p>输入 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 组数，每组 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>l</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>d</mi><mi>i</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">(l_i, d_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, 每次两种操作：</p>
+<ul>
+<li>价值加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>d</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">d_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, 去掉最左边的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>l</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">l_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 个</li>
+<li>把最后一个换到开头，其它每个后移</li>
+</ul>
+<p>求最大价值</p>
+</blockquote>
+<p>想了一下模拟了几个数据没有什么思路，唯一发现的性质就是它换了个寂寞，反正相对位置永远不变的。</p>
+<p>想不到什么思路人又比较浮躁，于是直接大力 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">exFTT(extand</mtext><mtext> </mtext><mtext mathvariant="monospace">Fast</mtext><mtext> </mtext><mtext mathvariant="monospace">Tanweitan</mtext><mtext> </mtext><mtext mathvariant="monospace">Transform)</mtext></mrow><annotation encoding="application/x-tex">\texttt{exFTT(extand Fast Tanweitan Transform)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord texttt">exFTT(extand Fast Tanweitan Transform)</span></span></span></span></span>, 就是从头开始随机每个选不选，一波计算后发现期望最多 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span></span></span></span> 次就可以构成一次操作，而 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 才 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span> , 所以跑个几十万次没有问题。</p>
+<p>然后……一下就被卡掉了。</p>
+<p>因为从头开始选第一次选到后面的概率很小。于是就想着又随机每次从前还是从后开始，但是……对于分数来说还是没有任何用处，都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>, twt 直接无脑随机都有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>30</mn></mrow><annotation encoding="application/x-tex">30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span></span></span></span>。</p>
+<p>代码留作纪念吧，警示以后不要这么干了。</p>
+<pre><code class="language-cpp">// Powered by exFTT(extand Fast Tanweitan Transform)
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt; 
+#include &lt;algorithm&gt;
+int n, ans, D;
+bool vis[55];
+struct twt { int l, d; } a[55];
+int inc(int &amp;x) {
+	x ++;
+	if(x &gt; n) x = 1;
+}
+bool check(int x) {
+	for(int j = 1; j &lt;= n; j++, D++) 
+		if(!vis[j] &amp;&amp; a[j].l &lt;= x) return true;
+	return false;
+}
+int main() {
+	srand(time(0));
+	scanf(&quot;%d&quot;, &amp;n);
+	for(int i = 1; i &lt;= n; i++) scanf(&quot;%d%d&quot;, &amp;a[i].l, &amp;a[i].d);
+	while(D &lt; 50000000) {
+		for(int j = 1; j &lt;= n; j++) vis[j] = 0;
+		int now = 1, j = 1, num = n, an = 0;
+		while(check(num)) {
+			for( ; vis[j] || a[j].l &gt; num; inc(j), D++) ;
+			if(rand()%2 == 0) { inc(j); continue; }
+			an += a[j].d;
+			int tmp = a[j].l;
+			for(int cnt = 1; cnt &lt;= tmp; inc(j)) cnt += !vis[j], vis[j] = 1, D++,  num--;
+		}
+		ans = std::max(ans, an);
+	}
+	printf(&quot;%d&quot;, ans);
+	return 0;
+}
+</code></pre>
+<p>然后是令人震惊的正解：直接 01 背包！</p>
+<p>讲一下为什么：</p>
+<ol>
+<li>若选出来的一堆的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 大于了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>，那肯定没救了</li>
+<li>若选出来的一堆 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>,  那么肯定有一种方案可以选到这些所有，因为总有一个不会和其它接上。</li>
+</ol>
+<p>所以这就是一个 01 背包了。</p>
+<h2 id="c">C</h2>
+<p>不会。</p>
+<h2 id="反思">反思</h2>
+<p>感觉 B 题没做出来和我平时做了一会儿做不出就去看题解的做题习惯有很大的关系，失去了长时间思考的能力，就仿佛碎片化的阅读让人失去了读整本书的能力一样。</p>
+<p>整天做些体力劳动远大于脑力劳动的练习是没有意义的，这样子追求所谓的过题量让算法竞赛本身的魅力丧失殆尽，此之谓失其本心。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/guang-miao-hui/">
+              <h3 class="post-title">
+                下一篇：题解 逛庙会
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

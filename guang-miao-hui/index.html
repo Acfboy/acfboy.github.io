@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 逛庙会 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1618799416827">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1618799416827" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 逛庙会</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-17</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/zhuang-tai-ya-suo/">
+                    状态压缩
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/dong-tai-gui-hua/">
+                    动态规划
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><a href="https://www.luogu.com.cn/problem/P2238">传送门</a></p>
+<p>状压 dp 的好题目，巧妙利用状压传递了有后效性的信息从而消除了后效性。</p>
+<!-- more -->
+<p>这题如果没有取周围的那么很容易想到一个 dp, 但由于会取周围的而且还要选出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个，所以有后效性，尝试通过改变 dp 的顺序来消除后效性，但是很遗憾，没有用。</p>
+<p><s>所以上 老板dp/快速谭炜谭变换 吧。</s></p>
+<p>然后我就没辙了，去看了 kkk 的题解，不得不说 kkk 的题解写得 <s>糟透了</s> <strong>真的好</strong>，非常考验读者的思维能力，不自己想根本就看不懂。</p>
+<p>另一个解决后效性的方式：将需要记录的信息加入到状态中。</p>
+<p>但知道了这一点要做这一题还是非常有难度，这题的状态还是很妙的。</p>
+<p>考虑什么情况下是这题的难点，比如说要走如下的路径：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>→</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>→</mo></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext mathvariant="sans-serif">twt</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>↓</mo></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{c}
+\rightarrow &amp; \rightarrow \\
+\textsf{twt} &amp; \downarrow
+\end{array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4000000000000004em;vertical-align:-0.9500000000000004em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mrel">→</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord textsf">twt</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mrel">→</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mrel">↓</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
+<p>那么 <code>twt</code> 的价值在两次中都可能被算进去，应该如何把取/没取的信息传递下去呢？这里有一个非常妙的做法，就是对于一个点，我们状压它 左下/下/右/右上 的状态。</p>
+<p>这样子有什么的好处？那就是我们可以传递这样的一个状态了！</p>
+<p>向右转移的时候必须保证其左下和原来的下是一样的，向下转移时保证新的右和原来的右下是一样的，这样子就可以把转角的信息（就是 <code>twt</code>）给不断传递了。</p>
+<p>记得需要判断的是当前经过位置是一定要取的，然后还要取超过一个。</p>
+<p>转移的时候只要加上相应的东西就可以了，因为剩下的都在其它的状态中判断过取不取的问题了，由于取了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>min</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66786em;vertical-align:0em;"></span><span class="mop">min</span></span></span></span>, 可以保证其正确性。</p>
+<p>代码：</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int N = 1005;
+int n, m, sh[N][N], f[N][N][16];
+int cnt[16] = {0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4}; 
+// 二进制中 1 的个数
+char s[N];
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	memset(f, 0x3f, sizeof f);
+	for(int i = 1; i &lt;= n; i++) {
+		scanf(&quot;%s&quot;, s+1);
+		for(int j = 1; j &lt;= m; j++) sh[i][j] = (s[j] == '.' ? 0 : (s[j] - '0'));
+	}
+	f[1][1][15] = 0;
+	for(int i = 1; i &lt;= n; i++) 
+		for(int j = 1; j &lt;= m; j++)
+			for(int k = 0; k &lt; 16; k++) {
+				for(int k2 = 0; k2 &lt; 16; k2++) {
+					if(((k&amp;4)==0) != ((k2&amp;8)==0) || !(k&amp;2) || cnt[k&amp;1] + cnt[k2&amp;6] &lt;= 1) continue;
+					int cost = f[i][j][k];
+					if(k2 &amp; 1) cost += sh[i+2][j-1];
+					if(k2 &amp; 2) cost += sh[i+2][j];
+					if(k2 &amp; 4) cost += sh[i+1][j+1];
+					f[i+1][j][k2] = std::min(f[i+1][j][k2], cost);
+				}
+				for(int k2 = 0; k2 &lt; 16; k2++) {
+					if(((k&amp;2)==0) != ((k2&amp;1)==0) || !(k&amp;4) || cnt[k&amp;8] + cnt[k2&amp;6] &lt;= 1) continue;
+					int cost = f[i][j][k];
+					if(k2 &amp; 8) cost += sh[i-1][j+2];
+					if(k2 &amp; 4) cost += sh[i][j+2];
+					if(k2 &amp; 2) cost += sh[i+1][j+1];
+					f[i][j+1][k2] = std::min(f[i][j+1][k2], cost);
+				}
+			}
+	printf(&quot;%d&quot;, f[n][m][15]);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/agc037e/">
+              <h3 class="post-title">
+                下一篇：题解 [AGC037E] Reversing and Concatenating
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
