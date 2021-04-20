@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 P3634 [APIO2012]守卫 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1618916775019">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1618916775019" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 P3634 [APIO2012]守卫</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-20</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/chai-fen/">
+                    差分
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/er-fen/">
+                    二分
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>一道从开始就被我想歪的题目，以至于写了一天最后发现根本就是错误的算法，只好照题解写去了。</p>
+<!-- more -->
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1, n]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">]</span></span></span></span> 的区间内有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个标记在整数上，给出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 段区间内有/没有标记，输出一定有标记的数字。</p>
+</blockquote>
+<p>看完题我就直接给出了一堆“显然”的结论：</p>
+<ol>
+<li>去掉没有的，若有的区间长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 那这个就肯定是的了。</li>
+<li>把肯定是的去掉，当且仅当剩下还有的标记数和现在有覆盖标记的数字数一样的时候有一定有标记的数字，且一定是全都是。</li>
+</ol>
+<p>看上去是不是挺有道理？于是我就设计了一个用 <code>std::set</code> 的算法，用 <code>(twt){st, len}</code> 表示从 <code>st</code> 开始长度 <code>len</code> 的有覆盖，维护一个可能有的区间，和一个一定没有到区间，然后用一定没有的在有的区间内除去，然后判一下前面两条就行了。合并区间的时候注意有标记的区间刚刚好相接是不能接上的，因为要注意一号判断。</p>
+<p>似乎好有道理，然后我就写、调了俩小时，最后获得了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span> 分的优异成绩。</p>
+<p>其实反例很显然：</p>
+<pre><code class="language-cpp">3 1 3
+1 1 1
+1 2 1
+1 3 1
+</code></pre>
+<p>这样我认为是无法确定的，其实第一个明显是可以确定的。解决这个问题可不是仅仅把开始时长度就为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的判掉那么简单。</p>
+<p>比如这组反例：</p>
+<pre><code class="language-cpp">5 1 3
+2 3 1
+1 5 1
+3 3 0
+</code></pre>
+<p>把前两段并起来后就损失了它们单独的信息了！</p>
+<p>所以前面的断言根本就是错的。浪费了我许多的时间。<strong>在开始写代码前一定要想清楚，充分考虑算法的正确性是否成立。</strong></p>
+<p>那么现在来讲正确的做法吧。</p>
+<p>正确做法同样维护了可能由标记的区间并从中去掉了一定没有标记的区间，那它是如何处理在合并中的信息损失呢？</p>
+<p>其实，正确做法根本不需要这个信息，<s>因为它不依赖于我的断言</s>。</p>
+<p>想法很简单，用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 记录前面到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 段所需的最少标记数量，用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>g</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">g_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 记录从后面开始的。然后枚举每一个点就强制它不选，选它左边一个，再看下前后所需的会不会超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 就好了。</p>
+<p>当然细节还是要处理的。</p>
+<p>题解里处理合并的方式比我的 <code>set</code> 好多了，既快（没有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span>） 又好写 （不用处理迭代器删除的问题），用差分把现在不是肯定没有的点抓出来重新编号，用新编号表示线段的端点。</p>
+<p>处理合并可以将一个端点排序后使用单调栈处理合并。至于找左右的线段端点？既然有序，直接二分就好了。</p>
+<p>代码实现感觉也一些的难度。</p>
+<pre><code class="language-cpp">	scanf(&quot;%d%d%d&quot;, &amp;n, &amp;k, &amp;m);
+	for(int i = 1; i &lt;= m; i++) {
+		scanf(&quot;%d%d%d&quot;, &amp;a[i].l, &amp;a[i].r, &amp;a[i].f);
+		if(a[i].f == 0) ++b[a[i].l], --b[a[i].r+1];
+	}
+	int now = 0, cnt = 0;
+	for(int i = 1; i &lt;= n; i++) {
+		now += b[i];
+		if(now == 0) L[i] = R[i] = ++cnt, be[cnt] = i;
+	}
+	if(cnt == k) {
+		for(int i = 1; i &lt;= cnt; i++) printf(&quot;%d\n&quot;, be[i]);
+		return 0;
+	}
+</code></pre>
+<p>先是重新编号的过程，如果发现这些点恰好就是需要的，那么直接输出就可以了。</p>
+<p>同时标记出了一个新的点左右最靠近的一个端点。</p>
+<pre><code class="language-cpp">	L[n+1] = n+1;
+	for(int i = 1; i &lt;= n; i++) 
+		if(R[i] == 0) R[i] = R[i-1];
+	for(int i = n; i &gt;= 1; i--) 
+		if(L[i] == 0) L[i] = L[i+1];
+	cnt = 0;
+	for(int i = 1; i &lt;= m; i++) {
+		if(a[i].f == 0) continue;
+		if(L[a[i].l] &lt;= R[a[i].r]) a[++cnt].l = L[a[i].l], a[cnt].r = R[a[i].r];
+	}
+	std::sort(a+1, a+cnt+1);
+</code></pre>
+<p>然后更新 <code>a</code> 的编号并进行排序。</p>
+<p>以下重新使用了 <code>L</code> 和 <code>R</code> 作为栈，注意这里的合并不是我假做法里的合并，而是把完全覆盖的给并掉了。还求出了 <code>f</code> 和 <code>g</code>。</p>
+<pre><code>	int top = 0;
+	for(int i = 1; i &lt;= cnt; i++) {
+		while(top != 0 &amp;&amp; a[i].l &gt;= L[top] &amp;&amp; a[i].r &lt;= R[top]) top--;
+		L[++top] = a[i].l, R[top] = a[i].r;
+	}
+	int l = n+1, r = 0;
+	for(int i = 1; i &lt;= top; i++) {	
+		if (L[i] &gt; r) f[i] = f[i-1] + 1, r = R[i];
+		else f[i] = f[i-1];
+	}
+	for(int i = top; i &gt;= 1; i--) {
+		if (R[i] &lt; l) g[i] = g[i+1] + 1, l = L[i];
+		else g[i] = g[i+1];
+	}
+</code></pre>
+<p>最后是关键的判断环节。</p>
+<p>这里还需要说明一下，最后栈中的编号是剩下线段的编号，我们每次只判断了最右边一个是否是一定要有的，是因为这样子显然是最优的，因为放在这个位置右边也可能会利用到，而因为每一段覆盖只需要一个就可以了，其它地方判断出来是不能确定的，因为可以放到线段最右边的位置可能更优。</p>
+<pre><code class="language-cpp">	bool flag = 0;
+	for(int i = 1; i &lt;= top; i++) {
+		if(f[i] == f[i-1]) continue;
+		if (L[i] == R[i]) {
+			printf(&quot;%d\n&quot;, be[R[i]]);
+			flag = 1; 
+			continue;
+		}
+		int l = 1, r = i - 1, x = 0, y = top + 1;
+		while (l &lt;= r) {				 
+			int mid = l + ((r - l) &gt;&gt; 1);
+			if (R[mid] &lt; R[i] - 1) x = mid, l = mid + 1;
+			else r = mid - 1;
+		}
+		l = i + 1, r = top;
+		while (l &lt;= r) {
+			int mid = l + ((r - l) &gt;&gt; 1);
+			if (L[mid] &gt; R[i] - 1) y = mid, r = mid - 1;
+			else l = mid + 1;
+		}
+		if (f[x] + g[y] + 1 &gt; k) {
+			printf(&quot;%d\n&quot;, be[R[i]]);
+			flag = 1;
+		}
+	}
+	if(flag == 0) puts(&quot;-1&quot;);
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/jsc2021/">
+              <h3 class="post-title">
+                下一篇：Japanese Student Championship 2021 游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
