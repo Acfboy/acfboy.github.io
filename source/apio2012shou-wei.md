@@ -1,5 +1,5 @@
 ---
-title: '题解 P3634 [APIO2012]守卫'
+title: '题解 [APIO2012]守卫'
 date: 2021-04-20 19:01:41
 tags: [题解,差分,二分]
 published: true

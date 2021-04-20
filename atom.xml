@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的博客</title>
-    <updated>2021-04-20T11:06:29.285Z</updated>
+    <updated>2021-04-20T11:11:16.054Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的博客</rights>
     <entry>
-        <title type="html"><![CDATA[题解 P3634 [APIO2012]守卫]]></title>
+        <title type="html"><![CDATA[题解 [APIO2012]守卫]]></title>
         <id>https://acfboy.pw/apio2012shou-wei/</id>
         <link href="https://acfboy.pw/apio2012shou-wei/">
         </link>
