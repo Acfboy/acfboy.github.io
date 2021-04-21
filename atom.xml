@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的博客</title>
-    <updated>2021-04-20T11:11:16.054Z</updated>
+    <updated>2021-04-21T00:11:58.764Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,53 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 [AGC035C] Skolem XOR Tree]]></title>
+        <id>https://acfboy.pw/agc035c/</id>
+        <link href="https://acfboy.pw/agc035c/">
+        </link>
+        <updated>2021-04-21T00:09:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>止步于一个死胡同里了，没能换一种思路出正解。感觉做这种构造题的方向也没有搞对。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>止步于一个死胡同里了，没能换一种思路出正解。感觉做这种构造题的方向也没有搞对。</p>
+<!-- more -->
+<blockquote>
+<p>构造一颗大小为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span></span></span></span> 的树，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i+n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的权值都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>, 使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>i</mi></mrow><annotation encoding="application/x-tex">2i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">i</span></span></span></span> 路径上的异或和都为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 或断言这不可能。</p>
+</blockquote>
+<p>开始的时候去研究了一下连续数异或的性质，发现连续四个一组异或起来是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，如下。</p>
+<pre><code>00000
+00001
+00010
+00011
+---
+00100
+00101
+00110
+00111
+---
+01000
+01001
+01010
+01011
+---
+01100
+01101
+01110
+01111
+</code></pre>
+<p>这一点的正确性挺显然的，于是我们对于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>4</mn><mi>k</mi><mo>+</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 4k+3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 的就有了一种构造方案，即把三个一组，后面每四个一组进行构造，用笔模拟一下发现四个四个的构造都是独立且成立的，那么随便选一个点连起来就可以了。</p>
+<p>那么其它情况呢？能断言其不成立吗？我就束手无策了。</p>
+<p>其实一条路走不通，得确定它确实走不通，然后换条路试试，而不可放弃啊。</p>
+<p>其实做这种构造题应该先确定一个绝对没有解的条件，再去尝试构造剩下的。</p>
+<p>那么什么事绝对没有解的呢？<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 的幂次的时候肯定不行，因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">n&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> 中间在这最高位上肯定不会有了。</p>
+<p>那么考虑剩下的怎么去构造，其实有一个很“显然”的性质，那就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 是偶数时，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>+</mo><mn>1</mn><mo>⊕</mo><mn>1</mn><mo>=</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x+1 \oplus 1 = x+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>， 是奇数时，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>⊕</mo><mn>1</mn><mo>=</mo><mi>x</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x \oplus 1 = x-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 那么我们就可以用下图构造了。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.hualigs.cn/image/607f6b8455e90.jpg" alt="" loading="lazy"></figure>
+<p>把每一组偶数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 都向上面连接就可以了。</p>
+<p>至于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 直接接在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 下面就好了，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>⊕</mo><mn>3</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2 \oplus 3 = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。还有就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 是偶数时会多出来，再想想怎么修补。</p>
+<p>可发现 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>→</mo><mtext>lowbit</mtext><mo>(</mo><mi>n</mi><mo>)</mo><mo>→</mo><mn>1</mn><mo>→</mo><mi>n</mi><mo>−</mo><mtext>lowbit</mtext><mo>(</mo><mi>n</mi><mo>)</mo><mo>+</mo><mn>1</mn><mo>→</mo><msup><mi>n</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">n \rightarrow \text{lowbit}(n) \rightarrow 1 \rightarrow n - \text{lowbit}(n)+1 \rightarrow n&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">lowbit</span></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">lowbit</span></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> 满足条件，而 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>lowbit</mtext><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\text{lowbit}(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">lowbit</span></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 是偶的，所以这样的路一定存在。</p>
+<p>代码就不放了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 [APIO2012]守卫]]></title>
         <id>https://acfboy.pw/apio2012shou-wei/</id>
@@ -750,116 +797,6 @@ signed main() {
 			}
 		}
 	}
-	return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [APIO2009]抢掠计划]]></title>
-        <id>https://acfboy.pw/apio2019qiangluejihua/</id>
-        <link href="https://acfboy.pw/apio2019qiangluejihua/">
-        </link>
-        <updated>2021-04-14T23:32:18.000Z</updated>
-        <summary type="html"><![CDATA[<p>很久很久以前就想学缩点，现在因为这题终于学会了 tarjan 求强联通分量和缩点。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>很久很久以前就想学缩点，现在因为这题终于学会了 tarjan 求强联通分量和缩点。</p>
-<!-- more -->
-<blockquote>
-<p>给定一个有向图，每个节点都可以通过无限次，但上面的权值只能加一次，求从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 开始到一些点结束经过的节点权值和最大。</p>
-</blockquote>
-<p>如果这是一张有向无环图，那么我们肯定可以利用拓扑排序来愉快地 dp 求出这个答案。</p>
-<p>但这不是一张有向无环图，缩点就是这样一种算法，可以将图中互相联通的一坨点缩成一个，使图变成 DAG，让你可以愉快地 dp。</p>
-<p>现在来讲一讲 tarjan 算法。</p>
-<p>这个算法的主要思想是这样的：</p>
-<ol>
-<li>dfs 一遍，记录 dfs 序，记作 <code>dfn</code>, 记录当前一个点可以连到最小 dfs 序，记作 <code>low</code></li>
-<li>在 dfs 的过程中，先标记当前点被访问，然后将其加入栈中，更新时若连到的点没有 dfs 过，那么就 dfs 下去，然后更新 <code>low</code>, 不然只更新 <code>low</code>。</li>
-<li>若 <code>dfn == low</code> 那么现在栈中的点就是一个强联通分量中的点了，把它们弹出做你想要的操作，然后都标记成未访问就可以了。</li>
-</ol>
-<p>这样的做法为什么是对的？</p>
-<p>首先，如果连到了当前 dfs 到这点的路径上的点，那么肯定可以回去再来就是互相到达了，所以我们把点都塞进栈中，并且用 <code>low</code> 来做到识别是否连回去到更早的。</p>
-<p>如果不是在 dfs 树上最早被抵达的强联通分量的点肯定 <code>dfn</code> 不和 <code>low</code> 相等，反之肯定相等，我们可以用这个性质来缩点，把其它点的性质都加入到这个最早被访问到的点上。栈就是为了记录这样的一些点。</p>
-<p>然后为什么要把强联通分块中的标记成未访问呢？因为搜索树上不是向自己的祖先，而是横叉出去的边肯定不会和其它边构成环，所以把它们都取消可以成为强联通分量的资格，从候选的栈中弹出。</p>
-<p>会缩点了一个就是一个拓扑排序和 dp 就可以了。</p>
-<p>代码。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;queue&gt;
-#include &lt;stack&gt;
-const int N = 500005, M = N;
-int vet[M], uet[M], next[M], head[N], vet2[M], next2[M], head2[N], num, num2,
-	low[N], dfn[N], vis[N], c[N], scc[N], n, m, x, y, in[N], sum[N], tim, s, p;
-std::queue&lt;int&gt; q;
-std::stack&lt;int&gt; st;
-void add(int u, int v) {
-	vet[++num] = v; uet[num] = u;
-	next[num] = head[u];
-	head[u] = num;
-}
-void add2(int u, int v) {
-	in[v] ++;
-	vet2[++num2] = v; 
-	next2[num2] = head2[u];
-	head2[u] = num2;
-}
-void dfs(int u) {
-	low[u] = dfn[u] = ++tim;
-	st.push(u);
-	vis[u] = 1;
-	for(int i = head[u]; i; i = next[i]) {
-		int v = vet[i];
-		if(!dfn[v]) {
-			dfs(v);
-			low[u] = std::min(low[u], low[v]);
-		}
-		else if(vis[v]) low[u] = std::min(low[u], low[v]);
-	}
-	if(dfn[u] == low[u]) {
-		int now;
-		while(!st.empty()) {
-			now = st.top();
-			st.pop();
-			scc[now] = u;
-			vis[now] = 0;
-			if(now == u) break;
-			c[u] += c[now];
-		}
-	}
-}
-int topo() {
-	q.push(scc[s]);
-	sum[scc[s]] = c[scc[s]];
-	while(!q.empty()) {
-		int u = q.front(); q.pop();
-		for(int i = head2[u]; i; i = next2[i]) {
-			int v = vet2[i];
-			sum[v] = std::max(sum[v], sum[u] + c[v]);
-			in[v] --;
-			if(in[v] == 0) q.push(v);
-		}
-	}
-	int ans = 0;
-	for(int i = 1; i &lt;= p; i++) {
-		scanf(&quot;%d&quot;, &amp;x);
-		ans = std::max(ans, sum[scc[x]]);
-	}
-	return ans;
-}
-int main() {
-	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
-	for(int i = 1; i &lt;= m; i++) {
-		scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
-		add(x, y);
-	}
-	for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;c[i]);
-	scanf(&quot;%d%d&quot;, &amp;s, &amp;p);
-	dfs(s);
-	for(int i = 1; i &lt;= n; i++) {
-		if(scc[i] == 0) continue;
-		for(int j = head[i]; j; j = next[j]) 
-			if(scc[vet[j]] &amp;&amp; scc[vet[j]] != scc[i]) add2(scc[i], scc[vet[j]]);
-	}
-	printf(&quot;%d&quot;, topo());
 	return 0;
 }
 </code></pre>
