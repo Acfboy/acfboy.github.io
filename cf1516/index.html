@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Codeforces Round #717 (div.2) 游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619096418902">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619096418902" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Codeforces Round #717 (div.2) 游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-22</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>两个“人生第一次”——上蓝，变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="blue"><mtext mathvariant="sans-serif">Acfboy</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{blue}\textsf{Acfboy}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text" style="color:blue;"><span class="mord textsf" style="color:blue;">Acfboy</span></span></span></span></span> 了！以及第一次 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mtext mathvariant="sans-serif">FST</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{red}\textsf{FST}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text" style="color:red;"><span class="mord textsf" style="color:red;">FST</span></span></span></span></span> 了。</p>
+<p>不过比赛状态真的是不好，第一题居然要交三次才过，第二题还 FST。但还是开心地庆祝上蓝！</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://www.hualigs.cn/image/60811d06c1a67.jpg" alt="" loading="lazy"></figure>
+<h2 id="a">A</h2>
+<p>英语不好有大问题， &quot;two different elements&quot; 指的是下标不同而不是那个数字不同，影响了一定的做题速度。</p>
+<p>不过自己没有想清楚也是一个大的原因，没有考虑到根本不能减的情况。</p>
+<p>开局不利，就比较慌。</p>
+<h2 id="b">B</h2>
+<blockquote>
+<p>把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数分成至少两段，使每一段异或和相同。</p>
+</blockquote>
+<p>pretest 有点水啊。不过确实得怪自己没有考虑清楚。</p>
+<p>思路是枚举第一段，然后后面验证能不能行。</p>
+<p>验证时如果行的就直接断开就会遇到各种问题。一开始没有想到异或和本来就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的问题，顺利 Wrong Answer on pretest 2。又没有注意到如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 可以和前面并上，顺利 FST。 然后没注意到一段为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 也可以和前面并上，又没有注意到如果前面只是一段就不能并过去，因为至少要两段。</p>
+<p>最后居然交了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> 发才过！</p>
+<p>把代码和提交记录放上来作 警示/纪念 吧。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.hualigs.cn/image/608120b511c5d.jpg" alt="" loading="lazy"></figure>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int N = 2005;
+int T, n, a[N];
+int main() {
+    scanf(&quot;%d&quot;, &amp;T);
+    while(T--) {
+        scanf(&quot;%d&quot;, &amp;n);
+        for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);
+        int fi = 0, ne = 0;
+        bool flag = 0;
+        for(int i = 1; i &lt; n; i++) {
+            fi ^= a[i];
+            ne = 0;
+            bool twt = 0, did = 0;
+            for(int j = i+1; j &lt;= n; j++) {
+                ne ^= a[j];
+                if(ne == fi || ne == 0 &amp;&amp; did) ne = 0, twt = 1, did = 1;
+                else twt = 0;
+                // printf(&quot;*%d %d\n&quot;, ne, twt);
+            }
+            if(twt) { flag = 1; /*printf(&quot;%d %d %d\n&quot;, i, fi, ne);*/ break;}
+        }
+        if(flag) puts(&quot;YES&quot;);
+        else puts(&quot;NO&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="c">C</h2>
+<p>好题！</p>
+<blockquote>
+<p>至少要删去几个数，使数组不能被分成和相等的两份。</p>
+</blockquote>
+<p>至于判断一个数组，那么很好做到，直接背包一遍就可以了。</p>
+<p>那么怎么去掉呢？显然若有奇数直接去掉好了，可是没有又怎么去掉？枚举每一个的话万一还需要去掉一个呢？</p>
+<p>找一些数据玩一玩，发现最多去掉一个就可以了。证明使用第二类数学归纳法。</p>
+<ol>
+<li>若存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mn>0</mn></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^0x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 是奇数)， 那么把它去掉肯定可以，所以若要去掉两个的，肯定不存在这样的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</li>
+<li>若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mi>k</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^kx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>&lt;</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">k &lt; m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>) 都不存在，那么去掉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^mx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span> 的肯定可以，因为大家都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span> 的倍数，而去掉这个再除以二后就不能被 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span> 整除了，所以不能存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^mx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span></li>
+<li>所有的数都不能存在。</li>
+</ol>
+<p>这样就证明了一堆数去掉一个肯定是可以的。</p>
+<p>代码很好写，反而这题是我这场比赛最顺利的一道。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+const int N = 105;
+int n, a[N], f[200005], v;
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]), v += a[i];
+    for(int i = 1; i &lt;= n; i++)
+        for(int j = v; j &gt;= a[i]; j--)
+            f[j] = std::max(f[j], f[j-a[i]] + a[i]);
+    if(v % 2 == 1 || f[v/2] != v/2) {
+        puts(&quot;0&quot;);
+        return 0;
+    }
+    for(int i = 1; i &lt;= n; i++) 
+        if((v-a[i]) % 2 == 1 || f[(v-a[i])/2] != (v-a[i])/2) {
+            printf(&quot;1\n%d&quot;, i);
+            return 0;
+        }
+    return 0;
+}
+</code></pre>
+<h2 id="d">D</h2>
+<p>赛场上想着倍增但没想出个方案来，本来若积小一点就可以用线段树大力维护的，但这样的数据范围要么暴力出奇迹，高精去(用 <code>Python</code> 写线段树？)，要么就另寻他法了。</p>
+<p>结果题解真的是倍增。</p>
+<p>先处理出每一个开始的断点是在哪儿，然后倍增跳过几段而不是跳过几个数字就好了。</p>
+<p>感觉难点在于如何预处理那个第一个断点的问题。</p>
+<p>可以先预处理存下每个数的质因数，然后从后往前每一个的质因子的下一个有的取个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>min</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66786em;vertical-align:0em;"></span><span class="mop">min</span></span></span></span> 就好了。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+const int N = 100005;
+int n, q, a[N], f[N][25], ans, l, r, next[N];
+std::vector&lt;int&gt; p[N];
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;q);
+	for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);
+	for(int i = 2; i &lt; N; i++) 
+		if(p[i].empty()) {
+			next[i] = n+1;
+			for(int j = 1; i*j &lt; N; j++)
+				p[i*j].push_back(i);
+		}
+		
+	f[n+1][0] = n+1;
+	for(int i = n; i &gt;= 1; i--) {
+		f[i][0] = f[i+1][0];
+		for(int j = 0; j &lt; (signed)p[a[i]].size(); j++) {
+			f[i][0] = std::min(f[i][0], next[p[a[i]][j]]);
+			next[p[a[i]][j]] = i;
+		}
+	}
+	for(int j = 1; j &lt;= 20; j++)
+		for(int i = 1; i &lt;= n+1; i++)
+			f[i][j] = f[f[i][j-1]][j-1];
+	while(q--) {
+		scanf(&quot;%d%d&quot;, &amp;l, &amp;r);
+		ans = 0;
+		for(int i = 19; i &gt;= 0; i--)
+			if(f[l][i] &lt;= r) {
+				ans += (1 &lt;&lt; i);
+				l = f[l][i];
+			} 
+		printf(&quot;%d\n&quot;, ans+1);
+	}
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/20210421/">
+              <h3 class="post-title">
+                下一篇：题解 [BalticOI 2020 Day2] 村庄
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

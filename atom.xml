@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的博客</title>
-    <updated>2021-04-21T00:11:58.764Z</updated>
+    <updated>2021-04-22T13:01:05.246Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,313 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Codeforces Round #717 (div.2) 游记]]></title>
+        <id>https://acfboy.pw/cf1516/</id>
+        <link href="https://acfboy.pw/cf1516/">
+        </link>
+        <updated>2021-04-22T08:05:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>两个“人生第一次”——上蓝，变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="blue"><mtext mathvariant="sans-serif">Acfboy</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{blue}\textsf{Acfboy}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text" style="color:blue;"><span class="mord textsf" style="color:blue;">Acfboy</span></span></span></span></span> 了！以及第一次 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mtext mathvariant="sans-serif">FST</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{red}\textsf{FST}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text" style="color:red;"><span class="mord textsf" style="color:red;">FST</span></span></span></span></span> 了。</p>
+<p>不过比赛状态真的是不好，第一题居然要交三次才过，第二题还 FST。但还是开心地庆祝上蓝！</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>两个“人生第一次”——上蓝，变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="blue"><mtext mathvariant="sans-serif">Acfboy</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{blue}\textsf{Acfboy}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text" style="color:blue;"><span class="mord textsf" style="color:blue;">Acfboy</span></span></span></span></span> 了！以及第一次 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mtext mathvariant="sans-serif">FST</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{red}\textsf{FST}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text" style="color:red;"><span class="mord textsf" style="color:red;">FST</span></span></span></span></span> 了。</p>
+<p>不过比赛状态真的是不好，第一题居然要交三次才过，第二题还 FST。但还是开心地庆祝上蓝！</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://www.hualigs.cn/image/60811d06c1a67.jpg" alt="" loading="lazy"></figure>
+<h2 id="a">A</h2>
+<p>英语不好有大问题， &quot;two different elements&quot; 指的是下标不同而不是那个数字不同，影响了一定的做题速度。</p>
+<p>不过自己没有想清楚也是一个大的原因，没有考虑到根本不能减的情况。</p>
+<p>开局不利，就比较慌。</p>
+<h2 id="b">B</h2>
+<blockquote>
+<p>把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数分成至少两段，使每一段异或和相同。</p>
+</blockquote>
+<p>pretest 有点水啊。不过确实得怪自己没有考虑清楚。</p>
+<p>思路是枚举第一段，然后后面验证能不能行。</p>
+<p>验证时如果行的就直接断开就会遇到各种问题。一开始没有想到异或和本来就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的问题，顺利 Wrong Answer on pretest 2。又没有注意到如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 可以和前面并上，顺利 FST。 然后没注意到一段为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 也可以和前面并上，又没有注意到如果前面只是一段就不能并过去，因为至少要两段。</p>
+<p>最后居然交了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> 发才过！</p>
+<p>把代码和提交记录放上来作 警示/纪念 吧。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.hualigs.cn/image/608120b511c5d.jpg" alt="" loading="lazy"></figure>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int N = 2005;
+int T, n, a[N];
+int main() {
+    scanf(&quot;%d&quot;, &amp;T);
+    while(T--) {
+        scanf(&quot;%d&quot;, &amp;n);
+        for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);
+        int fi = 0, ne = 0;
+        bool flag = 0;
+        for(int i = 1; i &lt; n; i++) {
+            fi ^= a[i];
+            ne = 0;
+            bool twt = 0, did = 0;
+            for(int j = i+1; j &lt;= n; j++) {
+                ne ^= a[j];
+                if(ne == fi || ne == 0 &amp;&amp; did) ne = 0, twt = 1, did = 1;
+                else twt = 0;
+                // printf(&quot;*%d %d\n&quot;, ne, twt);
+            }
+            if(twt) { flag = 1; /*printf(&quot;%d %d %d\n&quot;, i, fi, ne);*/ break;}
+        }
+        if(flag) puts(&quot;YES&quot;);
+        else puts(&quot;NO&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="c">C</h2>
+<p>好题！</p>
+<blockquote>
+<p>至少要删去几个数，使数组不能被分成和相等的两份。</p>
+</blockquote>
+<p>至于判断一个数组，那么很好做到，直接背包一遍就可以了。</p>
+<p>那么怎么去掉呢？显然若有奇数直接去掉好了，可是没有又怎么去掉？枚举每一个的话万一还需要去掉一个呢？</p>
+<p>找一些数据玩一玩，发现最多去掉一个就可以了。证明使用第二类数学归纳法。</p>
+<ol>
+<li>若存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mn>0</mn></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^0x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 是奇数)， 那么把它去掉肯定可以，所以若要去掉两个的，肯定不存在这样的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</li>
+<li>若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mi>k</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^kx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>&lt;</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">k &lt; m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>) 都不存在，那么去掉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^mx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span> 的肯定可以，因为大家都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span> 的倍数，而去掉这个再除以二后就不能被 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span> 整除了，所以不能存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">a_i = 2^mx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span></li>
+<li>所有的数都不能存在。</li>
+</ol>
+<p>这样就证明了一堆数去掉一个肯定是可以的。</p>
+<p>代码很好写，反而这题是我这场比赛最顺利的一道。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+const int N = 105;
+int n, a[N], f[200005], v;
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]), v += a[i];
+    for(int i = 1; i &lt;= n; i++)
+        for(int j = v; j &gt;= a[i]; j--)
+            f[j] = std::max(f[j], f[j-a[i]] + a[i]);
+    if(v % 2 == 1 || f[v/2] != v/2) {
+        puts(&quot;0&quot;);
+        return 0;
+    }
+    for(int i = 1; i &lt;= n; i++) 
+        if((v-a[i]) % 2 == 1 || f[(v-a[i])/2] != (v-a[i])/2) {
+            printf(&quot;1\n%d&quot;, i);
+            return 0;
+        }
+    return 0;
+}
+</code></pre>
+<h2 id="d">D</h2>
+<p>赛场上想着倍增但没想出个方案来，本来若积小一点就可以用线段树大力维护的，但这样的数据范围要么暴力出奇迹，高精去(用 <code>Python</code> 写线段树？)，要么就另寻他法了。</p>
+<p>结果题解真的是倍增。</p>
+<p>先处理出每一个开始的断点是在哪儿，然后倍增跳过几段而不是跳过几个数字就好了。</p>
+<p>感觉难点在于如何预处理那个第一个断点的问题。</p>
+<p>可以先预处理存下每个数的质因数，然后从后往前每一个的质因子的下一个有的取个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>min</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66786em;vertical-align:0em;"></span><span class="mop">min</span></span></span></span> 就好了。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+const int N = 100005;
+int n, q, a[N], f[N][25], ans, l, r, next[N];
+std::vector&lt;int&gt; p[N];
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;q);
+	for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);
+	for(int i = 2; i &lt; N; i++) 
+		if(p[i].empty()) {
+			next[i] = n+1;
+			for(int j = 1; i*j &lt; N; j++)
+				p[i*j].push_back(i);
+		}
+		
+	f[n+1][0] = n+1;
+	for(int i = n; i &gt;= 1; i--) {
+		f[i][0] = f[i+1][0];
+		for(int j = 0; j &lt; (signed)p[a[i]].size(); j++) {
+			f[i][0] = std::min(f[i][0], next[p[a[i]][j]]);
+			next[p[a[i]][j]] = i;
+		}
+	}
+	for(int j = 1; j &lt;= 20; j++)
+		for(int i = 1; i &lt;= n+1; i++)
+			f[i][j] = f[f[i][j-1]][j-1];
+	while(q--) {
+		scanf(&quot;%d%d&quot;, &amp;l, &amp;r);
+		ans = 0;
+		for(int i = 19; i &gt;= 0; i--)
+			if(f[l][i] &lt;= r) {
+				ans += (1 &lt;&lt; i);
+				l = f[l][i];
+			} 
+		printf(&quot;%d\n&quot;, ans+1);
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 [BalticOI 2020 Day2] 村庄]]></title>
+        <id>https://acfboy.pw/20210421/</id>
+        <link href="https://acfboy.pw/20210421/">
+        </link>
+        <updated>2021-04-22T06:43:52.000Z</updated>
+        <summary type="html"><![CDATA[<p><s>《2021.4.21 校内模拟赛游记》</s></p>
+<p>模拟赛的一题——我整场模拟赛都用来做这题了，所以没有游记了，只剩下一篇题解了。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><s>《2021.4.21 校内模拟赛游记》</s></p>
+<p>模拟赛的一题——我整场模拟赛都用来做这题了，所以没有游记了，只剩下一篇题解了。</p>
+<!-- more -->
+<blockquote>
+<p>有一棵树，要让每一个点移动到另一个点，求移动距离和的最大值和最小值。</p>
+</blockquote>
+<p>先考虑最小值，这个移动的下届非常好确定，因为由题目可以知道，每一个点最少要移动一次，所以考虑一下链的情况，就是偶数个的话取到下界，不然一个就要多移动一次。然后考虑菊花图，同样很好确定大小为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的菊花图的最小答案是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">2(n-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，最大值同样也是这个。</p>
+<p>然后就简单了，就把书分成若干条链和菊花图就可以了，一个点儿子多那是没办法，得菊花，不然肯定是变成链的好。至于怎么剖图为链，其实不需要把整条链给拿出来，因为反正我们都是两两配的，先两两配着，若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 号点多出来了后面再修复一下就可以了。</p>
+<p>说着好像很简单的样子，但考场上推了半天，草稿纸上处理了一堆的问题，挺长的时间才想到，赛后口胡和赛场上去独立完成还是有很大的距离的。</p>
+<p>那么最大的怎么做呢？赛场上同样考虑了链上的情况，很容易发现把链劈成两半，然后让一边的一定得跨越到另一边就可以了，于是猜想在树上就按照中心或重心之类的分成两半，然后让一边的子树跨到另一边去就可以了。</p>
+<p>但是比赛的时候我不知道怎样去确定上界，所以也不清楚到底是中心还是重心，对于多余两个的子树又怎么去处理。</p>
+<p>赛后发现其实还是很容易证明的，考虑每一条边最多经过多少次。最多是两边的子树较小的那个的节点个数次乘上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>, 因为小的那个子树里的点全部跑出来，外面最多有这些点跑进去。</p>
+<p>那么这个上界能否取到呢？怎么样才会取到呢？其实只要能保证每一条边都能取到必须得是这条边一个点相连的所有子树的和必须要比另一个点的子树要大，不然的话就没有办法确保每一个子树中的点都跑到了和它不相同的子树，也就没有办法确保边被跑满。那么就是要取重心了。</p>
+<p>具体的做法也是比较的巧妙的，因为反正没有一个子树大小会超过整个树的一半，那么把它的编号加一半就肯定在另外一棵子树里面了。</p>
+<p>代码实现得比较啰嗦，因为把链和菊花图分开存了，为了修正，需要记录 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 号点儿子所在的 菊花图/链 的 下标/迭代器。后来发现其实可以一起处理的（因为都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">2(n-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 啊），但比较懒，就没有改。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#define int long long
+const int N = 100005;
+typedef std::vector&lt;int&gt; twt;
+typedef std::vector&lt;twt&gt;::iterator IT;
+twt g[N];
+IT t;
+std::vector&lt;twt&gt; fl, tr;
+int min, ans[N], n, x, y, t2, t3, t4, max, ans2[N], dfn[N], num, size[N];
+bool flag[N];
+void dfs(int u, int fa) {
+	twt tmp;
+	dfn[++num] = u;
+	size[u] = 1;
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == fa) continue;
+		dfs(v, u);
+		size[u] += size[v];
+		if(flag[v] == 0) tmp.push_back(v);
+	}
+	if(tmp.size() == 1 || tmp.size() == 2) {
+		tmp.push_back(u);
+		tr.push_back(tmp);
+		flag[u] = 1;
+		if(fa == 1) {
+			if(tmp.size() == 2) t2 = tr.size()-1;
+			else t = --tr.end(), t3 = tr.size()-1;
+		}
+	}
+	else if(tmp.size() &gt; 2) {
+		tmp.push_back(u);
+		fl.push_back(tmp);
+		flag[u] = 1;
+		if(fa == 1) t4 = fl.size()-1;
+	}
+	max += 2*std::min(size[u], n - size[u]);
+}
+void fix() {
+	if(t2 != 0) {
+		tr[t2].push_back(1);
+		return;
+	}
+	if(t3 != 0) {
+		twt tmp;
+		for(int i = 0; i &lt; (signed)tr[t3].size(); i++) tmp.push_back(tr[t3][i]);
+		tmp.push_back(1);
+		tr.erase(t);
+		fl.push_back(tmp);
+		return;
+	}
+	fl[t4].push_back(1);
+}
+signed main() {
+//	freopen(&quot;village.in&quot;, &quot;r&quot;, stdin);
+//	freopen(&quot;village.out&quot;, &quot;w&quot;, stdout);
+	
+	scanf(&quot;%lld&quot;, &amp;n);
+	for(int i = 1; i &lt; n; i++) 
+		scanf(&quot;%lld%lld&quot;, &amp;x, &amp;y), 
+		g[x].push_back(y), g[y].push_back(x);
+	dfs(1, 0); 
+	for(int i = 1; i &lt;= n; i++) ans2[dfn[i]] = dfn[(i+n/2-1)%n+1];
+	if(flag[1] == 0) fix();
+	for(int i = 0; i &lt; (signed)tr.size(); i++) 
+		if(tr[i].size() == 3) {
+			tr[i].push_back(tr[i][0]);
+			for(int j = 0; j &lt; (signed)tr[i].size()-1; j++)
+				ans[tr[i][j]] = tr[i][j+1];
+			min += 4;
+		}
+		else {
+			ans[tr[i][0]] = tr[i][1], ans[tr[i][1]] = tr[i][0];
+			min += 2;
+		}
+	for(int i = 0; i &lt; (signed)fl.size(); i++) {
+		min += 2 * ((signed)fl[i].size()-1);
+		ans[fl[i][0]] = fl[i][1], ans[fl[i][1]] = fl[i][0];
+		fl[i].push_back(fl[i][2]);
+		for(int j = 2; j &lt; (signed)fl[i].size()-1; j++) ans[fl[i][j]] = fl[i][j+1];
+	}
+	printf(&quot;%lld %lld\n&quot;, min, max);
+	for(int i = 1; i &lt;= n; i++) printf(&quot;%lld &quot;, ans[i]);
+	puts(&quot;&quot;);
+	for(int i = 1; i &lt;= n; i++) printf(&quot;%lld &quot;, ans2[i]);
+	return 0;
+}
+</code></pre>
+<p>感觉思维难度其实挺大的，而模拟赛搬题人却说思维难度不高，NOIP <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span></span></span></span>……</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[梅 开 三 度]]></title>
+        <id>https://acfboy.pw/mei-kai-san-du/</id>
+        <link href="https://acfboy.pw/mei-kai-san-du/">
+        </link>
+        <updated>2021-04-22T04:53:14.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="离开">离开</h3>
+<p>2021 年的元旦刚过，我居然这么就不经意间参加了一次考试，又得到了意料之外的录取的消息，于是三号下午，我便知道了那是我在 sy 的最后一天。</p>
+<p>但那时肯定是兴奋而期待的，对未来充满了憧憬，虽有一点点淡淡的伤感，但肯定不会认真的思考对过去的告别，对所喜欢的人们作出自己无悔的告别。</p>
+<p>所以我所作出的唯一的告别就是得到正式的通知以后在社会课上手写的一封告别信，用了 “萨曼·威斯高德·霍欧维斯·肖特·安特肖斯·艾斯·阿塞恩特·金神叹” 的自称和“一个焦点是木桩，一个焦点在远方”的典故。本想着在英文部分留下什么彩蛋，最终还是什么都没有留，只是写上了我这名字糟糕的翻译——不过，将标题译作“You are beautiful”。晚上等到几乎最后一个走，将信放在校牌里对着她的桌子。</p>
+<p>甚至没有说出一声的再见。</p>
+<p>但她在那天晚自修说的话我记得很清晰，至今还是——可能一直到我退役都会是——我洛谷个人主页唯一的一句话。</p>
+<blockquote>
+<p>翘翘以前很可爱，现在不可爱了。</p>
+</blockquote>
+<p>罗翔讲《会饮篇》，讲得很好，柏拉图写得很好，苏格拉底讲得也很好。爱是要追求自己想要的美好，而肉体上的幸福只是追求灵魂高贵的阶梯。最终还是向往他人所拥有的美好，向往灵魂的高贵。</p>
+<p>罗翔老师的这一个多小时的直播确实起到了很好的作用，让我更加理性地去看待这个事情。她很自律，能为自己想要的而奋斗；也很阳光，充满纯洁和正气。这确实是我所向往而不曾拥有过的美好。</p>
+<p>但我确实自知不配，所以什么也没有说过，从来就没有说过什么。</p>
+<p>我就什么都没有说，就这么走了，但一个一个的脚印又确实印在操场上，印在时间里，印在人心里；为了改变现状做的微不足道的努力也同样弥漫在那段时光中。</p>
+<h3 id="无言">无言</h3>
+<p>我居然会很想她，准确的来讲，似乎走了之后，就想两个人，还有一个是 wc。</p>
+<p>我本来期盼着 wc 能考上来的，我们还可以一起奔跑在晚霞中，但他没能来，无论只是恰好的失误还是什么其它的问题，这都一锤定音了，我将离开熟悉的 911,独自踏上新的旅程。</p>
+<p>我怀念在 sy 大声朗读的日子，所以尽管没有早读课，仍然拿着一本书，或是经典诵读，或是必修上册，和翘翘响亮的声音，相约在清晨；我同样仍然喜爱身体稳定运行的感觉，所以继续奔跑在这儿的操场。但虽然脑中仍能想起“翘翘加油”的声音，仍能想起“不合时宜了”的忠告，抓着的灌水区似乎有着要被扯走的力度，却仍然没有办法专心地去练习，去静下心来思考。</p>
+<p>911 的氛围真的好的多，虽然同样有吵闹而浮躁的时候，但同样有着充满理想而奋斗的人们。</p>
+<p>sxyz 的机房环境，至少我所在的地方，似乎却不大对得起它强省强校的称号。但当自己深陷在其中的时候，却不是那么好拒绝的。不是怀着一点点的热血、吟着华丽的篇章就能做到的。</p>
+<p>于是，翘翘以前很可爱，现在不可爱了。最可怕的其实是面对这样内心深处的声音而又无力去改变，它一点点地剥夺着人对美好的念想。</p>
+<p>罗翔在《请回答2020》中谈到人为什么害怕孤独中谈得很彻底，或者说叔本华对这个问题认识得彻底，概括得也凝练。因为当你静下来的时候，会面对来自自己内心深处的声音，你想成为什么样的人，你为之奋斗了吗。但我没法去直面这样的声音，所以只能企图用吵闹和浮躁将其掩盖，或许所谓“娱乐至死”的原因也正是在此。</p>
+<p>记得有一次我对她说“聒噪”——当然是水浒传里的聒噪，打扰了之类的意思——她说“我确实很聒噪”。或许每个人都会遇上这样的困境，但无论如何，在痛苦中沉沦，放弃自己的理想不是我想要的，我希望能为自己所想要的而奋斗，尽管可能无法坦然面对内心所有的逼问，也许没有办法完全脱掉浮躁的外衣，但总比待在此处更加接近幸福。</p>
+<p>我时常想她。怀疑这只是青春的萌动是不无道理，但我确实向往着能常怀正气，能为自己所爱的事业而奋斗。</p>
+<p>对于那首“梦游天姥吟长恨歌”，我至今还是不明白她最初的意图是什么，不过我也将它看作是她给我的劝诫。实验操作考试，英语口语考试，我几乎没有和她说过话，这是无言。但我更常面对的是，对内心深处逼问的无言。</p>
+<h3 id="上路">上路</h3>
+<p>今天体育中考了，我迟到了以为要上楼拿准考证时在楼梯上碰到她，她主动的叫了一声“翘翘”。等到真正到考场后似乎有很多的时间，至少可以问个“吟长恨歌”的事，但我却不敢去说什么。然后就只是在操场入口看见过一眼。但等我跑的时候却见她在那弯道处喊加油。</p>
+<p>前两次的考试中的无言让我觉得她对我很冷淡，但那个瞬间，我发觉其实冷淡的是我，我不敢主动叫她，也从未为她加油呐喊过。或许是我不敢面对，因为我在努力去为自己想要的而奋斗上取得了彻底的失败。我们两个的关系自然是没有继续的可能，我也不配哇。</p>
+<p>但追求灵魂的高贵，追求她所拥有的美好，何必局限在这点上。</p>
+<p>我所能做的，当然只有，也确实应该只有，怀着追求自身所想要的美好的梦想，和他人给予的鼓励，独自一人上路了。人生是没有人能陪你到最后的旅程，我长跑中也常体验过这样的感觉，我来这里之后，几乎不再有人和我跑过全程或者大多数的旅程了。</p>
+<p>生命中的很多人，在你前行的路上陪过你一段，给你留下了美好的回忆，也足够了。他/她 的精神的品质，完全可以留在你的心里，陪你去走更远。你脑中留下的，也是 他/她 最好的年纪，最好的样子。</p>
+<p>在“梦游天姥”之前，她还给过填过一行字，那是现代汉语，“心怀热爱，奔赴山海”，我记得我好像填成的是“爱怀热心，奔山赴海”，<s>我怎么语感如此糟糕</s>, 其实又何尝不可以呢？我所爱的，所向往的，也确实是怀着一颗少年炽热的心，去迎接生活中的挑战。</p>
+<p>我非常感谢并想念那些曾经陪伴我走过一段的人（怎么突然就有 wzf 的腔调了），但不得不告别，独自一人踏上另一段旅程了。但他们其实都陪在我身边，不是吗？我跑得累的时候，仿佛一转头，就是那几个陪跑的人，仿佛下一个弯道，就有着“翘翘加油”的呼声。和一道题奋战的时候一抬头，他们何尝不在。</p>
+<h3 id="最后">最后</h3>
+<p>不知道她是怎么看待我的，我感觉我的什么心思她清楚的很，感觉总是她给我疯狂暗示然后我又啥也不懂，憨憨的，想问个啥也是毫无计划<s>一头雾水两眼抓瞎模式</s>。</p>
+<p>还记得有一次跑完五千她说了什么“同化”“异化”，我没明白，再追问也不说了，现在也不知道什么意思，最近看了一本书结果感觉这居然牵扯到黑格尔的哲学？？？当然也有可能不是同个东西。</p>
+<p>好像我对她是一无所知的。</p>
+<p>然后，大概就得向我初中时代很多很熟悉但又一无所知的人告别了，以后，各自保重。</p>
+<p>而 sxyz 又何曾没有为自己的梦想默默奋斗的人呢，不可被一些 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>×</mo><mo>×</mo></mrow><annotation encoding="application/x-tex">\times \times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span><span class="mord">×</span></span></span></span> 所诓骗，要自己去看地底下。</p>
+<p>现在忽然又想起刚刚读完的王小波《三十而立》，则似乎满眼都是对自我的坚持了。</p>
+<blockquote>
+<p>内心坚持着梅的圣洁高雅，面对逆境坚持梅的傲雪自强，对待生活时刻保持梅的清雅俊逸，此之谓梅开三度。</p>
+</blockquote>
+<p>翘翘加油。</p>
+<p><s>花那么多时间写下这些似乎有些不合时宜</s></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 [AGC035C] Skolem XOR Tree]]></title>
         <id>https://acfboy.pw/agc035c/</id>
@@ -623,180 +930,6 @@ int main() {
 	for(int i = 1; i &lt;= 2*h; i++) if(in[i] != out[i] || !in[i] &amp;&amp; !out[i]) ok[find(i)] = 1;
 	for(int i = 1; i &lt;= 2*h; i++) if(fa[i] == i &amp;&amp; !ok[i]) return puts(&quot;NO&quot;), 0;
 	puts(&quot;YES&quot;);
-	return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[4.14 校内模拟赛游记]]></title>
-        <id>https://acfboy.pw/20210414/</id>
-        <link href="https://acfboy.pw/20210414/">
-        </link>
-        <updated>2021-04-15T00:03:30.000Z</updated>
-        <summary type="html"><![CDATA[<p>All Killed.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>All Killed.</p>
-<!-- more -->
-<h2 id=""><a href="https://imgtu.com/i/cguzND"><img src="https://z3.ax1x.com/2021/04/15/cguzND.png" alt="cguzND.png" loading="lazy"></a></h2>
-<p>题目比较简单，没啥好说。</p>
-<p>罚时最小，拿到榜一还是比较开心的。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [APIO2010]巡逻]]></title>
-        <id>https://acfboy.pw/apio2010xunluo/</id>
-        <link href="https://acfboy.pw/apio2010xunluo/">
-        </link>
-        <updated>2021-04-15T00:01:38.000Z</updated>
-        <summary type="html"><![CDATA[<p>一个有些妙的想法，刷新了我对树的直径的一些认知。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>一个有些妙的想法，刷新了我对树的直径的一些认知。</p>
-<!-- more -->
-<blockquote>
-<p>从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 号店出发遍历每一条路，再回到起点， 可以添加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span></span></span></span> 条边，问最小的经过边的次数。必须要经过加上的边。 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mo>∈</mo><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">K \in[1, 2]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span></span></p>
-</blockquote>
-<p>考虑加上一条边改变了什么。显然，本来要一个个退回去的现在直达就好了，中间那些边都减掉了，那么减掉的越多越好，把直径俩端点一连完事儿。</p>
-<p>重点在如何连第二条。</p>
-<ol>
-<li>若环不重合，那么直接再来一条新直径就可以了。</li>
-<li>若重合，因为新建的是必需要跑的，环上重合的也就必需跑两次，等于对于那些东西，第一条就白连了。</li>
-</ol>
-<p>怎么解决？</p>
-<p>很妙：把第一次直径上的边权改成负的然后直接求直径就可以了。</p>
-<p>很妙，想不到，但告诉你了就很好理解了。</p>
-<p>注意有负权的直径就不能使用 dfs 了，只能 dp，因为证明中那个交点就不能断开重组了，因为可以能一边负的而另一边有很多正的。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-const int N = 100005, M = 2*N;
-int n, k, x, y, S, T, len[M], vet[M], next[M], head[N],
-	dis[N], f[N], tmax, num, dep[N];
-void add(int x, int y, int c) {
-	num++;
-	vet[num] = y, len[num] = c;
-	next[num] = head[x];
-	head[x] = num;
-}
-void dfs(int u, int fa, int &amp;x) {
-	if(dis[u] &gt; dis[x]) x = u;
-	f[u] = fa;
-	for(int i = head[u]; i; i = next[i]) {
-		int v = vet[i];
-		if(v == fa) continue;
-		dis[v] = dis[u] + 1;
-		dfs(v, u, x);
-	}
-}
-void change(int u, int v) {
-	for(int i = head[u]; i; i = next[i]) {
-		int vv = vet[i];
-		if(vv == v) { len[i] = -1; break; }
-	}
-}
-void dp(int u, int fa, int &amp;x) {
-	int max = -N, sax = -N;
-	for(int i = head[u]; i; i = next[i]) {
-		int v = vet[i];
-		if(v == fa) continue;
-		dp(v, u, x);
-		dep[u] = std::max(dep[u], dep[v] + len[i]);
-		if(dep[v]+len[i] &gt; max) sax = max, max = dep[v]+len[i];
-		else if(dep[v]+len[i] &gt; sax) sax = dep[v]+len[i];
-	}
-	// if(u == 5) printf(&quot;*%d %d\n&quot;, max, sax);
-	if(sax == -N) sax = 0;
-	x = std::max(x, max + sax);
-}
-int main() {
-	scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
-	for(int i = 1; i &lt; n; i++) {
-		scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
-		add(x, y, 1), add(y, x, 1);
-	}
-	if(k == 1) {
-		dfs(1, 0, S);
-		memset(dis, 0, sizeof dis);
-		dfs(S, 0, T);
-		printf(&quot;%d\n&quot;, 2*n - dis[T] - 1);
-	}
-	else {
-		dfs(1, 0, S);
-		memset(dis, 0, sizeof dis);
-		dfs(S, 0, T);
-		int L1 = dis[T], L2 = 0;
-		for(int now = T; now != S; now = f[now]) change(now, f[now]), change(f[now], now);
-		dp(1, 0, L2);
-		// printf(&quot;*%d\n&quot;, L2);
-		printf(&quot;%d\n&quot;, n*2 - L1 - L2);
-	}
-	return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 上帝造题的七分钟2]]></title>
-        <id>https://acfboy.pw/shang-di-zao-ti-de-qi-fen-zhong-2/</id>
-        <link href="https://acfboy.pw/shang-di-zao-ti-de-qi-fen-zhong-2/">
-        </link>
-        <updated>2021-04-14T23:33:23.000Z</updated>
-        <summary type="html"><![CDATA[<p>这题和上次有一场 CF 的 C 题有那么一些异曲同工之妙。</p>
-<p>还巧妙运用了并查集。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这题和上次有一场 CF 的 C 题有那么一些异曲同工之妙。</p>
-<p>还巧妙运用了并查集。</p>
-<!-- more -->
-<blockquote>
-<p>输入一个序列，维护两种操作，查询一段区间内数的和 以及 对一段区间内的所有数开方。</p>
-</blockquote>
-<p>虽然不会支持开方的神奇数据结构，但开方是一个很好的运算，因为开方没几次就会到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 以下，这样就没有继续开方的必要了。</p>
-<p>所以考虑怎么跳过这样的一个过程。</p>
-<p>大概是要使用一种类似链表的东西，如果变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 了就直接链接到下一个，并且能够把这种下一个的都合起来到最后，那么并查集就非常的合适了，路径压缩的过程就是合起来的过程。</p>
-<p>这里还有一个小 trick，那就是如果一个变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 把它之前的连到后面的可能会有更多细节问题要处理，比如说这样的连接交叉的时候。那么其实跳过不用这么严格，头尾都改一下也就两次，所以只需要把这个连接到下一个就可以了。</p>
-<p>代码。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;algorithm&gt;
-#include &lt;cmath&gt;
-#define int long long
-const int N = 100005;
-int a[N], fa[N], n, q, opt, l, r, t[N];
-int Query(int x) {
-	int an = 0;
-	while(x) {
-		an += t[x];
-		x -= x &amp; -x;
-	}
-	return an;
-}
-void add(int p, int x) {
-	while(p &lt;= n) {
-		t[p] += x;
-		p += p &amp; -p;
-	}
-}
-int find(int x) {
-	if(x != fa[x]) fa[x] = find(fa[x]);
-	return fa[x];
-}
-signed main() {
-	scanf(&quot;%lld&quot;, &amp;n);
-	for(int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]), fa[i] = i, add(i, a[i]);
-	scanf(&quot;%lld&quot;, &amp;q);
-	while(q--) {
-		scanf(&quot;%lld%lld%lld&quot;, &amp;opt, &amp;l, &amp;r);
-		if(l &gt; r) std::swap(l, r);
-		if(opt == 1) printf(&quot;%lld\n&quot;, Query(r) - Query(l-1));
-		else {
-			int i = l;
-			while(i &lt;= r) {
-				add(i, (int)sqrt(a[i]) - a[i]);
-				a[i] = (int)sqrt(a[i]);
-				fa[i] = (a[i] &lt;= 1) ? (i+1) : i;
-				i = (fa[i] == i) ? (i+1) : find(fa[i]);
-			}
-		}
-	}
 	return 0;
 }
 </code></pre>
