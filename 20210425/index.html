@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2021.4.25 校内模拟赛游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619353898335">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619353898335" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2021.4.25 校内模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-25</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><s>最近怎么一直打比赛啊，都没有练习的。</s></p>
+<p>要论比赛体验，这场无疑是糟糕透顶，<s>听说是一个小时临时拼凑的</s>，题目没有一道是正常的，前面三道出锅，最后一道搬前天 cf 原题。</p>
+<p>但其实题目质量还是不错的，可做性也挺高——但还是做不出来。</p>
+<!-- more -->
+<h2 id="a">A</h2>
+<p>有点意思的结论题，但结论还是比较容易发现的。</p>
+<blockquote>
+<p>一个全 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 矩阵，每次用这样形状的其中一块全部异或上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 能否全部变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<figure data-type="image" tabindex="1"><img src="https://z3.ax1x.com/2021/04/25/cvXPVs.png" alt="" loading="lazy"></figure>
+</blockquote>
+<p>证明也挺简单：首先若两个一起用，那么就是角上四个，肯定可以把长宽都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 的倍数的铺满而其它铺不了。若不是两个一起用，那么一定会留下缺口且无法修补，所以判断是否都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 的倍数就可以了。</p>
+<h2 id="b">B</h2>
+<blockquote>
+<p>给定一个矩阵，从左上到右下的路径组成的序列中!有多少个长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的上升子序列。</p>
+</blockquote>
+<p>开始想的是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mi>x</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][j][k][x]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mclose">]</span></span></span></span> 表示到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(i, j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span>, 长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>, 以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 结尾的答案，然后觉得这样难以转移，于是就把它前缀和掉，变成表示以小于等于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 结尾的。<s>后来发现这样更难转移。</s></p>
+<p>本想着每个两种情况就行了，霹雳扒拉写出代码，然后样例都没有过。</p>
+<p>两种情况中就是把当前选上和不把当前选上，这里犯了两个很傻的错误：</p>
+<ol>
+<li>根本没有判断 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 是不是大于等于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>，也就是这一位能不能选上去。</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的转移漏了一种把当前选上的。</li>
+</ol>
+<p>第一个问题判断一下很好解决，但对于第二个问题，需要思考一下了，当前选上到底会产生几种方案？是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 种，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 种还是能从几个地方转移过来就几种？</p>
+<p>其实都不是，因为只取这一个，所以从头到这里的每一条路径都可以产生一个贡献，得先 dp 预处理出有几条路径到这里。</p>
+<p>最后是比赛后又调了很久才过的，其实原来的状态写起来会简单的很多，特别是避开了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 且当前选上的那个大坑。</p>
+<p>不过最终还是要怪自己没有考虑清楚。轻敌了。无论什么样的题目都要确保考虑清楚了一个算法再去写啊！</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int N = 55, p = 1000000007;
+int n, m, a[N][N], f[N][N][N][N], k, C[N][N];
+void dfs(int i, int j, int k, int x) {
+	if(f[i][j][k][x] != -1) return;
+	f[i][j][k][x] = 0;
+	if(k == 1) {
+		if(i == 1 &amp;&amp; j == 1) f[i][j][k][x] = (x &gt;= a[i][j]);
+		if(i-1 &gt;= 1) {
+			dfs(i-1, j, k, x), f[i][j][k][x] += f[i-1][j][k][x], f[i][j][k][x] %= p;
+			if(x &gt;= a[i][j]) f[i][j][k][x] += C[i-1][j], f[i][j][k][x] %= p;
+		}
+		if(j-1 &gt;= 1) {
+			dfs(i, j-1, k, x), f[i][j][k][x] += f[i][j-1][k][x], f[i][j][k][x] %= p;
+			if(x &gt;= a[i][j]) f[i][j][k][x] += C[i][j-1], f[i][j][k][x] %= p;
+		}
+		return;
+	}
+	if(i-1 &gt;= 1) {
+		if(x &gt;= a[i][j]) dfs(i-1, j, k-1, a[i][j]-1), f[i][j][k][x] = (f[i][j][k][x] + f[i-1][j][k-1][a[i][j]-1]) % p;
+		dfs(i-1, j, k, x);
+		f[i][j][k][x] = (f[i][j][k][x] + f[i-1][j][k][x]) % p;
+	}
+	if(j-1 &gt;= 1) {
+		if(x &gt;= a[i][j]) dfs(i, j-1, k-1, a[i][j]-1), f[i][j][k][x] = (f[i][j][k][x] + f[i][j-1][k-1][a[i][j]-1]) % p;
+		dfs(i, j-1, k, x);
+		f[i][j][k][x] = (f[i][j][k][x] + f[i][j-1][k][x]) % p;
+	}
+}
+signed main() {
+	scanf(&quot;%lld%lld%lld&quot;, &amp;n, &amp;m, &amp;k);
+	memset(f, -1, sizeof f);
+	for(int i = 1; i &lt;= n; i++)	
+		for(int j = 1; j &lt;= m; j++) scanf(&quot;%lld&quot;, &amp;a[i][j]);
+	C[0][1] = 1;
+	for(int i = 1; i &lt;= n; i++)
+		for(int j = 1; j &lt;= m; j++)
+			C[i][j] = (C[i][j-1] + C[i-1][j]) % p;
+	dfs(n, m, k, 50);
+	printf(&quot;%lld&quot;, f[n][m][k][50]);
+	return 0;
+}
+</code></pre>
+<h2 id="c">C</h2>
+<p>题目经过一些比较显然的转换大概是这样：</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的矩阵选定一个起始点选定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>, 求在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 列之间每一行的最大值的和减去 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>o</mi><msub><mi>s</mi><mi>r</mi></msub><mo>−</mo><mi>p</mi><mi>o</mi><msub><mi>s</mi><mi>l</mi></msub></mrow><annotation encoding="application/x-tex">pos_r -pos_l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的最大值。</p>
+</blockquote>
+<p>转换过程比较简单，但还是花了一会儿才想到，感觉旁边坐着个人比赛效率就直线下降。</p>
+<p>暴力 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n^2m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> 能获得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>80</mn></mrow><annotation encoding="application/x-tex">80</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">0</span></span></span></span> 分。</p>
+<p>然后就没辙了，想着那个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 怎么消得掉，于是想着去掉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>, 半天未果，这端点显然没有单调性，去不掉。</p>
+<p>其实就是要去掉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>, 还是一个比较套路的处理最大值和的方式：考虑每一个贡献的区间。</p>
+<p>其实想到这个就挺简单的了，用单调栈可以处理出这样的一个区间，然后令 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">sum[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 列和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 列间的最大值的和，统计每个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 的贡献就可以了。</p>
+<p>这种矩阵中一块加上而又可以离线一次性处理完的使用二维差分就再合适不过了，树状数组都不用。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#define int long long
+const int N = 5005, M = 305;
+int n, m, pos[N], a[M][N], L[M][N], R[M][N], sum[N][N], ans;
+signed main() {
+	freopen(&quot;demon.in&quot;, &quot;r&quot;, stdin);
+	freopen(&quot;demon.out&quot;, &quot;w&quot;, stdout);
+
+	scanf(&quot;%lld%lld&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;pos[i]);
+	for(int i = 1; i &lt;= m; i++)
+		for(int j = 1; j &lt;= n; j++) scanf(&quot;%lld&quot;, &amp;a[i][j]);
+	for(int i = 1; i &lt;= m; i++) {
+		std::stack&lt;int&gt; st;
+		for(int j = 1; j &lt;= n; j++) {
+			while(!st.empty() &amp;&amp; a[i][st.top()] &lt; a[i][j]) st.pop();
+			if(!st.empty()) L[i][j] = st.top()+1; else L[i][j] = 1;
+			st.push(j); 
+		}
+		while(!st.empty()) st.pop();
+		for(int j = n; j &gt;= 1; j--) {
+			while(!st.empty() &amp;&amp; a[i][st.top()] &lt;= a[i][j]) st.pop();
+			if(!st.empty()) R[i][j] = st.top()-1; else R[i][j] = n;
+			st.push(j);
+		}
+	}
+	for(int i = 1; i &lt;= m; i++)
+		for(int j = 1; j &lt;= n; j++) 
+			sum[L[i][j]][j] += a[i][j], sum[j+1][R[i][j]+1] += a[i][j],
+			sum[L[i][j]][R[i][j]+1] -= a[i][j], sum[j+1][j] -= a[i][j];
+	for(int i = 1; i &lt;= n; i++) 
+		for(int j = 1; j &lt;= n; j++)
+			sum[i][j] += sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1];
+	for(int l = 1; l &lt;= n; l++)
+		for(int r = 1; r &lt;= n; r++)
+		 	ans = std::max(sum[l][r] - pos[r] + pos[l], ans);
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+<h2 id="d">D</h2>
+<p>放两天前的原题过分了。当我们不打 cf ?</p>
+<hr>
+<p>其实这场比赛带给我的提升还是挺大的，搬题人临时受命导致比赛质量低下也可以理解。</p>
+<p>赛后订正的时候还是太浮躁了。穿着校服坐在这，仿佛谢兔兔的 “主要是静得下心来”  “学思学研”  “错的地方自己查（察）” 的教诲又回响在耳畔了。xhf 和 w策 不在安静了很多，<s>但我还是够吵的</s>。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/abc199/">
+              <h3 class="post-title">
+                下一篇：AtCoder Beginner Contest 199 游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
