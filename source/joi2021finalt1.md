@@ -1,7 +1,7 @@
 ---
 title: '题解 [JOI 2021 Final] 雪玉'
 date: 2021-03-11 20:06:21
-tags: []
+tags: [题解]
 published: true
 hideInList: false
 feature: 

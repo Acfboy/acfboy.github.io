@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2021.4.23 校内模拟赛游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619309062934">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619309062934" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2021.4.23 校内模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-23</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>体验十分糟糕的校内模拟赛。感觉这一天真是啥也没干，郁郁寡欢。</p>
+<p>即使打得不好也要以昂扬的斗志面对生活鸭！</p>
+<!-- more -->
+<h2 id="a">A</h2>
+<p>本来就是一个模拟平衡三进制的题，也就普及组一二题难度，结果比赛时题目改来改去，然后我又一时手残居然统计的时候从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 开始，于是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">100 \rightarrow 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
+<h2 id="b">B</h2>
+<p>反而这是比赛时体验最好的一题了，虽然题目长，但没有什么思维难度，就是最短路套上背包的板子。</p>
+<h2 id="c">C</h2>
+<p>后面两题似乎都没有被很好的思考过了，我既然得出了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span> 以上一定没解的结论，看这数据范围，总应该想到是状压的，结果居然搞了半天还是写暴力。</p>
+<p>其实状压的思路也挺好想的，搞可行性 dp，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>S</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[S][i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 表示当前状态能否合成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>, 然后转移挺显然的，<code>bitset</code> 优化也应该容易想到。</p>
+<p>然后主要的问题在于输出方案。判断当前这个是否可选还是有一些细节的。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;bitset&gt;
+int n, m, C[55][55];
+std::bitset&lt;100005&gt; f[(1 &lt;&lt; 15)+5];
+int count(int x) { return (x != 0) ? (count(x &amp; (x-1)) + 1) : 0; }
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    if(n &gt;= 15 || m &lt; (1 &lt;&lt; n)) return puts(&quot;No Answer&quot;), 0;
+    for(int i = 0; i &lt;= n; i++) {
+        C[i][0] = C[i][i] = 1;
+        for(int j = 1; j &lt; i; j++) C[i][j] = C[i-1][j-1] + C[i-1][j];
+    }
+    m -= (1 &lt;&lt; n);
+    f[0][0] = 1;
+    for(int i = 0; i &lt; (1 &lt;&lt; (n+1)); i++)
+        for(int j = 0; j &lt;= n; j++)
+            if(~i &amp; (1 &lt;&lt; j)) f[i | (1 &lt;&lt; j)] |= f[i] &lt;&lt; (j * C[n][count(i)]);
+    if(f[(1 &lt;&lt; (n+1)) - 1][m]) {
+        int now = (1 &lt;&lt; (n+1)) - 1, v = m;
+        while(now) {
+            for(int i = n; i &gt;= 0; --i)
+                if(now &amp; 1 &lt;&lt; i &amp;&amp; v - i * C[n][count(now ^ 1 &lt;&lt; i)] &gt;= 0 &amp;&amp;
+                    f[now ^ 1 &lt;&lt; i][v - i * C[n][count(now ^ 1 &lt;&lt; i)]]) {
+                    v -= i * C[n][count(now ^= 1 &lt;&lt; i)];
+                    printf(&quot;%d%c&quot;, i+1, (now == 0) ? '\n' : ' ');
+                    break;
+                }
+        }
+    } else puts(&quot;No Answer&quot;);
+    return 0;
+}
+
+</code></pre>
+<h2 id="d">D</h2>
+<p><strong>我忏悔</strong>：在这做这题时，我背弃了正气和信仰。</p>
+<p>非常浮躁地搞了一个错的贪心，然后就去看了原题别人的代码，而甚至没有自己好好的思考过做法以及其时间复杂度。</p>
+<p>刚刚写过那篇文章，写过那段《无言》，这样又如何去面对内心的逼问？</p>
+<p>下不为例。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/cf1516/">
+              <h3 class="post-title">
+                下一篇：Codeforces Round #717 (div.2) 游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
