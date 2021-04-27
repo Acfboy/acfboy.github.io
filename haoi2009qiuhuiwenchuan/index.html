@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 [HAOI2009]求回文串 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619493733208">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619493733208" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 [HAOI2009]求回文串</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-26</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/tan-xin/">
+                    贪心
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>贪心题。做的时候有些绝望觉得想不到，后来发现也不难。</p>
+<!-- more -->
+<blockquote>
+<p>每次可以把相邻两个进行交换，最少需要多少次将当前的字符串换成回文串。</p>
+</blockquote>
+<p>首先有一个被我遗忘但挺重要的知识点：两两交换使一个序列有序的最小步数就是其逆序对数。因为每一次交换可以且仅可以消除一对逆序对。</p>
+<p>所以我们只要思考要怎样构造一个原始的序列使那个次数最小然后再跑一遍逆序对就可以了。</p>
+<p>显而易见的事实：</p>
+<ol>
+<li>如果最前和最后一段已经匹配就不用动它们了。</li>
+<li>每次肯定是把要到最外面的先移动，不然会把它们换到更里面从而产生更多步骤。</li>
+<li>同种字符向外靠的肯定是该字符中间最向外的。</li>
+</ol>
+<p>然后就可以得到以下贪心策略：匹配上的直接跳过，然后认定左边的就应该在那里，把该同字符的最右边的换到对应的右边。</p>
+<p>说起来简单，但自己做就是想不到这里，其实又三条事实可以得到这样是对的，因为这样扫到的一个一定是最向外的，而移动的另一个也是最向外的。</p>
+<p>那么怎么实现？用 <code>vector</code> 记录一下每一个字母出现的位置就可以了。</p>
+<p>判断无解很简单。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int N = 1000005;
+char s[N];
+std::vector&lt;int&gt; pos[26];
+int tub[26], ans[N], an, t[N];
+bool vis[N];
+int query(int x) {
+	int an = 0;
+	for( ; x &gt;= 1; an += t[x], x -= x&amp;-x) ;
+	return an;
+}
+void add(int x) {
+	for( ; x &lt;= 1000000; t[x]++, x += x&amp;-x) ;
+}
+signed main() {
+	scanf(&quot;%s&quot;, s+1);
+	int n = strlen(s+1);
+	for(int i = 1; i &lt;= n; i++) {
+		pos[s[i]-'A'].push_back(i);
+		tub[s[i]-'A']++;
+	}
+	int sumOdd = 0;
+	for(int i = 0; i &lt; 26; i++) sumOdd += tub[i] &amp; 1;
+	if((n % 2 == 0 &amp;&amp; sumOdd &gt;= 1) || (n % 2 == 1 &amp;&amp; sumOdd != 1)) return puts(&quot;-1&quot;), 0;
+	if(n % 2 == 1) {
+		for(int i = 0; i &lt; 26; i++) 
+			if(tub[i] % 2 == 1) {
+				vis[pos[i][pos[i].size()/2]] = 1;
+				ans[n/2+1] = pos[i][pos[i].size()/2];
+				break;
+			}
+	}
+	int i = 1, l = 1, r = n;
+	while(i &lt;= n &amp;&amp; l &lt;= r) {
+		if(vis[i]) { i++; continue; }
+		ans[l] = i, vis[i] = 1, l++;
+		ans[r] = pos[s[i]-'A'][pos[s[i]-'A'].size()-1], vis[ans[r]] = 1, r--;
+		pos[s[i]-'A'].erase(--pos[s[i]-'A'].end());
+		i++;
+	}
+	for(int i = 1; i &lt;= n; i++)
+		an += query(1000000) - query(ans[i]),
+		add(ans[i]);
+	printf(&quot;%lld&quot;, an);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/shoi2007shuguidechicun/">
+              <h3 class="post-title">
+                下一篇：题解 [SHOI2007]书柜的尺寸
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
