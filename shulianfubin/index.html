@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619493733208">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619495524490">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://acfboy.pw">
-        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619493733208" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619495524490" alt="" width="32px" height="32px">
       </a>
       <a href="https://acfboy.pw">
         <h1 class="site-title">Acfboy 的博客</h1>
@@ -156,80 +156,67 @@
 const int N = 40;
 int n, p, a[N], an;
 struct twt {
-    int val, prod;
-    bool over;
-    bool operator&lt;(twt b) const { return over &lt; b.over || (over == b.over &amp;&amp; val &lt; b.val); }
+	int val, prod;
+	bool over;
+	bool operator &lt; (twt b) const {
+		return over &lt; b.over || (over == b.over &amp;&amp; val &lt; b.val);
+	}
 };
 std::vector&lt;twt&gt; ans;
 typedef std::vector&lt;twt&gt;::iterator twtIT;
 void dfs(int t, int sum, int prod, bool flag) {
-    if (t &gt; n / 2) {
-        if (!flag)
-            ans.push_back((twt){ sum + prod, prod, 0 });
-        else
-            ans.push_back((twt){ sum, prod, 1 });
-        return;
-    }
-    if (sum &gt; p)
-        return;
-    if (sum + prod &gt; p)
-        flag = 1;
-    if (a[t] == 0 &amp;&amp; flag)
-        dfs(t + 1, sum, 0, 0);
-    else if (flag)
-        dfs(t + 1, sum, prod, 1);
-    else {
-        dfs(t + 1, sum, prod * a[t], 0);
-        dfs(t + 1, sum + prod, a[t], 0);
-    }
+	if(t &gt; n/2) {
+		if(!flag) ans.push_back((twt){sum + prod, prod, 0});
+		else ans.push_back((twt){sum, prod, 1});
+		return;
+	}
+	if(sum &gt; p) return;
+	if(sum+prod &gt; p) flag = 1;
+	if(a[t] == 0 &amp;&amp; flag) dfs(t+1, sum, 0, 0); 
+	else if(flag) dfs(t+1, sum, prod, 1);
+	else {
+		dfs(t+1, sum, prod*a[t], 0);
+		dfs(t+1, sum+prod, a[t], 0);
+	}
 }
-void dfs2(int t, int lim, int sum, int prod, bool flag) {
-    if (t &lt; lim) {
-        int l = std::lower_bound(ans.begin(), ans.end(), (twt){ p - sum - prod, 0, 0 }) - ans.begin(),
-            r = std::upper_bound(ans.begin(), ans.end(), (twt){ p - sum - prod, 0, 0 }) - ans.begin();
-        an += r - l;
-        return;
-    }
-    if (sum &gt; p)
-        return;
-    if (sum + prod &gt; p)
-        flag = 1;
-    if (a[t] == 0 &amp;&amp; flag)
-        dfs2(t - 1, lim, sum, 0, 0);
-    else if (flag)
-        dfs2(t - 1, lim, sum, prod, 1);
-    else {
-        if (t != n)
-            dfs2(t - 1, lim, sum, prod * a[t], 0);
-        dfs2(t - 1, lim, sum + prod, a[t], 0);
-    }
+void dfs2(int t, int lim,int sum, int prod, bool flag) {
+	if(t &lt; lim) {
+		int l = std::lower_bound(ans.begin(), ans.end(), (twt){p-sum-prod, 0, 0}) - ans.begin(),
+			r = std::upper_bound(ans.begin(), ans.end(), (twt){p-sum-prod, 0, 0}) - ans.begin();
+		an += r-l;
+		return;
+	}
+	if(sum &gt; p) return;
+	if(sum+prod &gt; p) flag = 1;
+	if(a[t] == 0 &amp;&amp; flag) dfs2(t-1, lim, sum, 0, 0);
+	else if(flag) dfs2(t-1, lim, sum, prod, 1);
+	else {
+		if(t != n) dfs2(t-1, lim, sum, prod*a[t], 0);
+		dfs2(t-1, lim, sum+prod, a[t], 0);
+	}
 }
 signed main() {
-    scanf(&quot;%lld%lld&quot;, &amp;n, &amp;p);
-    for (int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]);
-    dfs(2, 0, a[1], false);
-    std::sort(ans.begin(), ans.end());
-    for (int i = n / 2 + 1; i &lt;= n; i++) {
-        if (ans.empty())
-            break;
-        dfs2(n, i, 0, 0, false);
-        for (int j = 0; j &lt; (signed)ans.size(); j++)
-            if (!ans[j].over) {
-                ans[j].val -= ans[j].prod, ans[j].prod *= a[i], ans[j].val += ans[j].prod;
-                if (ans[j].prod &gt; p)
-                    ans[j].over = 1;
-            } else if (a[i] == 0)
-                ans[j].val -= ans[j].prod, ans[j].prod = 0, ans[j].over = 0;
-        std::sort(ans.begin(), ans.end());
-        for (twtIT j = ans.end() - 1; j != ans.begin(); j--)
-            if (!ans.empty() &amp;&amp; j-&gt;val - j-&gt;prod &gt; p)
-                ans.erase(j);
-        if (!ans.empty() &amp;&amp; ans.begin()-&gt;val - ans.begin()-&gt;prod &gt; p)
-            ans.erase(ans.begin());
-    }
-    dfs2(n, n + 1, 0, 0, 0);
-    printf(&quot;%lld&quot;, an);
-    return 0;
+	scanf(&quot;%lld%lld&quot;, &amp;n, &amp;p);
+	for(int i = 1; i &lt;= n; i++)	scanf(&quot;%lld&quot;, &amp;a[i]);
+	dfs(2, 0, a[1], false);
+	std::sort(ans.begin(), ans.end());	
+	for(int i = n/2+1; i &lt;= n; i++) {
+		if(ans.empty()) break;
+		dfs2(n, i, 0, 0, false);
+		for(int j = 0; j &lt; (signed)ans.size(); j++) 
+			if(!ans[j].over) {
+				ans[j].val -= ans[j].prod, ans[j].prod *= a[i], ans[j].val += ans[j].prod;
+				if(ans[j].prod &gt; p) ans[j].over = 1;
+			}
+			else if(a[i] == 0) ans[j].val -= ans[j].prod, ans[j].prod = 0, ans[j].over = 0;
+		std::sort(ans.begin(), ans.end());
+		for(twtIT j = ans.end()-1; j != ans.begin(); j--)
+			if(!ans.empty() &amp;&amp; j-&gt;val - j-&gt;prod &gt; p) ans.erase(j);
+		if(!ans.empty() &amp;&amp; ans.begin()-&gt;val - ans.begin()-&gt;prod &gt; p) ans.erase(ans.begin());
+	}
+	dfs2(n, n+1, 0, 0, 0);
+	printf(&quot;%lld&quot;, an);
+	return 0;
 }
 </code></pre>
 <p>能为了一题不断研究，过了之后仍能找出并修正错误，这才是我心中的 OI !</p>

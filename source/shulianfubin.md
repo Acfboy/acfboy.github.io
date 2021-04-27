@@ -76,80 +76,67 @@ $$\\$$
 const int N = 40;
 int n, p, a[N], an;
 struct twt {
-    int val, prod;
-    bool over;
-    bool operator<(twt b) const { return over < b.over || (over == b.over && val < b.val); }
+	int val, prod;
+	bool over;
+	bool operator < (twt b) const {
+		return over < b.over || (over == b.over && val < b.val);
+	}
 };
 std::vector<twt> ans;
 typedef std::vector<twt>::iterator twtIT;
 void dfs(int t, int sum, int prod, bool flag) {
-    if (t > n / 2) {
-        if (!flag)
-            ans.push_back((twt){ sum + prod, prod, 0 });
-        else
-            ans.push_back((twt){ sum, prod, 1 });
-        return;
-    }
-    if (sum > p)
-        return;
-    if (sum + prod > p)
-        flag = 1;
-    if (a[t] == 0 && flag)
-        dfs(t + 1, sum, 0, 0);
-    else if (flag)
-        dfs(t + 1, sum, prod, 1);
-    else {
-        dfs(t + 1, sum, prod * a[t], 0);
-        dfs(t + 1, sum + prod, a[t], 0);
-    }
+	if(t > n/2) {
+		if(!flag) ans.push_back((twt){sum + prod, prod, 0});
+		else ans.push_back((twt){sum, prod, 1});
+		return;
+	}
+	if(sum > p) return;
+	if(sum+prod > p) flag = 1;
+	if(a[t] == 0 && flag) dfs(t+1, sum, 0, 0); 
+	else if(flag) dfs(t+1, sum, prod, 1);
+	else {
+		dfs(t+1, sum, prod*a[t], 0);
+		dfs(t+1, sum+prod, a[t], 0);
+	}
 }
-void dfs2(int t, int lim, int sum, int prod, bool flag) {
-    if (t < lim) {
-        int l = std::lower_bound(ans.begin(), ans.end(), (twt){ p - sum - prod, 0, 0 }) - ans.begin(),
-            r = std::upper_bound(ans.begin(), ans.end(), (twt){ p - sum - prod, 0, 0 }) - ans.begin();
-        an += r - l;
-        return;
-    }
-    if (sum > p)
-        return;
-    if (sum + prod > p)
-        flag = 1;
-    if (a[t] == 0 && flag)
-        dfs2(t - 1, lim, sum, 0, 0);
-    else if (flag)
-        dfs2(t - 1, lim, sum, prod, 1);
-    else {
-        if (t != n)
-            dfs2(t - 1, lim, sum, prod * a[t], 0);
-        dfs2(t - 1, lim, sum + prod, a[t], 0);
-    }
+void dfs2(int t, int lim,int sum, int prod, bool flag) {
+	if(t < lim) {
+		int l = std::lower_bound(ans.begin(), ans.end(), (twt){p-sum-prod, 0, 0}) - ans.begin(),
+			r = std::upper_bound(ans.begin(), ans.end(), (twt){p-sum-prod, 0, 0}) - ans.begin();
+		an += r-l;
+		return;
+	}
+	if(sum > p) return;
+	if(sum+prod > p) flag = 1;
+	if(a[t] == 0 && flag) dfs2(t-1, lim, sum, 0, 0);
+	else if(flag) dfs2(t-1, lim, sum, prod, 1);
+	else {
+		if(t != n) dfs2(t-1, lim, sum, prod*a[t], 0);
+		dfs2(t-1, lim, sum+prod, a[t], 0);
+	}
 }
 signed main() {
-    scanf("%lld%lld", &n, &p);
-    for (int i = 1; i <= n; i++) scanf("%lld", &a[i]);
-    dfs(2, 0, a[1], false);
-    std::sort(ans.begin(), ans.end());
-    for (int i = n / 2 + 1; i <= n; i++) {
-        if (ans.empty())
-            break;
-        dfs2(n, i, 0, 0, false);
-        for (int j = 0; j < (signed)ans.size(); j++)
-            if (!ans[j].over) {
-                ans[j].val -= ans[j].prod, ans[j].prod *= a[i], ans[j].val += ans[j].prod;
-                if (ans[j].prod > p)
-                    ans[j].over = 1;
-            } else if (a[i] == 0)
-                ans[j].val -= ans[j].prod, ans[j].prod = 0, ans[j].over = 0;
-        std::sort(ans.begin(), ans.end());
-        for (twtIT j = ans.end() - 1; j != ans.begin(); j--)
-            if (!ans.empty() && j->val - j->prod > p)
-                ans.erase(j);
-        if (!ans.empty() && ans.begin()->val - ans.begin()->prod > p)
-            ans.erase(ans.begin());
-    }
-    dfs2(n, n + 1, 0, 0, 0);
-    printf("%lld", an);
-    return 0;
+	scanf("%lld%lld", &n, &p);
+	for(int i = 1; i <= n; i++)	scanf("%lld", &a[i]);
+	dfs(2, 0, a[1], false);
+	std::sort(ans.begin(), ans.end());	
+	for(int i = n/2+1; i <= n; i++) {
+		if(ans.empty()) break;
+		dfs2(n, i, 0, 0, false);
+		for(int j = 0; j < (signed)ans.size(); j++) 
+			if(!ans[j].over) {
+				ans[j].val -= ans[j].prod, ans[j].prod *= a[i], ans[j].val += ans[j].prod;
+				if(ans[j].prod > p) ans[j].over = 1;
+			}
+			else if(a[i] == 0) ans[j].val -= ans[j].prod, ans[j].prod = 0, ans[j].over = 0;
+		std::sort(ans.begin(), ans.end());
+		for(twtIT j = ans.end()-1; j != ans.begin(); j--)
+			if(!ans.empty() && j->val - j->prod > p) ans.erase(j);
+		if(!ans.empty() && ans.begin()->val - ans.begin()->prod > p) ans.erase(ans.begin());
+	}
+	dfs2(n, n+1, 0, 0, 0);
+	printf("%lld", an);
+	return 0;
 }
 ```
 
