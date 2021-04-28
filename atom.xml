@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的博客</title>
-    <updated>2021-04-28T10:26:03.544Z</updated>
+    <updated>2021-04-28T11:00:50.772Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,23 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 [SCOI2015]国旗计划]]></title>
+        <id>https://acfboy.pw/scoi2015guoqijihua/</id>
+        <link href="https://acfboy.pw/scoi2015guoqijihua/">
+        </link>
+        <updated>2021-04-28T10:52:44.000Z</updated>
+        <summary type="html"><![CDATA[<p>难以置信，我居然会被这样一个问题难倒？！</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>难以置信，我居然会被这样一个问题难倒？！</p>
+<!-- more -->
+<p>看到题目，排序和贪心很容易就可以看出来，但展开到链上的时候只知道跨越的要加上个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>，但居然死活想不到要把每一个都复制一遍！然后就没辙了。</p>
+<p>最近状态好像很糟糕的样子，修正了原先极左的错误，但似乎并没有提高什么，还是静不下来写题，过题量降到了很低的水平。</p>
+<p>但这样至少是正视了问题，大概比整天做些“体力劳动大于脑力劳动”的题来营造通过数的假象以欺骗自己要好得多。现在没有状态，说得仿佛前面四个月很有状态一样；前面四个月没有状态，说得好像是前几年很有状态一样。</p>
+<p>大概翘翘从来不曾可爱过，但又从来就向往“可爱”的样子。虽不能至，心向往之，总好过在打击中沉沦。</p>
+<p>加油吧。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2021.4.28 校内模拟赛游记]]></title>
         <id>https://acfboy.pw/20210428/</id>
@@ -790,67 +807,6 @@ signed main() {
 </code></pre>
 <hr>
 <p>虽说比赛打得不怎么样，但别灰心啊，继续加油，总会有突破的。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2021.4.23 校内模拟赛游记]]></title>
-        <id>https://acfboy.pw/20210423/</id>
-        <link href="https://acfboy.pw/20210423/">
-        </link>
-        <updated>2021-04-23T07:58:30.000Z</updated>
-        <summary type="html"><![CDATA[<p>体验十分糟糕的校内模拟赛。感觉这一天真是啥也没干，郁郁寡欢。</p>
-<p>即使打得不好也要以昂扬的斗志面对生活鸭！</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>体验十分糟糕的校内模拟赛。感觉这一天真是啥也没干，郁郁寡欢。</p>
-<p>即使打得不好也要以昂扬的斗志面对生活鸭！</p>
-<!-- more -->
-<h2 id="a">A</h2>
-<p>本来就是一个模拟平衡三进制的题，也就普及组一二题难度，结果比赛时题目改来改去，然后我又一时手残居然统计的时候从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 开始，于是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">100 \rightarrow 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
-<h2 id="b">B</h2>
-<p>反而这是比赛时体验最好的一题了，虽然题目长，但没有什么思维难度，就是最短路套上背包的板子。</p>
-<h2 id="c">C</h2>
-<p>后面两题似乎都没有被很好的思考过了，我既然得出了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span> 以上一定没解的结论，看这数据范围，总应该想到是状压的，结果居然搞了半天还是写暴力。</p>
-<p>其实状压的思路也挺好想的，搞可行性 dp，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>S</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[S][i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 表示当前状态能否合成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>, 然后转移挺显然的，<code>bitset</code> 优化也应该容易想到。</p>
-<p>然后主要的问题在于输出方案。判断当前这个是否可选还是有一些细节的。</p>
-<p>代码。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;bitset&gt;
-int n, m, C[55][55];
-std::bitset&lt;100005&gt; f[(1 &lt;&lt; 15)+5];
-int count(int x) { return (x != 0) ? (count(x &amp; (x-1)) + 1) : 0; }
-int main() {
-    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
-    if(n &gt;= 15 || m &lt; (1 &lt;&lt; n)) return puts(&quot;No Answer&quot;), 0;
-    for(int i = 0; i &lt;= n; i++) {
-        C[i][0] = C[i][i] = 1;
-        for(int j = 1; j &lt; i; j++) C[i][j] = C[i-1][j-1] + C[i-1][j];
-    }
-    m -= (1 &lt;&lt; n);
-    f[0][0] = 1;
-    for(int i = 0; i &lt; (1 &lt;&lt; (n+1)); i++)
-        for(int j = 0; j &lt;= n; j++)
-            if(~i &amp; (1 &lt;&lt; j)) f[i | (1 &lt;&lt; j)] |= f[i] &lt;&lt; (j * C[n][count(i)]);
-    if(f[(1 &lt;&lt; (n+1)) - 1][m]) {
-        int now = (1 &lt;&lt; (n+1)) - 1, v = m;
-        while(now) {
-            for(int i = n; i &gt;= 0; --i)
-                if(now &amp; 1 &lt;&lt; i &amp;&amp; v - i * C[n][count(now ^ 1 &lt;&lt; i)] &gt;= 0 &amp;&amp;
-                    f[now ^ 1 &lt;&lt; i][v - i * C[n][count(now ^ 1 &lt;&lt; i)]]) {
-                    v -= i * C[n][count(now ^= 1 &lt;&lt; i)];
-                    printf(&quot;%d%c&quot;, i+1, (now == 0) ? '\n' : ' ');
-                    break;
-                }
-        }
-    } else puts(&quot;No Answer&quot;);
-    return 0;
-}
-
-</code></pre>
-<h2 id="d">D</h2>
-<p><strong>我忏悔</strong>：在这做这题时，我背弃了正气和信仰。</p>
-<p>非常浮躁地搞了一个错的贪心，然后就去看了原题别人的代码，而甚至没有自己好好的思考过做法以及其时间复杂度。</p>
-<p>刚刚写过那篇文章，写过那段《无言》，这样又如何去面对内心的逼问？</p>
-<p>下不为例。</p>
 ]]></content>
     </entry>
 </feed>
