@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解 [NOI Online #1 入门组] 魔法 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619569242067">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619569242067" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解 [NOI Online #1 入门组] 魔法</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-27</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/ju-zhen/">
+                    矩阵
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/dong-tai-gui-hua/">
+                    动态规划
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>是一道考察对矩阵理解的好题。</p>
+<p>自己做了很久都没有往矩阵上去想。</p>
+<!-- more -->
+<p><a href="https://www.luogu.com.cn/problem/P6190">传送门</a></p>
+<p>DAG 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">k=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的情况都很简单，由于 DAG 有做法而往回走了最后还得到终点，所以想到了缩点。</p>
+<p>但是发现缩点并没有什么用，因为可以重复绕，而变成负数又有限制，所以强连通分量没有什么用。最多是环有点用处，可以处理出当前点绕环中使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 次魔法的最优情况，但谁说圈一定要绕满？所以也没啥用。</p>
+<p>数据范围似乎有些误导性，看到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>90</mn></mrow><annotation encoding="application/x-tex">90</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">0</span></span></span></span> 分那一档就认为是分层图了，一直想着怎么去优化，但最终未果。</p>
+<p>其实正解是 dp 的矩阵优化，首先可以想到一个类似弗洛伊德的 dp， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[k][i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 次魔法，从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 的最优答案。至于转移，随便 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>l</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[k-1][i][l]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">]</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>l</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[1][l][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 取一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>min</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66786em;vertical-align:0em;"></span><span class="mop">min</span></span></span></span> 就可以了。时间复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">n^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span> 的，不能接受。</p>
+<p>这个 dp 看上去没有什么优化的空间，但实际上，可以矩阵加速。</p>
+<p>矩阵的本质是什么？看过 3b1b 的会说， <strong>矩阵是一种变换</strong>， 而我们的矩阵乘法快速幂的要求就是要满足结合律，所以我们其实可以把加法和乘法用另外的运算替换掉，描述一种变换，然后可以同样是可以搞快速幂的。</p>
+<p>在此题中，可以重载成这样的一种运算：</p>
+<pre><code class="language-cpp">twt operator * (twt b) {
+	twt c;
+	for(int k = 1; k &lt;= n; k++)
+		for(int i = 1; i &lt;= n; i++)
+			for(int j = 1; j &lt;= n; j++)
+				c[i][j] = std::min(c[i][j], t[i][k] + b[k][j]);
+	return c;
+}
+</code></pre>
+<p>看上去这似乎是一个弗洛伊德，但它的答案不是来源于同一个数组中的，而是来源于运算符两边的 <code>twt</code>。我们回顾那个无法接受的转移，其实不一定必须从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 及 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 转移过来，任意一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>−</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">k-c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span> 都是可以的。</p>
+<p>所以就有了上面这个运算，它的路径剖开，一边用的是经过了若干次魔法的，另一边用的是经过一些魔法的，合起来就成了使用两边原来使用的魔法次数的和的，而且这个样子是由结合律的（感性理解：用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">3,2,1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span> 次魔法的合并， 最后不管怎么并都是使用了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> 次魔法），所以我们就可以使用快速幂。</p>
+<p>单位矩阵当然变了，由定义可知，单位矩阵就是不使用魔法的，那么就是直接用弗洛伊德跑一遍的结果了。</p>
+<p>完整代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int N = 105, M = 2505;
+int n, m, k, x[M], y[M], w[M];
+struct twt {
+	int t[N][N];
+	twt() { memset(t, 0x3f, sizeof t); }
+	twt operator * (twt b) {
+		twt c;
+		for(int k = 1; k &lt;= n; k++)
+			for(int i = 1; i &lt;= n; i++)
+				for(int j = 1; j &lt;= n; j++)
+					c[i][j] = std::min(c[i][j], t[i][k] + b[k][j]);
+		return c;
+	}
+	int* operator [] (int x) { return t[x]; };
+} a, f;
+twt Pow(twt a, int b) {
+	twt an = f;
+	while(b) {
+		if(b &amp; 1) an = an * a;
+		a = a * a;
+		b &gt;&gt;= 1;
+	}
+	return an;
+}
+signed main() {
+	scanf(&quot;%lld%lld%lld&quot;, &amp;n, &amp;m, &amp;k);
+	for(int i = 1; i &lt;= n; i++) f[i][i] = 0;
+	for(int i = 1; i &lt;= m; i++) {
+		scanf(&quot;%lld%lld%lld&quot;, &amp;x[i], &amp;y[i], &amp;w[i]);
+		f[x[i]][y[i]] = w[i];
+	}
+	for(int k = 1; k &lt;= n; k++)
+		for(int i = 1;  i &lt;= n; i++)
+			for(int j = 1; j &lt;= n; j++)
+				f[i][j] = std::min(f[i][j], f[i][k] + f[k][j]);
+	for(int k = 1; k &lt;= m; k++) {
+		int u = x[k], v = y[k], c = w[k];
+		for(int i = 1; i &lt;= n; i++)
+			for(int j = 1; j &lt;= n; j++)
+				a[i][j] = std::min(a[i][j], std::min(f[i][j], f[i][u]+f[v][j]-c));	
+	}
+	if(k == 0) printf(&quot;%lld&quot;, f[1][n]);
+	else printf(&quot;%lld&quot;, Pow(a, k)[1][n]);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/shulianfubin/">
+              <h3 class="post-title">
+                下一篇：题解 “数链抙玢”
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

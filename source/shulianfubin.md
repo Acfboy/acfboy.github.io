@@ -4,13 +4,11 @@ date: 2021-04-27 11:19:55
 tags: [题解,搜索]
 published: true
 hideInList: false
-feature: https://img.cc0.cn/pixabay/2019102323435145489.jpg!cc0.cn.jpg
+feature: 
 isTop: false
 ---
 让我做了一晚上的题，其它作业一直没做，都攻这道了。过了后觉得其实挺好想到的……
-
-翘翘真棒！
-
+$\color{red}\text{Update:}$ 代码又被叉掉了，修正后更新了代码。
 
 <!-- more -->
 
@@ -87,7 +85,7 @@ typedef std::vector<twt>::iterator twtIT;
 void dfs(int t, int sum, int prod, bool flag) {
 	if(t > n/2) {
 		if(!flag) ans.push_back((twt){sum + prod, prod, 0});
-		else ans.push_back((twt){sum, prod, 1});
+		else ans.push_back((twt){sum+prod, prod, 1});
 		return;
 	}
 	if(sum > p) return;

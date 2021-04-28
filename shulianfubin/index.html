@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619495524490">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619569242067">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://acfboy.pw">
-        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619495524490" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619569242067" alt="" width="32px" height="32px">
       </a>
       <a href="https://acfboy.pw">
         <h1 class="site-title">Acfboy 的博客</h1>
@@ -80,9 +80,6 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://img.cc0.cn/pixabay/2019102323435145489.jpg!cc0.cn.jpg')">
-            </div>
-          
           <h2 class="post-title">题解 “数链抙玢”</h2>
           <div class="post-info post-detail-info">
             <span><i class="icon-calendar-outline"></i> 2021-04-27</span>
@@ -106,8 +103,8 @@
             
           </div>
           <div class="post-content">
-            <p>让我做了一晚上的题，其它作业一直没做，都攻这道了。过了后觉得其实挺好想到的……</p>
-<p>翘翘真棒！</p>
+            <p>让我做了一晚上的题，其它作业一直没做，都攻这道了。过了后觉得其实挺好想到的……<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mtext>Update:</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{red}\text{Update:}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text" style="color:red;"><span class="mord" style="color:red;">Update:</span></span></span></span></span> 代码又被叉掉了，修正后更新了代码。</p>
 <!-- more -->
 <p>先普及一下两个生僻字：</p>
 <figure data-type="image" tabindex="1"><img src="https://www.hualigs.cn/image/6087486d91aa0.jpg" alt="" loading="lazy"></figure>
@@ -167,7 +164,7 @@ typedef std::vector&lt;twt&gt;::iterator twtIT;
 void dfs(int t, int sum, int prod, bool flag) {
 	if(t &gt; n/2) {
 		if(!flag) ans.push_back((twt){sum + prod, prod, 0});
-		else ans.push_back((twt){sum, prod, 1});
+		else ans.push_back((twt){sum+prod, prod, 1});
 		return;
 	}
 	if(sum &gt; p) return;
