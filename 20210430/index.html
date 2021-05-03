@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2021.4.30 校内模拟赛游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1620028219159">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1620028219159" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2021.4.30 校内模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-30</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>不想说什么了。</p>
+<!-- more -->
+<h2 id="a">A</h2>
+<p>说难不难说简单不简单的一道题。</p>
+<blockquote>
+<p>“说难不？难。说简单！不简单。”的一道题。</p>
+</blockquote>
+<blockquote>
+<p>“说难不难。说简单不？简单。”的一道题。</p>
+</blockquote>
+<p><s>好了好了不整活了</s></p>
+<blockquote>
+<p>给定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个括号序列，能否将其拼成一个匹配的括号序列。</p>
+</blockquote>
+<p>这道题其实是考察思维的严谨性。</p>
+<p>首先的想法是是否个数相等就行。这显然是不行的。</p>
+<p>观察得到肯定要是去除匹配之后全左和全右的在两边。于是我就认为两边有中间匹配就行。</p>
+<p>然后 WA 了。</p>
+<p>发现了反例，觉得中间要判断一下才行。</p>
+<p>然后又 WA 了。</p>
+<p>接着又觉得要把右括号少的放前面。</p>
+<p>又双叒叕 WA 了。</p>
+<p>其实以上的反例都特别好找，而且都没有严谨的理论基础，只是找了几个数据就凭着感觉上的，和直接猜结论没有本质的区别。</p>
+<p>所以有了例子还是得从理论出发找到做法。</p>
+<ol>
+<li>最左边右括号不能没有匹配</li>
+<li>保证了前面不会出事的情况下肯定是左括号越多越好，以应对未来的右括号。</li>
+</ol>
+<p>根据这个排序即可。这个想法似乎也有所特别，和大部分人的不一样。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+std::string s, tmp, stl, str, stn;
+char st[1000005];
+int numl, numr, n, lenl, lenr;
+struct twt {
+    std::string st;
+    int k;
+    bool operator&lt;(twt b) const {
+        return (k &lt;= stl.size()) &gt; (b.k &lt;= stl.size()) ||
+               ((k &lt;= stl.size()) == (b.k &lt;= stl.size()) &amp;&amp; st.size() - k &gt; b.st.size() - b.k);
+    }
+};
+std::vector&lt;twt&gt; a;
+bool checkl(std::string s) {
+    if (s.size() == 0)
+        return false;
+    for (int i = 0; i &lt; (signed)s.size(); i++)
+        if (s[i] == ')')
+            return false;
+    return true;
+}
+bool checkr(std::string s) {
+    if (s.size() == 0)
+        return false;
+    for (int i = 0; i &lt; (signed)s.size(); i++)
+        if (s[i] == '(')
+            return false;
+    return true;
+}
+int main() {
+    std::ios::sync_with_stdio(false);
+    std::cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cin &gt;&gt; tmp;
+        s = &quot;&quot;;
+        int top = 0;
+        for (int j = 0; j &lt; (signed)tmp.size(); j++)
+            if (tmp[j] == ')') {
+                if (st[top] == '(')
+                    top--;
+                else
+                    st[++top] = ')';
+            } else
+                st[++top] = '(';
+        for (int j = 1; j &lt;= top; j++) s = s + st[j];
+        if (checkl(s))
+            stl += s;
+        else if (checkr(s))
+            str += s;
+        else {
+            int k = 0;
+            for (int j = 0; j &lt; (signed)s.size(); j++) k += s[j] == ')';
+            a.push_back(twt{ s, k });
+        }
+    }
+    std::sort(a.begin(), a.end());
+    std::string an = stl;
+    for (int i = 0; i &lt; (signed)a.size(); i++) an += a[i].st;
+    an += str;
+    // std::cout &lt;&lt; an &lt;&lt; std::endl;
+    int now = 0;
+    for (int i = 0; i &lt; (signed)an.size(); i++) {
+        if (an[i] == '(')
+            now++;
+        else
+            now--;
+        if (now &lt; 0)
+            return puts(&quot;No&quot;), 0;
+    }
+    if (now != 0)
+        puts(&quot;No&quot;);
+    else
+        puts(&quot;Yes&quot;);
+}
+</code></pre>
+<p>花了我一小时二十分钟qwq。</p>
+<h2 id="b">B</h2>
+<p>水题</p>
+<h2 id="c">C</h2>
+<p>水题</p>
+<h2 id="e">E</h2>
+<p>有点细节啊，就是要处理一个部分循环的问题，但还是花了好久。</p>
+<h2 id="d">D</h2>
+<p>不难的组合数学。</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个格子填 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 种颜色，使相邻的格子不能有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个以上颜色相同的方案数。</p>
+</blockquote>
+<p>先插板，然后再乘法原理 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>×</mo><mo>(</mo><mi>m</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>×</mo><mo>(</mo><mi>m</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">m\times(m-1)\times(m-1) \dots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span></span></span></span>。</p>
+<p>答案就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>k</mi></msubsup><msubsup><mi>C</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>m</mi><mo>(</mo><mi>m</mi><mo>−</mo><mn>1</mn><msup><mo>)</mo><mrow><mi>n</mi><mo>−</mo><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\sum_{i=0}^k C_{n-1}^{n-i-1}m (m-1)^{n-i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.313647em;vertical-align:-0.324639em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9890079999999999em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864795em;"><span style="top:-2.433692em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1031310000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.324639em;"><span></span></span></span></span></span></span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0746639999999998em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2 id="最后">最后</h2>
+<p>名次全无往日威风了。</p>
+<p>感觉状态不增反降，越来越差了。</p>
+<p>越是没法静心做题，就越是没法面对自己；越是没法面对自己，就越是没法静心做题。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/apio2013robot/">
+              <h3 class="post-title">
+                下一篇：题解 [APIO2013]机器人
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

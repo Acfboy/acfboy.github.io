@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>ZONe Energy Programming Contest 游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1620028219159">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1620028219159" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">ZONe Energy Programming Contest 游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-02</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>题目质量还是比较高的——就是数据有点水啊。</p>
+<!-- more -->
+<h2 id="a">A</h2>
+<p>字符串入门题。</p>
+<h2 id="b">B</h2>
+<p>初中数学之三角函数。</p>
+<h2 id="c-1">C - 1</h2>
+<p>为什么要把这题难的放在前面？</p>
+<p>开始做的时候觉得是贪心，但很容易找出反例发现不一定要选一位上最大的，所以就没有什么思路了，先去看看 D 再来。</p>
+<h2 id="d">D</h2>
+<p>看上去高大上，其实仍然是水题，搞个 <code>deque</code> 处理反转和添加，然后用栈处理相邻的会消掉的问题。</p>
+<p>C 耽误了一些时间，不然更快地过这题，可能排名会更高。</p>
+<h2 id="c-2">C - 2</h2>
+<p>现在重新来思考 C 题。有了前面的经验可以知道大概率不会是 dp 了，因为局部最优没有办法得到全局最优，且这些数那么大也不能拿来做状态。</p>
+<p>考虑了二分，但是由于没法直接选相似的原因，二分不能验证。</p>
+<p>所以回到最初的思路，直接暴力枚举三个，这样的话时间复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">n^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> 的，不能接受，但只要优化掉一维就可以通过了。</p>
+<p>注意到题目中出现的常数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>, 题目没有设置 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 个肯定是因为这俩常数是有用的。有抽屉原理可以知道，选择的三行中，至少有一行包含了超过一个最大值。</p>
+<p>但是这样还是没有办法做，因为既可能是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>−</mo><mn>1</mn><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">3-1-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的分布，也有可能是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>−</mo><mn>2</mn><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2-2-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的分布。然后又卡了一会儿恍然大悟，同样抽屉原理可以得到两行肯定包含 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 个以上的最大值啊！</p>
+<p>所以只要枚举两行再枚举没有取到最大值的一列给它取上当前列的最大值就可以了。至于那一列的最大值可以直接读入的时候预处理出来。</p>
+<p>时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。代码如下。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+int n, max[3005], a[3005][10], ans;
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i = 1; i &lt;= n; i++) 
+        for(int j = 1; j &lt;= 5; j++) 
+            scanf(&quot;%d&quot;, &amp;a[i][j]), max[j] = std::max(max[j], a[i][j]);
+    for(int i = 1; i &lt;= n; i++)
+        for(int j = i+1; j &lt;= n; j++) {
+            int tmax[6] = {0, 0, 0, 0, 0, 0};
+            for(int k = 1; k &lt;= 5; k++) tmax[k] = std::max(tmax[k], std::max(a[i][k], a[j][k]));
+            for(int k = 1; k &lt;= 5; k++) {
+                int tmp = tmax[k], an = 2000000000;
+                tmax[k] = max[k];
+                for(int k = 1; k &lt;= 5; k++) an = std::min(an, tmax[k]);
+                ans = std::max(ans, an);
+                tmax[k] = tmp;
+            }
+        }
+    printf(&quot;%d&quot;, ans);
+    return 0;
+}
+</code></pre>
+<h2 id="e">E</h2>
+<p>乍一看还以为是 Dijkstra 的板子。</p>
+<p>抱着暴力出奇迹的信仰 <s>没有分析复杂度</s> 我写了一发 Dijkstra 就直接交了，居然只 T 了一个点，然后卡了卡常，但也没能通过。</p>
+<p><s>比赛结束有有人告诉我胡乱剪枝就过了。</s></p>
+<p>然后开始尝试构造 hack 数据，不过构造得有些麻烦，因为要让点尽可能多的被重复松弛，最后成功卡掉我自己和其它直接 Dijkstra 的方法是随机一半的概率放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，其它放随机数，这样生成的极限数据 Dijkstra 需要 2.5s 才过。</p>
+<p>直接做当然 T, 因为边数可以达到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">500^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> 条，点数也有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn><msup><mn>0</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">500^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> 个。而 Dijkstra 的复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo>)</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">(n+m) \log_2 n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span> 的。<s>能 hack 的话我就把他们全部叉掉！</s></p>
+<p>那么正确做法是怎么样的呢？</p>
+<p>如果没有最后一条限制，那么直接 Dijkstra 可以通过，因为边数和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> 一个数量级。</p>
+<p>那么考虑把最后一种操作转换成向前面一样的常规操作。如果向上的代价是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>，那么直接向上连长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的边就可以了。但这里要 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 所以用分层图来处理，第二层图向上连长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的边，再用长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的边连到第一层。然后一层到二层再连上长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的边就可以了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;queue&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int N = 505;
+struct twt {
+    int x, y, k, d;
+    bool operator &lt; (twt b) const {
+        return d &gt; b.d;
+    }
+};
+std::priority_queue&lt;twt&gt; que;
+int R, C, a[N][N], b[N][N], dis[N][N][2];
+void Dijkstra() {
+    memset(dis, 0x3f, sizeof dis);
+    que.push((twt){1, 1, 0});
+    dis[1][1][0] = 0;
+    while(!que.empty()) {
+        twt now = que.top(); que.pop();
+        int x = now.x, y = now.y, d = now.d, k = now.k;
+      	if(x == R &amp;&amp; y == C) break;
+        if(now.d != dis[x][y][k]) continue;
+        if(k == 0) {
+            if(y &lt; C &amp;&amp; d + a[x][y] &lt; dis[x][y+1][k]) {
+                dis[x][y+1][k] = d + a[x][y];
+                que.push((twt){x, y+1, 0, dis[x][y+1][k]});
+            }
+            if(y &gt; 1 &amp;&amp; d + a[x][y-1] &lt; dis[x][y-1][k]) {
+                dis[x][y-1][k] = d + a[x][y-1];
+                que.push((twt){x, y-1, 0, dis[x][y-1][k]});
+            }
+            if(x &lt; R &amp;&amp; d + b[x][y] &lt; dis[x+1][y][k]) {
+                dis[x+1][y][k] = d + b[x][y];
+                que.push((twt){x+1, y, 0, dis[x+1][y][k]});
+            }
+            if(d+1 &lt; dis[x][y][1]) {
+                dis[x][y][1] = d+1;
+                que.push((twt){x, y, 1, dis[x][y][1]});
+            }
+        }
+        else {
+            if(x &gt; 1 &amp;&amp; d + 1 &lt; dis[x-1][y][1]) {
+                dis[x-1][y][1] = d+1;
+                que.push((twt){x-1, y, 1, dis[x-1][y][1]});
+            }
+            if(d &lt; dis[x][y][0]) {
+                dis[x][y][0] = d;
+                que.push((twt){x, y, 0, dis[x][y][0]});
+            }
+        }
+    }
+}
+signed main() {
+    scanf(&quot;%lld%lld&quot;, &amp;R, &amp;C);
+    for(int i = 1; i &lt;= R; i++)
+        for(int j = 1; j &lt; C; j++) scanf(&quot;%lld&quot;, &amp;a[i][j]);
+    for(int i = 1; i &lt; R; i++)
+        for(int j = 1; j &lt;= C; j++) scanf(&quot;%lld&quot;, &amp;b[i][j]);
+    Dijkstra();
+    printf(&quot;%lld&quot;, dis[R][C][0]);
+    return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/20210430/">
+              <h3 class="post-title">
+                下一篇：2021.4.30 校内模拟赛游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
