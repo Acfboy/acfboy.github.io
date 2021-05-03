@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>题解  [APIO2013]道路费用 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1620082921709">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1620082921709" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">题解  [APIO2013]道路费用</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-04</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/sheng-cheng-shu/">
+                    生成树
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/suo-dian/">
+                    缩点
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://acfboy.pw/ti-jie/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>涨见识了。神奇的缩点和最小生成树的套路。</p>
+<!-- more -->
+<p>拿到题目首先得发现并不是一定要把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 条全部放进最小生成树里才是最优的，然后一看 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的范围只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>, 那么久可以枚举哪些放进去了。</p>
+<p>可这样的复杂度就已经一百多万了，再跑最小生成树的复杂度肯定无法接受。发现最小生成树的边中有大量是重复的。于是可以先把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 条边都加入最小生成树里面，然后再跑一遍 Kruscal, 就可以得到一定在最小生成树里面的边，把这些边进行缩点，然后就得到了一张点数仅 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span> 的图。</p>
+<p>但边可能由很多，所以我们再对缩点后的原图跑一个最小生成树，就可以得到可能在最小生成树里的边了。这样边数也被限制在了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的附近。</p>
+<p>然后我们就可以枚举取的边了，但是边权限制最大是多少呢？可以用最小生成树的性质来优化边权，即加入一条边所构成的环里面不能有不在最小生成树上的边比在里面的更小。这样就可以约束边权了。因为范围小，不用倍增，直接爬树就行了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#define int long long
+const int N = 100005, M = 400005, INF = 0x3f3f3f3f;
+int n, m, k, max[N], fae[N], p[N], sum[N], tot, ans, st, id[N], fa[N],
+	d[N];
+bool in[M];
+std::vector&lt;int&gt; g[N], nods;
+struct twt {
+	int u, v, w;
+	bool operator &lt; (twt b) const {
+		return w &lt; b.w;
+	}
+} e[M], T[M];
+int find(int x) {
+	if(x != id[x]) id[x] = find(id[x]);
+	return id[x];
+}
+void merge(int x, int y) { id[find(x)] = find(y); }
+void add(int u, int v) {
+	g[u].push_back(v);
+	g[v].push_back(u);
+}
+void Kruscal() {
+	for(int i = 1; i &lt;= m; i++) in[i] = 0;
+	std::sort(e+1, e+m+1);
+	for(int i = 1; i &lt;= m; i++) {
+		int fx = find(e[i].u), fy = find(e[i].v);
+		in[i] = (fx != fy), merge(fx, fy);
+	}
+}
+void dfs(int u, int f) {
+	sum[u] = p[u], fa[u] = f, d[u] = d[f] + 1;
+	for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+		int v = g[u][i];
+		if(v == f) continue;
+		dfs(v, u);
+		sum[u] += sum[v];
+	}
+}
+void upd(int u, int v, int w) {
+	if(d[u] &lt; d[v]) std::swap(u, v);
+	while(d[u] &gt; d[v]) max[fae[u]] = std::min(max[fae[u]], w), u = fa[u];
+	while(u != v) max[fae[u]] = std::min(max[fae[u]], w), max[fae[v]] = std::min(max[fae[v]], w),
+				  u = fa[u], v = fa[v];
+}
+signed main() {
+	scanf(&quot;%lld%lld%lld&quot;, &amp;n, &amp;m, &amp;k);
+	for(int i = 1; i &lt;= m; i++) scanf(&quot;%lld%lld%lld&quot;, &amp;e[i].u, &amp;e[i].v, &amp;e[i].w);
+	for(int i = 1; i &lt;= k; i++) scanf(&quot;%lld%lld&quot;, &amp;e[m+i].u, &amp;e[m+i].v);
+	for(int i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;p[i]);
+	for(int i = 1; i &lt;= n; i++) id[i] = i;
+	for(int i = m+1; i &lt;= m+k; i++) merge(e[i].u, e[i].v);
+	Kruscal();
+	for(int i = 1; i &lt;= n; i++) id[i] = i;
+	for(int i = 1; i &lt;= m; i++)
+		if(in[i]) merge(e[i].u, e[i].v);
+	for(int i = 1; i &lt;= n; i++) 
+		if(find(i) == i) nods.push_back(i);
+		else p[id[i]] += p[i];
+	st = find(1);
+	for(int i = 1; i &lt;= m+k; i++) e[i].u = find(e[i].u), e[i].v = find(e[i].v);
+	Kruscal();
+	for(int i = 1; i &lt;= m; i++) 
+		if(in[i]) T[++tot] = (twt){e[i].u, e[i].v, e[i].w};
+	for(int i = 1; i &lt;= tot; i++) e[i] = T[i];
+	for(int i = 1; i &lt;= k; i++) e[i+tot] = e[i+m];
+	m = tot;
+	// printf(&quot;%lld %lld\n&quot;, m, k);
+		// for(int i = 1; i &lt;= m+k; i++) printf(&quot;%lld %lld\n&quot;, e[i].u, e[i].v); //puts(&quot;&quot;);
+	for(int S = 0; S &lt; (1 &lt;&lt; k); S++) {
+		for(int i = 0; i &lt; (signed)nods.size(); i++) id[nods[i]] = nods[i], g[nods[i]].clear();
+		for(int i = 1; i &lt;= k; i++)
+			if((1 &lt;&lt; (i-1)) &amp; S) merge(e[i+m].u, e[i+m].v);
+		Kruscal();
+		for(int i = 1; i &lt;= k; i++) 
+			if((1 &lt;&lt; (i-1)) &amp; S) add(e[i+m].u, e[i+m].v), in[i+m] = 1;
+			else in[i+m] = 0;
+		int ecnt = 0;
+		for(int i = 1; i &lt;= m+k; i++) ecnt += in[i];
+		if(ecnt &gt; (signed)nods.size()-1) continue;
+		for(int i = 1; i &lt;= m; i++) if(in[i]) add(e[i].u, e[i].v);
+		dfs(st, 0);
+		for(int i = 1; i &lt;= m+k; i++) 
+			if(in[i]) {
+				int u = e[i].u, v = e[i].v;
+				if(fa[u] == v) fae[u] = i;
+				else fae[v] = i;
+				max[i] = (i &lt;= m) ? 0 : INF;	
+			}
+		int an = 0;
+		for(int i = 1; i &lt;= m; i++)
+			if(!in[i]) upd(e[i].u, e[i].v, e[i].w);
+		for(int i = m+1; i &lt;= m+k; i++)
+			if(in[i]) an += sum[(fa[e[i].u] == e[i].v) ? e[i].u : e[i].v] * max[i];
+		ans = std::max(ans, an);
+		// printf(&quot;%lld\n&quot;, S);
+	}
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+<p>去磕这样的题感觉没有什么提高而又很大程度降低了做题效率，所以今天开始改一下 SOP 吧。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/codeforces-global-round-14/">
+              <h3 class="post-title">
+                下一篇：Codeforces Global Round 14 掉分记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
