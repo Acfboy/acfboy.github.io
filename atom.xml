@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的博客</title>
-    <updated>2021-05-06T11:10:55.244Z</updated>
+    <updated>2021-05-07T11:53:59.788Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,82 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 [APIO2015]巴厘岛的雕塑]]></title>
+        <id>https://acfboy.pw/apio2015ba-li-dao-de-diao-su/</id>
+        <link href="https://acfboy.pw/apio2015ba-li-dao-de-diao-su/">
+        </link>
+        <updated>2021-05-07T11:52:20.000Z</updated>
+        <summary type="html"><![CDATA[<p>做过一道类似的题了（就是老板 dp 那道）……但再做这题还是做不出。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>做过一道类似的题了（就是老板 dp 那道）……但再做这题还是做不出。</p>
+<!-- more -->
+<blockquote>
+<p>把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数分成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>∈</mo><mo>[</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">x \in [A, B]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">]</span></span></span></span> 组，使每一组的和或起来最小。</p>
+</blockquote>
+<p>这种数位题，自然是从高位到低位 dp, 判断每一位是否可以为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>, 然后就遇上了一个问题：不同位之间似乎是相关的啊，真的能直接去 dp 出来吗？</p>
+<p>然后我就在这里卡壳了，来看题解的解决方法：</p>
+<p>设置一个 <code>res = ans | (1 &lt;&lt; (i-1))</code> 即设置一个 <code>res</code> 为把当前求出来的答案（由必须是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的）的当前位之后的都改成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 然后设一段的和为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span>, 且 <code>(s | res) == res</code> 就可以令 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>f</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][j] = f[k][j-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>。</p>
+<p>显然不可能为了这一位是零而进行进位，因为这样子答案更大了，所以若当前的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span> 不影响前面的位，且这一位是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 可以做到，那就是可以转移的，反之就不行。</p>
+<p>然而这一点我自己做的时候却总是想不到。</p>
+<hr>
+<p>另外这题还提供了一个应对超时的新思路：极限数据若有特殊性质就给那特殊性质单独写一个（</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2021.5.7 校内模拟赛游记。]]></title>
+        <id>https://acfboy.pw/20210507/</id>
+        <link href="https://acfboy.pw/20210507/">
+        </link>
+        <updated>2021-05-07T07:58:48.000Z</updated>
+        <summary type="html"><![CDATA[<p>除了 C 题都是普及组难度，可是他偏偏不把 C 放 E, 而放在了 C, 所以我就一直困在 C 了……最后时刻想起了 SOP, 于是去写了 D。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>除了 C 题都是普及组难度，可是他偏偏不把 C 放 E, 而放在了 C, 所以我就一直困在 C 了……最后时刻想起了 SOP, 于是去写了 D。</p>
+<!-- more -->
+<h2 id="c">C</h2>
+<blockquote>
+<p>数轴上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个点，上面有一个数，每过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 秒每个正数会减少 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 问从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 开始以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 格每秒的速度去收集最多能收集到多少。</p>
+</blockquote>
+<p>开始的时候当然是想到贪心的，但是比赛的时候找到了几个不同贪心的反例，于是就放弃了贪心的想法，开始转战 dp。</p>
+<p>开始联想到了那场 ABC，于是很快就发现了一定是停在左边或者右边的性质，并确定了区间 dp。然后开始考虑转移了。同样参照那场 abc 决定在中间枚举一个断开的断点，然后发现这是不可行的，因为 AT 的那道是决定了出场的顺序，然后决策拿多少，和这个的条件和求法都不一样。</p>
+<p>而且本题中一段在中途折返到另一段似乎没有办法直接跨区域转移，所以得用另外一种区间 dp 的转移了，就是只把头或尾的去掉，然后转移。</p>
+<p>这样就可以得出一个大概的方程， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>=</mo><mi>min</mi><mo>⁡</mo><mo>{</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>+</mo><mo>(</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>−</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>)</mo><mo>×</mo><mo>?</mo><mo separator="true">,</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo>+</mo><mo>(</mo><mi>a</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>−</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>)</mo><mo>×</mo><mo>?</mo><mo>}</mo></mrow><annotation encoding="application/x-tex">f[i][j][0] = \min\{f[i+1][j][0] + (a[i+1]-a[i]) \times?, f[i+1][j][1] + (a[j]-a[i]) \times ?\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mopen">{</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">)</span><span class="mord">×</span><span class="mclose">?</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">)</span><span class="mord">×</span><span class="mclose">?</span><span class="mclose">}</span></span></span></span></p>
+<p>那么这个问号是什么东西呢？就是要对后续产生的贡献，手动模拟一下容易发现，应该是所有没有被去掉的在这一段中被减去的，可是我们并不知道一共有几个，所以还得枚举一下，设当前取了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 个，那么就是要乘上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>−</mo><mo>[</mo><mi>j</mi><mo>−</mo><mo>(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>+</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">p - [j-(i+1) + 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>，在枚举状态的时候我们会用到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>e</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">len</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span></span></span></span>, 所以直接写作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>−</mo><mi>l</mi><mi>e</mi><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">p-len+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 就可以了。</p>
+<p>另一个的转移同理，最后统计答案就是再枚举一次起点统计 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">(p-1) \times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> （减一是因为多补充了一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>）, 减去 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>+</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][i+p-1][0/1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 中的最小值就可以了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int N = 305; 
+int n, m, a[N], s, f[N][N][2], ans;
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);
+	a[++n] = 0;
+	std::sort(a+1, a+1+n);
+	s = std::lower_bound(a+1, a+1+n, 0) - a;
+	for(int p = 1; p &lt;= n; p++) {
+		memset(f, 0x3f, sizeof f);
+		f[s][s][0] = f[s][s][1] = 0;
+		for(int len = 2; len &lt;= p; len++)
+			for(int i = 1; i + len - 1 &lt;= n; i++) {
+				int j = i + len - 1;
+				f[i][j][0] = std::min(f[i+1][j][0] + (a[i+1]-a[i]) * (p-len+1), 
+									  f[i+1][j][1] + (a[j] - a[i]) * (p-len+1));
+				f[i][j][1] = std::min(f[i][j-1][1] + (a[j]-a[j-1]) * (p-len+1),
+									  f[i][j-1][0] + (a[j] - a[i]) * (p-len+1));
+			}
+		for(int i = 1; i &lt;= n-p+1; i++)
+			ans = std::max(ans, (p-1) * m - std::min(f[i][i+p-1][0], f[i][i+p-1][1]));
+	}
+	printf(&quot;%d&quot;, ans);
+	return 0;
+}
+</code></pre>
+<p>现在完成了这题，再来反思一下考场上想的 dp 为什么不可以。其实关键是在于对后面的贡献没有得到很好的处理。用原来的转移其实也可以用类似 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>a</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>−</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>)</mo><mo>×</mo><mo>(</mo><mi>p</mi><mo>−</mo><mi>l</mi><mi>e</mi><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(a[j]-a[i]) \times (p-len+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 的方式去处理贡献，不过由于中间会跨过很多 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>, 所以不能一下子处理出来，还需要一层循环来解决，不过其本质上是和这种只跨过一个的转移是等价的。</p>
+<p>赛场上想不出转移思路就又到奇奇怪怪的方向上去了，搞了一些没有本质上不同的变换，比如把它等价成一个矩阵上的操作，这样的思路看上去不一样，而实际上没有减少任何的重复和不必要，应该及时悬崖勒马。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 CF961E Tufurama]]></title>
         <id>https://acfboy.pw/cf961e/</id>
@@ -791,184 +867,6 @@ int main() {
 <p>名次全无往日威风了。</p>
 <p>感觉状态不增反降，越来越差了。</p>
 <p>越是没法静心做题，就越是没法面对自己；越是没法面对自己，就越是没法静心做题。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [APIO2013]机器人]]></title>
-        <id>https://acfboy.pw/apio2013robot/</id>
-        <link href="https://acfboy.pw/apio2013robot/">
-        </link>
-        <updated>2021-04-29T12:10:37.000Z</updated>
-        <summary type="html"><![CDATA[<p>这居然也是 dp? 很难想到啊！这个数据范围就只想着搜索了。</p>
-<p>这居然还是斯坦纳树？刚做完斯坦纳树模板就不会……神题啊。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这居然也是 dp? 很难想到啊！这个数据范围就只想着搜索了。</p>
-<p>这居然还是斯坦纳树？刚做完斯坦纳树模板就不会……神题啊。</p>
-<!-- more -->
-<p>题目很长，放<a href="https://www.luogu.com.cn/problem/P3638">传送门</a>。</p>
-<p>看到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>9</mn></mrow><annotation encoding="application/x-tex">9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span></span></span></span> 的数据范围认为应该是道搜索题了，但是直接暴力的复杂度大得不得了，猜想应该预处理出些什么，或者有什么性质。但是什么神奇的性质都没有发现。</p>
-<p>其实这题还是隐隐约约有一些图论模型在的，因为并不是在这个网格中随便的走，而是要撞上障碍物。所以容易想到可以处理出每一个点向每一个方向走最后会到达的位置。</p>
-<p>然后就考验对斯坦纳树的算法的理解了。</p>
-<p>在斯坦纳树中，我们定义了一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>S</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][S]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">]</span></span></span></span> 表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 状态的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 为根的最小的权值和，然后先进行了一下常规的转移，即可以用原来结果直接得到的转移，然后通过一次最短路让当前的一些状态去松弛其它的状态。</p>
-<p>这道题中也可以用类似的思想在做。</p>
-<p>因为题目中要求的是连续区间才能合并成一个新的区间，我们可以用区间 dp 的方式来实现这一点。 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i][j][k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span> 表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[i,j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 中的合成一块儿到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 号位置的最小代价，然后先直接合并原来的答案，再用 spfa 松弛一遍就好了。<s>这 spfa 被卡需要用玄学优化才能过，但我们不管，直接吸氧</s></p>
-<p>这不经让我思考：到底什么样的东西才可以用这样的方法来做的呢？</p>
-<p>其实关键在于那个 spfa 的转移，因为前面的常规转移在一般的情况下是很容易被想到的。在这两题中，用 spfa 的转移都有一个性质，那就是可能会构成一个环形的转移，并且能搞那什么三角等式。其实这不就是图上最短路的一个特征吗，我们把 dis 看成是 dp 数组，它就没有办法直接转移，因为不知道顺序是怎样的，而又可以松弛，所以就用到最短路的算法了。</p>
-<p>最后放上代码吧。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-const int N = 505;
-int f[10][10][N*N], h, w, n, left[5], right[5], id[N][N], cnt, tran[N*N][4], p[N*N],
-	ans, nowa, nowb, q[N*N], head, tail;
-int dx[4] = {0, 0, 1, -1},
-	dy[4] = {1, -1, 0, 0};
-bool vis[N*N], vi[N*N][4];
-char s[N][N];
-bool cmp(int a, int b) { return f[nowa][nowb][a] &lt; f[nowa][nowb][b]; }
-bool pd(int i, int j) { return (i &lt; 1 || j &lt; 1 || i &gt; h || j &gt; w || s[i][j] == 'x'); }
-void init() {
-	left[0] = 3, left[3] = 1, left[1] = 2, left[2] = 0;
-	right[0] = 2, right[2] = 1, right[1] = 3, right[3] = 0;
-	memset(f, 0x3f, sizeof f);
-	memset(tran, -1, sizeof tran);
-}
-void spfa(int x, int y, int s) {
-	head = tail = 1;
-	q[tail] = s;
-	while(head &lt;= tail) {
-		int u = q[head];
-		vis[u] = 0;
-		head++;
-		for(int i = 0; i &lt; 4; i++) {
-			int v = tran[u][i];
-			if(v &lt;= 0) continue;
-			if(f[x][y][v] &gt; f[x][y][u] + 1) {
-				f[x][y][v] = f[x][y][u] + 1;
-				if(!vis[v]) q[++tail] = v, vis[v] = 1;
-			}
-		}
-	}
-}
-int dfs(int i, int j, int k) {
-	if(tran[id[i][j]][k] != -1) return tran[id[i][j]][k];
-	if(vi[id[i][j]][k]) return 0;
-	vi[id[i][j]][k] = 1;
-	int xx = i + dx[k], yy = j + dy[k];
-	if(pd(xx, yy)) {
-		vi[id[i][j]][k] = 0, tran[id[i][j]][k] = id[i][j];
-		return id[i][j];
-	}
-	if(s[xx][yy] == 'A') {
-		tran[id[i][j]][k] = dfs(xx, yy, left[k]);
-		vi[id[i][j]][k] = 0;
-		return tran[id[i][j]][k];
-	}
-	else if(s[xx][yy] == 'C') {
-		tran[id[i][j]][k] = dfs(xx, yy, right[k]);
-		vi[id[i][j]][k] = 0;
-		return tran[id[i][j]][k];
-	}
-	tran[id[i][j]][k] = dfs(xx, yy, k);
-	vi[id[i][j]][k] = 0;
-	return tran[id[i][j]][k];
-}
-int main() {
-	init();
-	scanf(&quot;%d%d%d&quot;, &amp;n, &amp;w, &amp;h);
-	for(int i = 1; i &lt;= h; i++) scanf(&quot;%s&quot;, s[i]+1);
-	for(int i = 1; i &lt;= h; i++)
-		for(int j =  1; j &lt;= w; j++)
-			if(!pd(i, j)) {
-				id[i][j] = ++cnt;
-				if(s[i][j] &gt;= '0' &amp;&amp; s[i][j] &lt;= '9') 
-					f[s[i][j]-'0'][s[i][j]-'0'][cnt] = 0;
-			}
-	for(int i = 1; i &lt;= h; i++)
-		for(int j = 1; j &lt;= w; j++) 
-			if(!pd(i, j)) {
-				for(int k = 0; k &lt; 4; k++) tran[id[i][j]][k] = dfs(i, j, k);
-			}
-	for(int i = 1; i &lt;= cnt; i++) p[i] = i;
-	for(int len = 1; len &lt;= n; len++)
-		for(int i = 1; i+len-1 &lt;= n; i++) {
-			int j = i + len - 1;
-			for(int k = 1; k &lt;= cnt; k++)
-				for(int l = i; l &lt; j; l++)
-					f[i][j][k] = std::min(f[i][j][k], f[i][l][k] + f[l+1][j][k]);
-			nowa = i, nowb = j;
-			std::sort(p+1, p+1+cnt, cmp);
-			for(int k = 1; k &lt;= cnt; k++) spfa(i, j, p[k]);
-		}
-	ans = 2000000000;
-	for(int i = 1; i &lt;= cnt; i++) ans = std::min(ans, f[1][n][i]);
-	if(ans == 0x3f3f3f3f) puts(&quot;-1&quot;);
-	else printf(&quot;%d&quot;, ans);
-	return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [POI2014]HOT-Hotels]]></title>
-        <id>https://acfboy.pw/poi2014hothotels/</id>
-        <link href="https://acfboy.pw/poi2014hothotels/">
-        </link>
-        <updated>2021-04-28T12:39:10.000Z</updated>
-        <summary type="html"><![CDATA[<p>看了题解发现我的思路并没有走偏，只是遇到重复这类的问题时没有想到解决的办法。大概要获得解决这样问题的能力只能靠多做题积累吧。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>看了题解发现我的思路并没有走偏，只是遇到重复这类的问题时没有想到解决的办法。大概要获得解决这样问题的能力只能靠多做题积累吧。</p>
-<!-- more -->
-<blockquote>
-<p>给定一棵树，在树上选 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 个点，要求两两距离相等，求方案数。</p>
-</blockquote>
-<p>首先有一个显然的性质，那就是只能是三个点从一个点直直的伸出去，即深度较深的两个点距离它们 LCA 的距离相同，也就是说深度要相同了。</p>
-<p>那么考虑应该如何统计这样子深度相同的点。直接记录是不行的，因为要保证它们的 LCA 要在当前点，不能产生更深的公共祖先。</p>
-<p>既然没法一蹴而就，那么久先来两个的。于是有了两种想法，一个是枚举两个点，再通过什么方式来找到第三个点的个数（倍增似乎可做，但时间上无法接受），另一个是通过神奇的 dp 来解决。<s>然后我就没有想法了</s></p>
-<p>平常我们的 dp 都是通过一个数组来解决，最多再来一个辅助计算。可是这里难以在一两个数组内解决问题，所以尝试记录更多的信息。可以枚举一个点，把它当做那两个较深的点的 LCA，再一个个枚举它的子树，用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 记录前面的子树中有两个满足条件的深度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的点的数量，那么再乘上当前子树中深度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的节点数量就肯定满足要求了。</p>
-<p>同样的分解还可以继续，令 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">g[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 是前面子树中深度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的点数量，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi>o</mi><mi>x</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">box[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">o</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 是当前子树中深度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的点的数量，每次更新的时候让答案先加一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>×</mo><mi>b</mi><mi>o</mi><mi>x</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i] \times box[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">o</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>, 再把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 加上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>×</mo><mi>b</mi><mi>o</mi><mi>x</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo separator="true">,</mo><mi>g</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">g[i] \times box[i],g[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">o</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 加上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi>o</mi><mi>x</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">box[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">o</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 就可以了。</p>
-<p>代码。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-#define int long long
-const int N = 5005;
-int x, y, n, f[N], box[N], g[N], ans, lim;
-std::vector&lt;int&gt; G[N];
-void dfs(int u, int fa, int d) {
-	lim = std::max(lim, d);
-	box[d] ++;
-	for(int i = 0; i &lt; (signed)G[u].size(); i++) {
-		int v = G[u][i];
-		if(v == fa) continue;
-		dfs(v, u, d+1);
-	}
-}
-signed main() {
-	scanf(&quot;%lld&quot;, &amp;n);
-	for(int i = 1; i &lt; n; i++) {
-		scanf(&quot;%lld%lld&quot;, &amp;x, &amp;y);
-		G[x].push_back(y), G[y].push_back(x);
-	}
-	for(int i = 1; i &lt;= n; i++) {
-		memset(f, 0, sizeof f), memset(g, 0, sizeof g);
-		for(int j = 0; j &lt; (signed)G[i].size(); j++) {
-			int v = G[i][j];
-			lim = 0;
-			memset(box, 0, sizeof box);
-			dfs(v, i, 1);
-			for(int k = 1; k &lt;= lim; k++) {
-				ans += f[k] * box[k];
-				f[k] += g[k] * box[k];
-				g[k] += box[k];
-			}
-		}
-	}
-	printf(&quot;%lld&quot;, ans);
-	return 0;
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>

@@ -1465,9 +1465,21 @@ a.purple-link {
 }
 hr {
     border-style: dashed;
-    padding: 40px 0px 0px 0px;
+    padding: 10px 0px 0px 0px;
     border: none;
     border-bottom: 1px dashed black;
     margin-bottom: 40px;
+}
+.post-content blockquote {
+    border-left: .5em solid #eee !important; 
+    padding: 10px 20px 10px 20px;
+    margin-left: 0;
+    line-height: 20px;
+    background: #fff !important;
+    content: '\2014 \00A0';
+    color: #666;
+}
+.post-content blockquote p {
+    color: gray;
 }
     
