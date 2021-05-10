@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>ABC200 &amp; ARC118 游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1620618490383">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1620618490383" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">ABC200 &amp; ARC118 游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-10</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><s>一周两场合订版</s></p>
+<!-- more -->
+<h2 id="abc200">ABC200</h2>
+<p>首先祝贺 AtCoder 顺利举行 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>200</mn></mrow><annotation encoding="application/x-tex">200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 场 ABC 了！</p>
+<p>然而这次我发挥得却特别糟糕，前三题都是手速极快地秒切的，仅用了六分钟……然后看到 C 题直接无脑 dp, 就翻车了，一直到最后都没有调处来——然后顺利掉分。</p>
+<blockquote>
+<p>在序列中选出两个不同的子序列，使它们的和对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>200</mn></mrow><annotation encoding="application/x-tex">200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 取模后相等。</p>
+</blockquote>
+<p>其实很简单，由抽屉原理，直接爆搜就可以了……</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+typedef std::vector&lt;int&gt; twt;
+std::map&lt;int, twt&gt; map;
+twt now;
+int n, a[205];
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]), a[i] %= 200;
+    for(int i = 1; i &lt; (1 &lt;&lt; std::min(n, 8)); i++) {
+        now.clear(); int s = 0;
+        for(int j = 1; j &lt;= std::min(n, 8); j++) 
+            if((1 &lt;&lt; (j-1)) &amp; i) s += a[j], s %= 200, now.push_back(j);
+        if(map.count(s)) {
+            twt pre;
+            pre = map[s];
+            printf(&quot;Yes\n%d &quot;, (signed)pre.size());
+            for(int k = 0; k &lt; (signed)pre.size(); k++) printf(&quot;%d &quot;, pre[k]);
+            printf(&quot;\n%d &quot;, (signed)now.size());
+            for(int k = 0; k &lt; (signed)now.size(); k++) printf(&quot;%d &quot;, now[k]);
+            return 0;
+        }
+        map[s] = now;
+    }
+    printf(&quot;No&quot;);
+    return 0;
+}
+</code></pre>
+<p>然后看我的无脑 dp 吧……因为诸多细节还调了一早上，最后对拍出来的。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+const int N = 205, A = 1, B = 2, E = 3;
+int n, a[N], f[N][N][N], pre[N][N][N];
+int flag[N][N][N];
+std::vector&lt;int&gt; anA, anB;
+void trans1(int i, int j, int k) {
+    if((flag[i+1][(j+a[i+1])%200][k] &amp; 1) == 0 || (1 | flag[i][j][k]) == 3) {
+        f[i+1][(j+a[i+1])%200][k] = 1;
+        pre[i+1][(j+a[i+1])%200][k] = A;
+        flag[i+1][(j+a[i+1])%200][k] = (1 | flag[i][j][k]);
+    }
+}
+void trans2(int i, int j, int k) {
+    if((flag[i+1][j][(k+a[i+1])%200] &amp; 2) == 0 || (2 | flag[i][j][k]) == 3) {
+        f[i+1][j][(k+a[i+1])%200] = 1;
+        pre[i+1][j][(k+a[i+1])%200] = B;
+        flag[i+1][j][(k+a[i+1])%200] = (2 | flag[i][j][k]);
+    }
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]), a[i] %= 200;
+    f[0][0][0] = 1;
+    for(int i = 0; i &lt; n; i++) 
+        for(int j = 0; j &lt; 200; j++)
+            for(int k = 0; k &lt; 200; k++)
+                if(f[i][j][k]) {
+                    if(flag[i][j][k] &amp; 2) trans1(i, j, k), trans2(i, j, k);
+                    else trans2(i, j, k), trans1(i, j, k);
+                    if(pre[i+1][j][k] == 0) {
+                        pre[i+1][j][k] = E;
+                        flag[i+1][j][k] = flag[i][j][k];
+                        f[i+1][j][k] = 1;
+                     }
+                }
+    int ani = -1, anj = -1, ank = 0;
+    for(int i = 1; i &lt;= n; i++) {
+        for(int j = 0; j &lt; 200; j++)
+            if(f[i][j][j] &amp;&amp; flag[i][j][j] != 0) {
+                ani = i, anj = j;
+                break;
+            }
+        if(ani != -1) break;    
+    }
+    if(ani == -1) return puts(&quot;No&quot;), 0; 
+    ank = anj;
+    for(int i = ani; i &gt;= 1; i--) {
+        if(pre[i][anj][ank] == E) continue;
+        else if(pre[i][anj][ank] == A) anA.push_back(i), anj = (anj - a[i] + 200) % 200;
+        else anB.push_back(i), ank = (ank - a[i] + 200) % 200;
+    }
+    std::sort(anA.begin(), anA.end());
+    std::sort(anB.begin(), anB.end());
+    if(anA.size() &gt; anB.size()) std::swap(anA, anB);
+    if(anA.size() == 0) {
+    	if((signed)anB.size() != n) {
+	        int add = -1;
+	        for(int i = 0; i &lt; (signed)anB.size(); i++) 
+	            if(anB[i] != i+1) { add = i+1; break;}
+	        if(anB[anB.size()-1] &lt; n) add = n;
+	        if(add == -1) return puts(&quot;No&quot;), 0;
+	        anA.push_back(add); anB.push_back(add);
+	        std::sort(anA.begin(), anA.end());
+	        std::sort(anB.begin(), anB.end());
+	    }
+	    else anA = anB, anA.erase(anA.begin());
+    }
+    puts(&quot;Yes&quot;);
+    printf(&quot;%d &quot;, (signed)anA.size());
+    for(int i = 0; i &lt; (signed)anA.size(); i++) printf(&quot;%d &quot;, anA[i]);
+    printf(&quot;\n%d &quot;, (signed)anB.size());
+    for(int i = 0; i &lt; (signed)anB.size(); i++) printf(&quot;%d &quot;, anB[i]);
+    return 0;
+}
+</code></pre>
+<p>不能这么无脑了，什么性质都不分析然后就杀鸡用牛刀。</p>
+<p>其实这场比赛中还有一些值得改进的地方：</p>
+<ul>
+<li>
+<p>在比赛中后面心急了直接把 <code>trans1</code> 和 <code>trans2</code> 的东西压成逗号表达式写，结果因为有个分号调了很久。</p>
+</li>
+<li>
+<p>也因此在最后几分钟发现问题修改时把 <code>flag</code> 写成了 <code>f</code>, 不然至少赛时数据能过。</p>
+</li>
+</ul>
+<p>所以：<strong>不管情况多么紧急都要保持冷静遵守 SOP 啊！</strong></p>
+<h2 id="arc118">ARC118</h2>
+<p>这场比赛的体验其实还是挺不错的，甚至拿到了我在 ARC 中的最高名次——结果居然还掉分了？可能是因为得分人数比较少。</p>
+<h3 id="a">A</h3>
+<blockquote>
+<p>求第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个不能用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌊</mo><mfrac><mrow><mn>100</mn><mo>+</mo><mi>t</mi></mrow><mn>100</mn></mfrac><mi>A</mi><mo>⌋</mo></mrow><annotation encoding="application/x-tex">\lfloor \frac{100+t}{100}A \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault">A</span><span class="mclose">⌋</span></span></span></span> 表示的数。</p>
+</blockquote>
+<p>很显然的，每当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">At</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">t</span></span></span></span> 超过一个百的时候就会产生一次进位，但是不能直接去用这个计算第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个是多少，因为进位之后会先构成后面的数。</p>
+<p>所以二分一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>, 然后看最早的  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌊</mo><mfrac><mrow><mn>100</mn><mo>+</mo><mi>t</mi></mrow><mn>100</mn></mfrac><mi>x</mi><mo>⌋</mo><mo>≥</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\lfloor \frac{100+t}{100}x \rfloor \ge A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault">x</span><span class="mclose">⌋</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 是多少，然后再计算出进了几次位。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#define int long long
+int n, t;
+bool check(int m) {
+    int x = (m*100 + 99 + t) / (t+100);
+    return x*t/100 &gt;= n;
+}
+signed main() {
+    scanf(&quot;%lld%lld&quot;, &amp;t, &amp;n);
+    int l = 1, r = 10000000000000000, ans = 0;
+    while(l &lt;= r) {
+        int mid = l + (r - l) / 2;
+        if(check(mid)) ans = mid, r = mid - 1;
+        else l = mid + 1;
+    }
+    printf(&quot;%lld&quot;, ans);
+    return 0;
+}
+</code></pre>
+<h3 id="b">B</h3>
+<blockquote>
+<p>构造一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">∣</mo><mfrac><msub><mi>b</mi><mi>i</mi></msub><mi>m</mi></mfrac><mo>−</mo><mfrac><msub><mi>a</mi><mi>i</mi></msub><mi>n</mi></mfrac><mo fence="true">∣</mo></mrow><annotation encoding="application/x-tex">\left| \frac{b_i}{m} - \frac{a_i}{n} \right|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2462179999999998em;vertical-align:-0.35000999999999993em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.86199em;"><span style="top:-2.2559899999999997em;"><span class="pstrut" style="height:2.606em;"></span><span class="delimsizinginner delim-size1"><span>∣</span></span></span><span style="top:-2.86199em;"><span class="pstrut" style="height:2.606em;"></span><span class="delimsizinginner delim-size1"><span>∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000999999999993em;"><span></span></span></span></span></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8962079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7114919999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.86199em;"><span style="top:-2.2559899999999997em;"><span class="pstrut" style="height:2.606em;"></span><span class="delimsizinginner delim-size1"><span>∣</span></span></span><span style="top:-2.86199em;"><span class="pstrut" style="height:2.606em;"></span><span class="delimsizinginner delim-size1"><span>∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000999999999993em;"><span></span></span></span></span></span></span></span></span></span></span> 的最大值最小，且所有的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 和是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>。</p>
+</blockquote>
+<p>最大值最小，就有二分的味道了。</p>
+<p>那考虑怎么验证，发现 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><msub><mi>a</mi><mi>i</mi></msub><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{a_i}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.056492em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7114919999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 是确定的，所以一个简单的不等式推一推就可以确定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的范围，然后在看一看 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 是不是满足和的范围就可以了。</p>
+<p>但这样一写发现样例也过不了，因为这个答案很有可能会很小，随便一精度误差就没了。所以重新观察一下这个式子，发现我们只需要把不等式全乘上一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">mn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">n</span></span></span></span> 就可以让二分的变成一个整数了，直接二分 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>n</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">mnx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">n</span><span class="mord mathdefault">x</span></span></span></span> 即可。</p>
+<p>至于构造，开始让 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 全部取到最小，然后再一个个能加的加上去就可以了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#define int long long
+const int N = 100005;
+int k, n, m, a[N], B[N], limL[N], limR[N], an;
+void makeLim(int x) {
+    for(int i = 1; i &lt;= k; i++) {
+        limL[i] = std::max((m*a[i]-x+n-1) / n, 0ll);
+        limR[i] = (m*a[i]+x)/n;
+    }
+}
+bool check(int x) {
+    makeLim(x);
+    int sumL = 0, sumR = 0;
+    for(int i = 1; i &lt;= k; i++) {
+        if(limL[i] &gt; limR[i]) return false;
+        sumL += limL[i], sumR += limR[i];
+    }
+    return sumL &lt;= m &amp;&amp; m &lt;= sumR;
+}
+signed main() {
+    scanf(&quot;%lld%lld%lld&quot;, &amp;k, &amp;n, &amp;m);
+    for(int i = 1; i &lt;= k; i++) scanf(&quot;%lld&quot;, &amp;a[i]);
+    int l = 1, r = 1000000000, ans = 0;
+    while(l &lt;= r) {
+        int mid = (l+r) / 2;
+        if(check(mid)) r = mid - 1, ans = mid;
+        else l = mid + 1;
+    }
+    makeLim(ans);
+    for(int i = 1; i &lt;= k; i++) B[i] = limL[i], an += B[i];
+    an = m - an;
+    for(int i = 1; i &lt;= k; i++) {
+        if(an == 0) break;
+        while(an &gt; 0 &amp;&amp; B[i] &lt; limR[i]) B[i] ++, an --;
+    }
+    for(int i = 1; i &lt;= k; i++) printf(&quot;%lld &quot;, B[i]);
+    return 0;
+}
+</code></pre>
+<h3 id="c">C</h3>
+<p>从通过人数来看 C 似乎要比 B 简单一些（赛后看来确实如此），但比赛的时候我看 dblark 先过了 C 就先去想了会儿 C, 不过想歪了。</p>
+<blockquote>
+<p>构造一个长 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的徐磊，每个数不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10000</mn></mrow><annotation encoding="application/x-tex">10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>, 数两两不互质但全部放在一起就是互质的。</p>
+</blockquote>
+<p>我想的构造方式是这样的：一堆 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>×</mo><mn>3</mn><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">2 \times 3 \times p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 然后再来 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>x</mi></mrow><annotation encoding="application/x-tex">2x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">x</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mi>x</mi></mrow><annotation encoding="application/x-tex">3x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord mathdefault">x</span></span></span></span>， 然后要 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 是后面的质数的积。</p>
+<p>可是这样一来明显凑不满 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2500</mn></mrow><annotation encoding="application/x-tex">2500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 个。比赛的时候做完 B 时间也没有多少了，最后就没能通过这题。</p>
+<p>其实我的构造方案里有大量的浪费，为什么 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 要是后面质数的积呢？</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>2</mn><mo>×</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mn>3</mn><mo>×</mo><mn>2</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>2</mn><mo>×</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>2</mn><mo>×</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mn>3</mn><mo>×</mo><mn>4</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mn>2</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>×</mo><mn>5</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mn>3</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>×</mo><mn>5</mn></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+2  \times &amp;3 \times 2 \\
+2 \times &amp;3 \times 3 \\
+2 \times &amp;3 \times 4 \\
+2 &amp;\times 5  \\
+3 &amp;\times 5  
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:7.500000000000002em;vertical-align:-3.5000000000000018em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4em;"><span style="top:-6.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">×</span></span></span><span style="top:-4.659999999999999em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">×</span></span></span><span style="top:-3.1599999999999984em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">×</span></span></span><span style="top:-1.6599999999999984em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-0.15999999999999837em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.5000000000000018em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4em;"><span style="top:-6.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span><span style="top:-4.659999999999999em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">3</span></span></span><span style="top:-3.1599999999999984em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">4</span></span></span><span style="top:-1.6599999999999984em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">5</span></span></span><span style="top:-0.15999999999999837em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.5000000000000018em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>这样同样是满足要求的，然后就可以进一步发现把一个满足要求的答案里的一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 拉出来乘几个再放回去一样是合法的。所以只需要设置一个开始数组，如 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>{</mo><mn>6</mn><mo separator="true">,</mo><mn>10</mn><mo separator="true">,</mo><mn>15</mn><mo>}</mo></mrow><annotation encoding="application/x-tex">\{6, 10, 15\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mclose">}</span></span></span></span> 然后再构造就行了，这样子可以构造出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌊</mo><mfrac><mn>10000</mn><mn>6</mn></mfrac><mo>⌋</mo><mo>+</mo><mo>⌊</mo><mfrac><mn>10000</mn><mn>10</mn></mfrac><mo>⌋</mo><mo>+</mo><mo>⌊</mo><mfrac><mn>10000</mn><mn>15</mn></mfrac><mo>⌋</mo><mo>=</mo><mn>3332</mn></mrow><annotation encoding="application/x-tex">\lfloor\frac{10000}{6}\rfloor +\lfloor\frac{10000}{10}\rfloor +\lfloor\frac{10000}{15}\rfloor = 3332</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌋</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌋</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">5</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌋</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">3</span><span class="mord">3</span><span class="mord">2</span></span></span></span> 个了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int N = 2505;
+int n, ans[N] = {0, 6, 10, 15}, tot, flag[10005];
+int main() {
+	scanf(&quot;%d&quot;, &amp;n);
+	tot = 3;
+	for(int i = 1; i &lt;= 3; i++) {
+		for(int j = ans[i]*2; j*ans[i] &lt;= 10000; j *= ans[i]) {
+			if(flag[j]) continue; flag[j] = 1;
+			ans[++tot] = j;
+			if(tot == n) break;
+		}
+		if(tot == n) break;
+	}
+	for(int i = 1; i &lt;= n; i++) printf(&quot;%d &quot;, ans[i]);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/apio2016hua-ting/">
+              <h3 class="post-title">
+                下一篇：题解 [APIO2016]划艇
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
