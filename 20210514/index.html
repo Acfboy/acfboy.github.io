@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2021.5.14 模拟赛游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1621040765726">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1621040765726" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2021.5.14 模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-14</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>恐怕又变成严重事故征候调查报告了。</p>
+<!-- more -->
+<p>本来是想着一定要吸取上次的教训严格执行检查单和标操作程序的，虽然最后一题差了那么一些但前两题总应该过的吧。</p>
+<p>结果吃好午饭回来就是事故现场了。</p>
+<h2 id="a">A</h2>
+<p>签到题。</p>
+<h2 id="b">B</h2>
+<p>同样很容易想到直接用树状数组的做法，但我一时脑抽还加了个 <code>set</code>, 本来也是没有问题的，结果就直接炸成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 分了。</p>
+<p><s>KTSB 第一时间就展开了调查。</s> 数据扔进去一看，居然是用空格分隔的，我怎么用了换行符呢？改了之后还是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>40</mn></mrow><annotation encoding="application/x-tex">40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">0</span></span></span></span> 分，盯着看了很久没有发现任何问题，结果老板看了一眼就说：“没有取模”。</p>
+<p>居然还真是没有取模。</p>
+<p>没有取模。</p>
+<p>取模。</p>
+<p>取模可是在检查单里的啊！代码注释下面就写了 <code>mod</code> 居然会死在取模上。</p>
+<p><code>IO</code> 似乎也是在检查单上的。</p>
+<h2 id="c">C</h2>
+<blockquote>
+<p>执行 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 次，每次在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的网格上随机选俩点，求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 次之后覆盖的格子大小的期望。</p>
+</blockquote>
+<p>开始就是直接想的，模拟了一下小样例，然后试图发现一些性质，然后就发现了这条路是走不通的，因为不同的形态太多了。</p>
+<p>此时已经是最后半小时了吧，想着换一种思路来考虑这个问题，于是考虑每一个点对答案的贡献，设所有方案的总数是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>， 包含当前点的方案是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 个， 那么一次取到的概率 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mi>t</mi><mi>w</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{t}{w}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.169556em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824556em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>, 那么 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 次里面有至少一个取到的方案数是多少呢？</p>
+<p>我居然傻乎乎的想当然了一下认为是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mi>p</mi></mrow><annotation encoding="application/x-tex">3p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mord mathdefault">p</span></span></span></span>, 显然是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo>)</mo><mi>k</mi></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">(1-(1-p)^k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 啊！然后就考虑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 怎么求。</p>
+<p>开始的时候想的是只考虑左上和右下的，总方案数也除以个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span>,结果搞了半天没有搞出来，比赛就结束了。</p>
+<p>其实左下和右上同样构成答案，这里不像其它一些问题中是可以省略的。那么来考虑怎么样不会有重复。介于我容斥啥一窍不通，所以就直接分成九块大力讨论了，然后代码就变成这个样子了：</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cmath&gt;
+int n, k, m;
+double ans, p;
+int main() {
+	freopen(&quot;paint.in&quot;, &quot;r&quot;, stdin);
+	freopen(&quot;paint.out&quot;, &quot;w&quot;, stdout);
+	
+	scanf(&quot;%d%d%d&quot;, &amp;k, &amp;n, &amp;m);
+	double w = (double)n*m*n*m;
+	for(int i = 1; i &lt;= n; i++)
+		for(int j = 1; j &lt;= m; j++) {
+			double s1 = (i-1)*(j-1),
+				   s2 = i-1,
+				   s3 = (m-j)*(i-1),
+				   s4 = j-1,
+				   s5 = m-j,
+				   s6 = (j-1)*(n-i),
+				   s7 = n-i,
+				   s8 = (m-j)*(n-i);
+			double t = s1 * (s5 + s7 + s8 + 1)
+					 + s2 * (s4 + 1 + s5 + s6 + s7 + s8)
+					 + s3 * (s4 + 1 + s7 + s6)
+					 + s4 * (s2 + s3 + 1 + s5 + s7 + s8)
+					 + s5 * (s1 + s2 + s4 + 1 + s6 + s7)
+					 + s6 * (s2 + 1 + s3 + s5)
+					 + s7 * (s1 + s2 + s3 + s4 + 1 + s5)
+					 + s8 * (s1 + s2 + s4 + 1)
+					 + 1 + s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8;
+			t /= w;
+			p = t;
+			ans += (1 - pow(1-p, k));
+		}
+	printf(&quot;%.8lf&quot;, ans);
+	return 0;
+}
+
+</code></pre>
+<h2 id="结论和建议">结论和建议</h2>
+<p>想着 “严格执行检查单和标操作程序的”， 结果还是因为没有真正做好这些要求而失去了 B 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 分。</p>
+<p>至于 C，则是 <s>机械故障</s> 技术上的错误了。</p>
+<p>所以：</p>
+<ol>
+<li>要认真执行检查单。
+<ol>
+<li>输入输出条目不仅包括文件，也得包括输出格式。</li>
+<li>检查取模不能停留在表面，必须检查每一个需要取模的运算。</li>
+<li>不能想着以后对拍，必须及时执行 <code>test</code> 项。</li>
+</ol>
+</li>
+<li>数学问题不能只想当然。
+<ol>
+<li>&quot;至少取到一个&quot; 的问题刻意转换成“一个都不取到”然后容斥一下。</li>
+<li>遇到重复时静下来暴力讨论也是个好方法。</li>
+</ol>
+</li>
+</ol>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/scoi2009fen-shua-jiang/">
+              <h3 class="post-title">
+                下一篇：题解 [SCOI2009]粉刷匠
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
