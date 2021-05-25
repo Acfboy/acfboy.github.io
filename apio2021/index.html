@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>APIO 2021 游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1621944758810">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1621944758810" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">APIO 2021 游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-24</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>50 天没啥进步倒是真的，但我真的没有想到 <strong>IOI 赛制都能挂分</strong>。</p>
+<p><s>APIO 大概是算正式比赛（？）了吧，所以这似乎不是事故征候调查报告了，而是事故调查报告了——不过这种情况在 OI 赛制中不大会遇到。</s></p>
+<!-- more -->
+<h2 id="day-3">Day -3</h2>
+<p>开始听课了……听不懂，跑了。</p>
+<h2 id="day-2">Day -2</h2>
+<p>听不懂 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span> 2</p>
+<h2 id="day-1">Day -1</h2>
+<p>《不会有人掉线的》<br>
+《掉线了可以马上重连》</p>
+<p>前面还撑了一会儿，后面开始黑题多了就又听不懂了，跑了。</p>
+<p>不过多了两发通过。</p>
+<h2 id="day-1-2">Day 1</h2>
+<h3 id="a">A</h3>
+<p>上午来机房写了主席树/带修主席树的板子，就等待开始比赛。</p>
+<p>没想到就在原机房里比赛，还以为要换机房以方便视频监考呢（</p>
+<p>A 很快读完了题面，<s>运用出色的初中平面几何能力</s>，很容易发现 A 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 的点就是等边三角形，很快推出了式子。</p>
+<p>没急着写，反正就两三行，看了下下面的 subtask, 觉得暴力可做，但暴力太难写了，于是放弃，开始写 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>9</mn></mrow><annotation encoding="application/x-tex">9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span></span></span></span> 分。</p>
+<p>然后就开始走向事故了，交了一发 WA, 又交了一发 WA, 仔细读题，原来是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 搞反了，好吧好吧，这会儿该对了，结果一交继续 WA，赛场上就很心态爆炸。一个小时居然一分没得。继续好好读题——发现边长似乎是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mn>0</mn></msub><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">L_0+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 然后一改就过了，于是一个小时半只得了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>9</mn></mrow><annotation encoding="application/x-tex">9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span></span></span></span> 分。</p>
+<h3 id="b-1">B - 1</h3>
+<p>B 题看着很眼熟，有点像线段树优化建图，于是我打开了洛谷，然后再把题目好好读。(<s>押韵</s>)</p>
+<p>前面的 subtask 似乎单调栈建边都不用，直接 floyd 做就完了。后面也不大可能是比较普适的图论问题，<s>不然百度一下就会有了</s>， 所以想着挖掘一下性质。然后 nottttttthy 和 墨神 就在旁边叽里呱啦讲起了性质，但是我不想被剧透，于是把他俩请到外面去了。</p>
+<p>结果自己研究了半天啥性质也没有发现，时间复杂度没有得到任何优化。而且当时脑子混沌一片，连多源 bfs 这种显然的东西都没有想到，一直想着离线下来一起考虑可能会减少很多的重复和不必要……</p>
+<p>想什么呢！这不是强制在线吗！</p>
+<p>想了会儿没啥思路，隔壁小渔已经宣布他在 C 题获得了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>12</mn></mrow><annotation encoding="application/x-tex">12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span> 分的优异成绩了，于是去想 C。</p>
+<h3 id="c-1">C - 1</h3>
+<p>显然第一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 分排个序就行了。</p>
+<p>第二个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span> 分想了会儿贪心然后及时悬崖勒马了，发现是一个很简单的 dp ，于是写了就交了，然后进入一直 waiting 状态。</p>
+<h3 id="吃饭">吃饭</h3>
+<p>虽然说 APIO 要好好打，但是饭还是得吃的。</p>
+<p>吃饭的时候交流了一下发现我现在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>18</mn></mrow><annotation encoding="application/x-tex">18</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span></span></span></span> 的得分居然挺高的了。</p>
+<h3 id="c-2">C - 2</h3>
+<p>吃完饭测完了……居然 WA 了。</p>
+<p>这么简单的 dp 我能 WA ? 找渔一问发现做法是对的，然后盲猜是边界有问题，修改了一波边界就交了。</p>
+<h3 id="b-2">B - 2</h3>
+<p>再次看到 B 的时候发现无权，所以直接多源 bfs 就可以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>37</mn></mrow><annotation encoding="application/x-tex">37</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">7</span></span></span></span> 分了，于是写了个交上，然后发现评测机已经 SPFA 了。</p>
+<p>也不太想做测试，就观察了一下代码，觉得这么简单的程序应该不会写错的（刚刚写挂了 C 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span> 分忘了？）， 然后想了一下下一个点怎么做。</p>
+<p>尝试用数据结构大力维护，可是未果。</p>
+<p>继续挖掘性质也没发现什么有用的。其实是人比较浮躁了没法静下心来了。索性就不写了。</p>
+<p>看 C</p>
+<h3 id="c-3">C - 3</h3>
+<p>发现 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>200</mn></mrow><annotation encoding="application/x-tex">n \le 200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 的数据似乎可以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">n^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> dp， 但是觉得方程可能会有些小问题，结合当时的情况觉得银牌应该没戏了，所以也不想做了，弃疗。</p>
+<h3 id="赛后">赛后</h3>
+<p>C 居然是原题。惊了。</p>
+<p>赛后讲分块也不想听。不过 nottttttthy 倒是对女选手讲课很感兴趣。</p>
+<p>放学前打了下篮球然后成功地受伤了，严重的萝卜干，手指都肿了，用点力弯曲伸直就痛，回到家后冰敷了也没用，第二天变得青一块紫一块，样子十分恐怖。</p>
+<p>篮球太危险了，再也不大篮球了。</p>
+<p>晚上 ABC PB 了，开心。</p>
+<p>第二天 ARC 没有什么有价值的思考出来的成果，分数原地不动。</p>
+<h2 id="day-2-2">Day 2</h2>
+<p>居然有讲题？居然有颁奖典礼？</p>
+<p>电脑上下 zoom 怎么那么的慢，用 <code>wget</code> 也很慢。</p>
+<p>手机里放没有声音，所以不看了。</p>
+<p>据说铜牌线是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>30</mn></mrow><annotation encoding="application/x-tex">30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span></span></span></span>, 银牌只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>61</mn></mrow><annotation encoding="application/x-tex">61</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">1</span></span></span></span>。</p>
+<p>什么！银牌只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>61</mn></mrow><annotation encoding="application/x-tex">61</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">1</span></span></span></span>, 那银牌完全可以得啊！这个时候有些后悔弃疗了。</p>
+<h2 id="day-3-2">Day 3</h2>
+<p>收到了 CCF 发来的邮件。</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/gxn9sI"><img src="https://z3.ax1x.com/2021/05/24/gxn9sI.png" alt="gxn9sI.png" loading="lazy"></a></figure>
+<p>果然挂分。不过若果得了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>58</mn></mrow><annotation encoding="application/x-tex">58</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">8</span></span></span></span> 恐怕感觉会更糟糕，只差三分就上银了。</p>
+<p>% 不挂分选手 LYC！</p>
+<p><s>然后开始调查事故原因</s></p>
+<h2 id="investigation">Investigation</h2>
+<p>首先打开 C 的存档，检查哪里挂了。</p>
+<p>一眼就看见没开 <code>long long</code>。</p>
+<p>好了，调查结束。</p>
+<p>！！！！！！！！！</p>
+<h2 id="结论和建议">结论和建议</h2>
+<ol>
+<li>
+<p>因为赛制不同所以全程未执行检查单，导致事故发生。</p>
+<p><s>按照 CAAC 的风格恐怕是要“暂停 <code>#define int long long</code> 在算法竞赛中的应用”。</s></p>
+</li>
+<li>
+<p>因为对比赛结果失去信息所以放弃治疗。</p>
+</li>
+</ol>
+<p>改进方式：</p>
+<ol>
+<li>在任何正式比赛中必须执行检查单。</li>
+<li>在 CF/AT 中除去极水的题以外也应执行检查单。</li>
+<li>任何时候不能对比赛失去信心。</li>
+</ol>
+<p>其实 APIO 的失败主要还是在于平时的训练吧，说着冲刺 APIO, 可是简要日志里面基于 SOP SCR CI 的练习情况评价全是 Failed。</p>
+<p>APIO 后，吸取教训，再出发。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/abc202/">
+              <h3 class="post-title">
+                下一篇：AtCoder Beginner Contest 202 游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

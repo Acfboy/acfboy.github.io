@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>AtCoder Beginner Contest 202 游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1621944758810">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1621944758810" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">AtCoder Beginner Contest 202 游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-24</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>Personal Best !</p>
+<p>晚上状态挺好，一下就恢复信心了。</p>
+<!-- more -->
+<p><a href="https://imgtu.com/i/gONCA1"><img src="https://z3.ax1x.com/2021/05/23/gONCA1.png" alt="gONCA1.png" loading="lazy"></a><br>
+<a href="https://imgtu.com/i/gONPtx"><img src="https://z3.ax1x.com/2021/05/23/gONPtx.png" alt="gONPtx.png" loading="lazy"></a></p>
+<p>D 一下子没有想清楚，吃了一发罚时，其它都还是可以的。</p>
+<p>手指受伤前两题慢了些，对后面的题应该影响不大。</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/gONih6"><img src="https://z3.ax1x.com/2021/05/23/gONih6.png" alt="gONih6.png" loading="lazy"></a></figure>
+<h2 id="a">A</h2>
+<p>水题，直接 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>21</mn></mrow><annotation encoding="application/x-tex">21</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">1</span></span></span></span> 减掉输入的仨。</p>
+<h2 id="b">B</h2>
+<p>照题目说的做就行了。</p>
+<h2 id="c">C</h2>
+<p>拿个桶先存一下 B 中出现的就可以了。</p>
+<h2 id="d">D</h2>
+<blockquote>
+<p>求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> 个 <code>a</code> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> 个 <code>b</code> 组成的字符串中字典序第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 小的。</p>
+</blockquote>
+<p>思路倒是很快有，就是每次确定最前面的一个 <code>b</code> 的位置，然后一个个处理下去。但是细节上有点小问题，导致我调了一会儿。</p>
+<p>这是错误代码：</p>
+<pre><code class="language-cpp">    for(int i = 1; i &lt;= B; i++) {
+        int j;
+        for(j = n-b+1; j &gt; B-b+1 &amp;&amp; C[n-j+1][b-1] &lt; k; j--);
+        flag[j] = 1;
+        k -= C[n-j][b-1];
+        b--;
+    }
+</code></pre>
+<p>我们要确认的第一个的位置应该是第一个随便排会大于等于现在的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的位置，而不是确定了这个后面随便排要小于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的位置，然后再 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 减掉后面随便排的方案，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> 个数去掉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 继续做就可以了。</p>
+<p>这才是正确代码：</p>
+<pre><code class="language-cpp">    for(int i = 1; i &lt;= B; i++) {
+        int j;
+        for(j = n-b+1; j &gt; B-b+1 &amp;&amp; C[n-j+1][b] &lt; k; j--); 
+        flag[j] = 1;
+        k -= C[n-j][b];
+        b--;
+    }
+</code></pre>
+<h2 id="e">E</h2>
+<blockquote>
+<p>输入一棵树，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span> 次询问，每次求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 的子树中深度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> 的点的个数。</p>
+</blockquote>
+<p>直接做 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">nq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span> 显然会超时。</p>
+<p>模拟下这个过程发现每次找了其它的深度是完全没有必要的，所以把每个深度分开来存储，然后考虑如何快速判断一个深度的点有几个在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 的子树里。</p>
+<p>判断是否在子树里很容易想到 dfs 序，只要看 dfs 序是不是在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>d</mi><mi>f</mi><msub><mi>n</mi><mi>u</mi></msub><mo separator="true">,</mo><mi>d</mi><mi>f</mi><msub><mi>n</mi><mi>u</mi></msub><mo>+</mo><mi>s</mi><mi>i</mi><mi>z</mi><msub><mi>e</mi><mi>u</mi></msub><mo>−</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[dfn_u, dfn_u + size_u - 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 这个区间里就可以了。为了快速做到这一点，可以将每一个深度的点按 dfs 序排序，然后再 <code>std::lower_bound</code> 一下起止点就可以了。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+const int N = 200005;
+int n, x, y, m, dfn[N], size[N], tot;
+std::vector&lt;int&gt; g[N], a[N];
+void dfs(int u, int fa, int d) {
+    size[u] = 1;
+    dfn[u] = ++tot;
+    a[d].push_back(dfn[u]);
+    for(int i = 0; i &lt; (signed)g[u].size(); i++) {
+        int v = g[u][i];
+        if(v == fa) continue;
+        dfs(v, u, d+1);
+        size[u] += size[v];
+    }
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i = 2; i &lt;= n; i++) {
+        scanf(&quot;%d&quot;, &amp;x);
+        g[x].push_back(i), g[i].push_back(x);
+    }
+    dfs(1, 0, 0);
+    for(int i = 0; i &lt; n; i++)
+        if(a[i].size()) std::sort(a[i].begin(), a[i].end());
+    scanf(&quot;%d&quot;, &amp;m);
+    while(m--) {
+        scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+        int l = dfn[x], r = dfn[x] + size[x] - 1;
+        int L = std::lower_bound(a[y].begin(), a[y].end(), l) - a[y].begin(),
+            R = std::upper_bound(a[y].begin(), a[y].end(), r) - a[y].begin();
+        printf(&quot;%d\n&quot;, std::max(R-L, 0));        
+    }
+    return 0;
+}
+</code></pre>
+<p>难得在一个小时多一点就 A 了 E 题。</p>
+<h2 id="f">F</h2>
+<p>计算几何题，而且很难，没思路，总共才 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>25</mn></mrow><annotation encoding="application/x-tex">25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span></span></span></span> 个人过。</p>
+<h2 id="最后">最后</h2>
+<p>APIO 报名时的豪迈壮志最终一天天的化解， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span> 天一过仍未有任何进步。每天浑浑噩噩的都过去了。</p>
+<p>林语堂说：</p>
+<blockquote>
+<p>一个人心地干净，思路清晰，没有多余情绪和妄想的人，是会带给人安全感的，因为他不伤人，也不自伤，不制造麻烦，也不麻烦别人。某种程度上来说，这是一种持戒。</p>
+</blockquote>
+<p>翘翘所谓的可爱，只是在原来可爱优秀的同学们中受感染的罢了。只有真正的独立的做到和坚持“心地干净，思路清晰，没有多余情绪和妄想”，才是真正可爱的翘翘。</p>
+<p>任何时候改变都来的及，前方的路还长。加油。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/20210521/">
+              <h3 class="post-title">
+                下一篇：2021.5.21 模拟赛游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

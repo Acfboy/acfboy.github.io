@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2021.5.21 模拟赛游记 | Acfboy 的博客</title>
+<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1621944758810">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://acfboy.pw">
+        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1621944758810" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://acfboy.pw">
+        <h1 class="site-title">Acfboy 的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2021.5.21 模拟赛游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-21</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://acfboy.pw/KlBqWTQTjz/">
+                    游记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>其实又是未遵循标准程序造成的严重事故征候。</p>
+<p>吸取了上次的经验，开始记录较为详细的 CVR 数据了，用来 <s>热烈庆祝</s> 加速调查。</p>
+<!-- more -->
+<p>先放上 CVR 数据：</p>
+<pre><code class="language-CVR">比赛开始于 0110Z
+
+共产生三份备份，备份最终修改时间 0218Z 0239Z 和 0318Z。
+未进行回滚。
+
+A:
+// 0130Z - coding completed
+// 0137Z - before submit checklist completed
+
+B:
+// 0210Z - coding compeleted
+// 0211Z - error occured ! 
+// 0225Z - extra tests begin
+// 0235Z - error occured !
+// 0310Z - skip procedues
+// 0328Z - debug again
+// 0343Z - before submit checklist compeleted
+
+C:
+未执行检查单。
+</code></pre>
+<h2 id="a">A</h2>
+<p>看题之后先瞎想了一会儿，然后模拟了一下暴力思路，很快发现了重复，写出了正解。</p>
+<p>由 CVR 数据可知在比赛开始之后二十分钟写完了，然后没经过什么调试并在七分钟后完成了提交前检查单。对于模拟赛第一题来说这个速度可能略微有一点慢，但从总体看对这场比赛的影响不大。</p>
+<h2 id="b1">B1</h2>
+<p>明明是数位 dp 的模板，但事情有一点儿不太对劲了。</p>
+<p>从 CVR 看，B 题完成第一份代码一共使用了超过半小时，对于一个不是很复杂的模板这个用时显然有一点高了。</p>
+<p>随后开始执行提交前检查单，很快发现了错误，即输入数据无法使用整型进行存储，然后开始修正，最终在十多分钟后通过了样例。由于独立完成的数位 dp 不多，所以有点不放心，而且人工难以完成检查单所要求的 tests, 所以开始对拍。</p>
+<p>然后直接就拍出了错误……接着就是一堆的调试了。</p>
+<p>甚至写完之后一个小时了都没有调处来，因为这题总用时已经达到一小时三十分，严重超出了最开始的计划，所以执行跳题程序，先去 C 了。</p>
+<h2 id="c">C</h2>
+<p>看了题觉得是有什么结论的，但是由于前一题的原因，直接就写了个模拟，时间上可能是可以过的，但是没空考虑证明了，所以这大概是一个谭变。</p>
+<p>既然没有给出啥证明，就觉得 <s>速度大点没事</s>，检查单啥的不管了。</p>
+<h2 id="b2">B2</h2>
+<p>调了一会儿总算是调出来了。一个很傻的小问题。</p>
+<p>比赛开始之后两小时三十二分完成了检查单。</p>
+<h2 id="然后">然后……</h2>
+<p>然后呢！这个时候明明已经完成了，为什么不去做最后一题的检查单？！</p>
+<p>最后因为 （返回值不为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>）</p>
+<pre><code class="language-cpp">if(b == 0) return printf(&quot;%lld\n&quot;, ans);
+</code></pre>
+<p>而 RE 了，失去了 AK 的机会。</p>
+<p>还是得讲一下最后一题的：</p>
+<blockquote>
+<p>两个数，每次可以把大的一个减去小的并把小的一个翻倍，问多少次之后一个为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
+</blockquote>
+<p>反过来考虑这个问题，若最后有解，那么一次次的分裂之中不可能超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log_2 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 级别次，所以复杂度是对的。</p>
+<p>事实上还有一种更简单的做法：因为永远是把一个减掉，所以分的最小的块就是两个的最大公约数了，除掉这个公约数答案不会发生变化。而由前面的分裂理论得到，把两个数的和除掉公约数然后取个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\log_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 就可以了。</p>
+<h2 id="结论和建议">结论和建议</h2>
+<p>这次严重事故征候的原因主要在于对于简单问题过于放松，未完整执行检查单。</p>
+<p>所以建议在任何情况下都应遵循标准操作程序并严格执行检查单。同时，对 IO 的检查中也应该加入对输出后退出的检查， tests 检查中应确认程序返回值。</p>
+<p>对于一些合并的证明可以反向思考。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://acfboy.pw/20210519/">
+              <h3 class="post-title">
+                下一篇：2021.5.19 校内模拟赛游记
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

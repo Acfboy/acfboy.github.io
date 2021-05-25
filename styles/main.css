@@ -1482,4 +1482,8 @@ hr {
 .post-content blockquote p {
     color: gray;
 }
+details{
+    border: 1px solid #000;
+     padding: 10px 10px 10px 10px;
+}
     
