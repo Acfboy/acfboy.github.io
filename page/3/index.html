@@ -1,657 +1,1132 @@
-
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
+<head>
+  <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Acfboy 的博客</title>
-<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1619607624764">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+<link rel="apple-touch-icon" href="https://acfboy.pw/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="XiaoX 博客">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+<!-- iconfont -->
+<link href="https://at.alicdn.com/t/font_2463772_glcffdg0qau.css" rel="stylesheet" />
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
 
 
+  <style>
+    #vcomments {
+      display: none;
+    }
+  </style>
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://acfboy.pw">
-        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1619607624764" alt="" width="32px" height="32px">
+<body>
+  <div class="main">
+    <div class="main-content">
+      <div class="nav-bar">
+  <!-- 首页菜单 -->
+  <div class="menu-container">
+    <a href="https://acfboy.pw/index.html" target="_parent" class="home">
+      <svg class="home-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+        <path fill="#fff"
+          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z">
+        </path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222">
+        </path>
+      </svg>
+      <span class="home-title">Home</span>
+    </a>
+
+    <div class="nav-menu">
+      
+      
+      <a href="/" class="menu">
+        首页
       </a>
-      <a href="https://acfboy.pw">
-        <h1 class="site-title">Acfboy 的博客</h1>
+      
+      
+      
+      <a href="/archives" class="menu">
+        归档
       </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
+      
+      
+      
+      <a href="/tags" class="menu">
+        标签
+      </a>
+      
+      
+      
+      <a href="/about" class="menu">
+        关于
+      </a>
+      
+      
+
+
+
+      <a href="https://acfboy.pw/atom.xml" target="_blank" class="rss">
+        <span class="rss-title">RSS</span>
+        <i class="iconfont icon-rss"></i>
+      </a>
     </div>
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
+      <div class="site-header">
+  <!-- 首页头像 -->
+  <div class="site-avatar">
+    <a href="https://acfboy.pw">
+      <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1622812839391" alt="">
+    </a>
   </div>
-</transition>
-
-
-      <div class="content-container">
-        
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/codechef-dtree/">
-        <h2 class="post-title">题解 CodeChef-DTREE</h2>
-      </a>
-      <div class="post-abstract">
-        <p>考验对数的直径的 dp 做法变形处理的好题目。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/shu/">
-                树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/codechef-dtree/">
-        <div class="feature-container" style="background-image: url('https://img-blog.csdn.net/20180715124201842?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZvcmV2ZXJfZHJlYW1z/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/arc116/">
-        <h2 class="post-title">AtCoder Regular Contest 116 游记</h2>
-      </a>
-      <div class="post-abstract">
-        <p>本想着要做四道的，结果第三题也做不出来......</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/KlBqWTQTjz/">
-                游记
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/abc197/">
-        <h2 class="post-title">AtCoder Beginner Contest 197 游记</h2>
-      </a>
-      <div class="post-abstract">
-        <p>又是典型的前四题一下就过，第五题卡死到最后都没有做出来。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-28</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/KlBqWTQTjz/">
-                游记
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/20210326/">
-        <h2 class="post-title">3.26 校内模拟赛游记</h2>
-      </a>
-      <div class="post-abstract">
-        <p>完完全全 PJ 难度的比赛，居然给我玩炸了.......</p>
-<p>大概就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span> 分钟前两道，T3 是有些恶心的大模拟，写了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mtext mathvariant="sans-serif">h</mtext><mn>40</mn><mtext mathvariant="sans-serif">min</mtext></mrow><annotation encoding="application/x-tex">1\textsf{h} 40\textsf{min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord text"><span class="mord textsf">h</span></span><span class="mord">4</span><span class="mord">0</span><span class="mord text"><span class="mord textsf">min</span></span></span></span></span>，结果还挂在了俩傻傻的问题上。 T4 一道巧妙的题，但模拟样例时想歪了，最后没有做出来。所以赶紧写游记，下次不能再犯这样的错误了。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-26</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/KlBqWTQTjz/">
-                游记
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/exsmt/">
-        <h2 class="post-title">题解  【模板】进阶线段树</h2>
-      </a>
-      <div class="post-abstract">
-        <p>其实是这道 <a href="https://www.luogu.com.cn/problem/P5494">线段树分裂</a> 的模板，但是涉及了很多进阶线段树，所以把它称为进阶线段树，包含的操作有动态开点、内存回收、线段树合并、线段树分裂、线段树上二分等。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-26</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/cpujiankong/">
-        <h2 class="post-title">题解 [洛谷 4314]CPU监控</h2>
-      </a>
-      <div class="post-abstract">
-        <p>又是好不容易才 <s>疑似</s> 明白的神仙作业题，考验对懒惰标记的理解，好题目。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/cpujiankong/">
-        <div class="feature-container" style="background-image: url('https://z3.ax1x.com/2021/03/25/6XPfz9.jpg')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/xuliecaozuo/">
-        <h2 class="post-title">题解 [清华集训2012]序列操作</h2>
-      </a>
-      <div class="post-abstract">
-        <p>此题继续展现线段树的神奇力量——这都能维护！</p>
-<p><a href="https://www.luogu.com.cn/problem/P4247">传送门</a></p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/zu-he-ji-shu/">
-                组合计数
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/abc149e/">
-        <h2 class="post-title">题解 ABC149E Handshake</h2>
-      </a>
-      <div class="post-abstract">
-        <p>模拟赛……一个悲伤的故事，切了俩 ABC 的 F, 结果被这一个绿色的 E 给卡死了，必须写题解记录一下。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-24</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/er-fen/">
-                二分
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/abc149e/">
-        <div class="feature-container" style="background-image: url('https://z3.ax1x.com/2021/03/24/6bcGqJ.jpg')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/sdoi2013city/">
-        <h2 class="post-title">题解 [SDOI2013]城市规划</h2>
-      </a>
-      <div class="post-abstract">
-        <p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
-<p>因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 非常的小，很容易维护，所以可以按行建立一颗线段树，维护其中联通块的数量。处理联通块的时候用并查集记录上下两个边界的联通状况以及是否有建筑物。</p>
-<p>难点在于如何合并，即 <code>pushup</code>。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-24</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/bing-cha-ji/">
-                并查集
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/cf1149c/">
-        <h2 class="post-title">题解 CF1149C Tree Generator™</h2>
-      </a>
-      <div class="post-abstract">
-        <p><s>这不但打了 TM 而且还是世界知名商标，可能受法律保护哦</s></p>
-<p>一道非常惊喜的线段树题。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-23</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/cf1149c/">
-        <div class="feature-container" style="background-image: url('https://img.cc0.cn/pixabay/2019102219290732571.jpg!cc0.cn.jpg')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/cf709/">
-        <h2 class="post-title">Codeforces Round 709(div 2) 游记</h2>
-      </a>
-      <div class="post-abstract">
-        <p>拿到了我在 CF 历史上的最高排名。</p>
-<p>非常惊险刺激。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-22</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/KlBqWTQTjz/">
-                游记
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/cf709/">
-        <div class="feature-container" style="background-image: url('https://z3.ax1x.com/2021/03/22/6Ix2uR.jpg')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/helloworld/">
-        <h2 class="post-title">重启</h2>
-      </a>
-      <div class="post-abstract">
-        <p>清理了从前的博客，开始新的征程。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-21</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/E4EMhjbUF/">
-                随笔
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/helloworld/">
-        <div class="feature-container" style="background-image: url('https://img.cc0.cn/pixabay/2019103118351548576.jpg!cc0.cn.jpg')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/cf1479c/">
-        <h2 class="post-title">题解 CF1479C Continuous City</h2>
-      </a>
-      <div class="post-abstract">
-        <p>一道有趣的构造题。</p>
-<p>原有的题解都只讲了构造方法，没有做其它说明，看上去不明不白的，所以搞懂后自己写一篇。讲得比较详细。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-20</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/gou-zao/">
-                构造
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/secondsum/">
-        <h2 class="post-title">妙哉！Second Sum！</h2>
-      </a>
-      <div class="post-abstract">
-        <p>提供两种做法，一种是依赖于单调栈和 ST 表的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>lg</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n \lg n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">l<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 做法，思维难度较低；还有一个绝妙的做法，根本想不到，但不需要任何现成的 算法/数据结构， 时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
-<p><a href="https://www.luogu.com.cn/problem/AT5206">传送门</a></p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-17</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/dan-diao-zhan/">
-                单调栈
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/st-biao/">
-                ST表
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/lian-biao/">
-                链表
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/joi2021finalt1/">
-        <h2 class="post-title">题解 [JOI 2021 Final] 雪玉</h2>
-      </a>
-      <div class="post-abstract">
-        <p>这题似乎比前两年的 JOI Final T2 要更有思维难度一些，让我想了比以往长得多的时间，而且开始时觉得不可做，后来调试都没调一下就过了，感觉这题十分有趣，就写题解来记录一下。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-11</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-
-<div class="pagination-container">
-  
-    <a href="https://acfboy.pw/page/2/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
-  
-  
-</div>
-
-
-      </div>
-
-      <div class="site-footer">
-  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
+  <!-- 首页标题 -->
+  <h1 class="site-title">
+    Acfboy 的博客
+  </h1>
+  <!-- 首页描述 -->
+  <p class="site-description">
+    纵世事物欲横流，仍心归少年志向。
+  </p>
+  <!-- 社交软件 -->
   <div class="social-container">
     
-      
     
-      
     
-      
     
-      
     
-      
+    
+    
+    
+    
+    
     
   </div>
-  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
 </div>
 
+      <div class="post-container">
 
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/zui-duan-lu/" class="tag">
+        最短路
+      </a>
     </div>
-    <script type="application/javascript">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/dong-tai-gui-hua/" class="tag">
+        动态规划
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
 
-hljs.initHighlightingOnLoad()
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/apio2013robot/">
+            <h2 class="post-title">题解 [APIO2013]机器人</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>这居然也是 dp? 很难想到啊！这个数据范围就只想着搜索了。</p>
+<p>这居然还是斯坦纳树？刚做完斯坦纳树模板就不会……神题啊。</p>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-29
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/apio2013robot/" class="leancloud_visitors" data-flag-title="题解 [APIO2013]机器人">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            6 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/dong-tai-gui-hua/" class="tag">
+        动态规划
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/shu/" class="tag">
+        树
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/zu-he-ji-shu/" class="tag">
+        组合计数
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
 
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/poi2014hothotels/">
+            <h2 class="post-title">题解 [POI2014]HOT-Hotels</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>看了题解发现我的思路并没有走偏，只是遇到重复这类的问题时没有想到解决的办法。大概要获得解决这样问题的能力只能靠多做题积累吧。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-28
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/poi2014hothotels/" class="leancloud_visitors" data-flag-title="题解 [POI2014]HOT-Hotels">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            4 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/E4EMhjbUF/" class="tag">
+        随笔
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/scoi2015guoqijihua/">
+            <h2 class="post-title">题解 [SCOI2015]国旗计划</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>难以置信，我居然会被这样一个问题难倒？！</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-28
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/scoi2015guoqijihua/" class="leancloud_visitors" data-flag-title="题解 [SCOI2015]国旗计划">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            1 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/KlBqWTQTjz/" class="tag">
+        游记
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/20210428/">
+            <h2 class="post-title">2021.4.28 校内模拟赛游记</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>水到爆的一场模拟赛，但是因为代码丢失题意不清等奇怪原因就啥也没写出来。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-28
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/20210428/" class="leancloud_visitors" data-flag-title="2021.4.28 校内模拟赛游记">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            4 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ju-zhen/" class="tag">
+        矩阵
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/dong-tai-gui-hua/" class="tag">
+        动态规划
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/noio1magic/">
+            <h2 class="post-title">题解 [NOI Online #1 入门组] 魔法</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>是一道考察对矩阵理解的好题。</p>
+<p>自己做了很久都没有往矩阵上去想。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-27
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/noio1magic/" class="leancloud_visitors" data-flag-title="题解 [NOI Online #1 入门组] 魔法">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            5 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/sou-suo/" class="tag">
+        搜索
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/shulianfubin/">
+            <h2 class="post-title">题解 “数链抙玢”</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>让我做了一晚上的题，其它作业一直没做，都攻这道了。过了后觉得其实挺好想到的……<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mtext>Update:</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{red}\text{Update:}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text" style="color:red;"><span class="mord" style="color:red;">Update:</span></span></span></span></span> 代码又被叉掉了，修正后更新了代码。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-27
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/shulianfubin/" class="leancloud_visitors" data-flag-title="题解 “数链抙玢”">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            7 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/fen-kuai/" class="tag">
+        分块
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/dong-tai-gui-hua/" class="tag">
+        动态规划
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/noio1running/">
+            <h2 class="post-title">题解 [NOI Online #1 入门组] 跑步</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>这个解法太妙了，在一堆生成函数中简直是一股清流！</p>
+<p>这题其实考察了对 dp 及分块的理解。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-26
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/noio1running/" class="leancloud_visitors" data-flag-title="题解 [NOI Online #1 入门组] 跑步">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            4 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/tan-xin/" class="tag">
+        贪心
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/haoi2009qiuhuiwenchuan/">
+            <h2 class="post-title">题解 [HAOI2009]求回文串</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>贪心题。做的时候有些绝望觉得想不到，后来发现也不难。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-26
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/haoi2009qiuhuiwenchuan/" class="leancloud_visitors" data-flag-title="题解 [HAOI2009]求回文串">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            3 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/dong-tai-gui-hua/" class="tag">
+        动态规划
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/shoi2007shuguidechicun/">
+            <h2 class="post-title">题解 [SHOI2007]书柜的尺寸</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>被我想歪掉的 dp。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-25
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/shoi2007shuguidechicun/" class="leancloud_visitors" data-flag-title="题解 [SHOI2007]书柜的尺寸">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            4 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/KlBqWTQTjz/" class="tag">
+        游记
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/20210425/">
+            <h2 class="post-title">2021.4.25 校内模拟赛游记</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p><s>最近怎么一直打比赛啊，都没有练习的。</s></p>
+<p>要论比赛体验，这场无疑是糟糕透顶，<s>听说是一个小时临时拼凑的</s>，题目没有一道是正常的，前面三道出锅，最后一道搬前天 cf 原题。</p>
+<p>但其实题目质量还是不错的，可做性也挺高——但还是做不出来。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-25
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/20210425/" class="leancloud_visitors" data-flag-title="2021.4.25 校内模拟赛游记">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            9 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/KlBqWTQTjz/" class="tag">
+        游记
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/abc199/">
+            <h2 class="post-title">AtCoder Beginner Contest 199 游记</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>我我我我居然独立做出了全场只有不到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>400</mn></mrow><annotation encoding="application/x-tex">400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 人过的 E 题！</p>
+<p>——可惜是在比赛结束以后……</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-25
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/abc199/" class="leancloud_visitors" data-flag-title="AtCoder Beginner Contest 199 游记">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            5 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/KlBqWTQTjz/" class="tag">
+        游记
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/cf1517/">
+            <h2 class="post-title">Contest 2050 and Codeforces Round #718 游记</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-24
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/cf1517/" class="leancloud_visitors" data-flag-title="Contest 2050 and Codeforces Round #718 游记">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            4 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/KlBqWTQTjz/" class="tag">
+        游记
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/20210423/">
+            <h2 class="post-title">2021.4.23 校内模拟赛游记</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>体验十分糟糕的校内模拟赛。感觉这一天真是啥也没干，郁郁寡欢。</p>
+<p>即使打得不好也要以昂扬的斗志面对生活鸭！</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-23
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/20210423/" class="leancloud_visitors" data-flag-title="2021.4.23 校内模拟赛游记">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            3 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/KlBqWTQTjz/" class="tag">
+        游记
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/cf1516/">
+            <h2 class="post-title">Codeforces Round #717 (div.2) 游记</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>两个“人生第一次”——上蓝，变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="blue"><mtext mathvariant="sans-serif">Acfboy</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{blue}\textsf{Acfboy}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text" style="color:blue;"><span class="mord textsf" style="color:blue;">Acfboy</span></span></span></span></span> 了！以及第一次 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mtext mathvariant="sans-serif">FST</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{red}\textsf{FST}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text" style="color:red;"><span class="mord textsf" style="color:red;">FST</span></span></span></span></span> 了。</p>
+<p>不过比赛状态真的是不好，第一题居然要交三次才过，第二题还 FST。但还是开心地庆祝上蓝！</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-22
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/cf1516/" class="leancloud_visitors" data-flag-title="Codeforces Round #717 (div.2) 游记">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            6 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/shu/" class="tag">
+        树
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/gou-zao/" class="tag">
+        构造
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/20210421/">
+            <h2 class="post-title">题解 [BalticOI 2020 Day2] 村庄</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p><s>《2021.4.21 校内模拟赛游记》</s></p>
+<p>模拟赛的一题——我整场模拟赛都用来做这题了，所以没有游记了，只剩下一篇题解了。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-04-22
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/20210421/" class="leancloud_visitors" data-flag-title="题解 [BalticOI 2020 Day2] 村庄">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            6 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+</div>
+
+      <div class="pagination-container">
+  
+  <a href="https://acfboy.pw/page/2/" class="prev-page">上一页</a>
+  
+  
+  <a href="https://acfboy.pw/page/4/" class="next-page">下一页</a>
+  
+</div>
+
+      <div class="site-footer">
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码链接</a>
+  <b>Theme: </b>
+  <a href="https://github.com/chiperman/gridea-theme-porky" target="_blank" title="Porky">
+    <span><b>Porky</b></span>
+  </a>
+  <b>. Powered by </b>
+  <a href="https://gridea.dev/" target="_blank" title="Gridea">
+    <span><b>Gridea</b></span>
+  </a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
+      <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
 
 
-  </body>
+<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		visitor: true,
+		
+	});
+</script>
+    </div>
+  </div>
+</body>
+
 </html>
