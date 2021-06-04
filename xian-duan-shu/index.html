@@ -1,374 +1,600 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
+<head>
+  <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>线段树 | Acfboy 的博客</title>
-<meta name="description" content="纵世事物欲横流，仍心归少年志向。">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico?v=1622613173531">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
+<link rel="apple-touch-icon" href="https://acfboy.pw/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="XiaoX 博客">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+<!-- iconfont -->
+<link href="https://at.alicdn.com/t/font_2463772_glcffdg0qau.css" rel="stylesheet" />
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
 
 
+  <style>
+    #vcomments {
+      display: none;
+    }
+  </style>
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://acfboy.pw">
-        <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1622613173531" alt="" width="32px" height="32px">
+<body>
+  <div class="main">
+    <div class="main-content">
+      <div class="nav-bar">
+  <!-- 首页菜单 -->
+  <div class="menu-container">
+    <a href="https://acfboy.pw/index.html" target="_parent" class="home">
+      <svg class="home-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+        <path fill="#fff"
+          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z">
+        </path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222">
+        </path>
+      </svg>
+      <span class="home-title">Home</span>
+    </a>
+
+    <div class="nav-menu">
+      
+      
+      <a href="/" class="menu">
+        首页
       </a>
-      <a href="https://acfboy.pw">
-        <h1 class="site-title">Acfboy 的博客</h1>
+      
+      
+      
+      <a href="/archives" class="menu">
+        归档
       </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
+      
+      
+      
+      <a href="/tags" class="menu">
+        标签
+      </a>
+      
+      
+      
+      <a href="/about" class="menu">
+        关于
+      </a>
+      
+      
+
+
+
+      <a href="https://acfboy.pw/atom.xml" target="_blank" class="rss">
+        <span class="rss-title">RSS</span>
+        <i class="iconfont icon-rss"></i>
+      </a>
     </div>
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
+      <div class="site-header">
+  <!-- 首页头像 -->
+  <div class="site-avatar">
+    <a href="https://acfboy.pw">
+      <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1622812765026" alt="">
+    </a>
   </div>
-</transition>
+  <!-- 首页标题 -->
+  <h1 class="site-title">
+    Acfboy 的博客
+  </h1>
+  <!-- 首页描述 -->
+  <p class="site-description">
+    纵世事物欲横流，仍心归少年志向。
+  </p>
+  <!-- 社交软件 -->
+  <div class="social-container">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+</div>
 
-
-      <div class="content-container">
-
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> 线段树
-          </h2> 
+      <div class="current-tag-container">
+        <div class="tags">
+          <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+            </path>
+          </svg>
+          <span class="title">
+            线段树
+          </span>
         </div>
+      </div>
+      <div class="post-container">
 
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/lightingrouting/">
-        <h2 class="post-title">题解 [2019 ICPC 上海网络赛] Lighting Routing I</h2>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/shu/" class="tag">
+        树
       </a>
-      <div class="post-abstract">
-        <p><s>封面图是随便找的真实的 Lighting Routing</s></p>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/xian-duan-shu/" class="tag">
+        线段树
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/lightingrouting/">
+            <h2 class="post-title">题解 [2019 ICPC 上海网络赛] Lighting Routing I</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p><s>封面图是随便找的真实的 Lighting Routing</s></p>
 <p>据说这题有神奇的 LCT 和 树套树 的做法，很可惜，我都不会。</p>
 <p>于是搞了一个用欧拉序来维护直径的做法，搭配线段树和倍增 LCA 来解决这题。</p>
 
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-31</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/shu/">
-                树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/lightingrouting/">
-        <div class="feature-container" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP.y-5OPQgq9ZOhTuRuFwHIcgHaHD?pid=ImgDet&amp;rs=1')">
         </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/exsmt/">
-        <h2 class="post-title">题解  【模板】进阶线段树</h2>
-      </a>
-      <div class="post-abstract">
-        <p>其实是这道 <a href="https://www.luogu.com.cn/problem/P5494">线段树分裂</a> 的模板，但是涉及了很多进阶线段树，所以把它称为进阶线段树，包含的操作有动态开点、内存回收、线段树合并、线段树分裂、线段树上二分等。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-26</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-              </a>
-            
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-03-31
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/lightingrouting/" class="leancloud_visitors" data-flag-title="题解 [2019 ICPC 上海网络赛] Lighting Routing I">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
           </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/cpujiankong/">
-        <h2 class="post-title">题解 [洛谷 4314]CPU监控</h2>
-      </a>
-      <div class="post-abstract">
-        <p>又是好不容易才 <s>疑似</s> 明白的神仙作业题，考验对懒惰标记的理解，好题目。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-25</span>
-        
           <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
+            6 min read
           </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/cpujiankong/">
-        <div class="feature-container" style="background-image: url('https://z3.ax1x.com/2021/03/25/6XPfz9.jpg')">
         </div>
+      </div>
+      
+      <a href="https://acfboy.pw/lightingrouting/" class="post-feature-image" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP.y-5OPQgq9ZOhTuRuFwHIcgHaHD?pid=ImgDet&amp;rs=1')">
       </a>
+      
+    </article>
+  </div>
+  
+  <div class="article">
     
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/xuliecaozuo/">
-        <h2 class="post-title">题解 [清华集训2012]序列操作</h2>
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/xian-duan-shu/" class="tag">
+        线段树
       </a>
-      <div class="post-abstract">
-        <p>此题继续展现线段树的神奇力量——这都能维护！</p>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/exsmt/">
+            <h2 class="post-title">题解  【模板】进阶线段树</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>其实是这道 <a href="https://www.luogu.com.cn/problem/P5494">线段树分裂</a> 的模板，但是涉及了很多进阶线段树，所以把它称为进阶线段树，包含的操作有动态开点、内存回收、线段树合并、线段树分裂、线段树上二分等。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-03-26
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/exsmt/" class="leancloud_visitors" data-flag-title="题解  【模板】进阶线段树">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            4 min read
+          </span>
+        </div>
+      </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/xian-duan-shu/" class="tag">
+        线段树
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/cpujiankong/">
+            <h2 class="post-title">题解 [洛谷 4314]CPU监控</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>又是好不容易才 <s>疑似</s> 明白的神仙作业题，考验对懒惰标记的理解，好题目。</p>
+
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-03-25
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/cpujiankong/" class="leancloud_visitors" data-flag-title="题解 [洛谷 4314]CPU监控">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            5 min read
+          </span>
+        </div>
+      </div>
+      
+      <a href="https://acfboy.pw/cpujiankong/" class="post-feature-image" style="background-image: url('https://z3.ax1x.com/2021/03/25/6XPfz9.jpg')">
+      </a>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/zu-he-ji-shu/" class="tag">
+        组合计数
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/xian-duan-shu/" class="tag">
+        线段树
+      </a>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/xuliecaozuo/">
+            <h2 class="post-title">题解 [清华集训2012]序列操作</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p>此题继续展现线段树的神奇力量——这都能维护！</p>
 <p><a href="https://www.luogu.com.cn/problem/P4247">传送门</a></p>
 
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/zu-he-ji-shu/">
-                组合计数
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-03-25
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/xuliecaozuo/" class="leancloud_visitors" data-flag-title="题解 [清华集训2012]序列操作">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
           </span>
-        
+          <span>
+            5 min read
+          </span>
+        </div>
       </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/xian-duan-shu/" class="tag">
+        线段树
+      </a>
     </div>
     
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/sdoi2013city/">
-        <h2 class="post-title">题解 [SDOI2013]城市规划</h2>
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/bing-cha-ji/" class="tag">
+        并查集
       </a>
-      <div class="post-abstract">
-        <p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
+    </div>
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
+      </a>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/sdoi2013city/">
+            <h2 class="post-title">题解 [SDOI2013]城市规划</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p><a href="https://www.luogu.com.cn/problem/P3300">传送门</a></p>
 <p>因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 非常的小，很容易维护，所以可以按行建立一颗线段树，维护其中联通块的数量。处理联通块的时候用并查集记录上下两个边界的联通状况以及是否有建筑物。</p>
 <p>难点在于如何合并，即 <code>pushup</code>。</p>
 
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-24</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/bing-cha-ji/">
-                并查集
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
+        </div>
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-03-24
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/sdoi2013city/" class="leancloud_visitors" data-flag-title="题解 [SDOI2013]城市规划">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
           </span>
-        
+          <span>
+            6 min read
+          </span>
+        </div>
       </div>
+      
+    </article>
+  </div>
+  
+  <div class="article">
+    
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/xian-duan-shu/" class="tag">
+        线段树
+      </a>
     </div>
     
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://acfboy.pw/cf1149c/">
-        <h2 class="post-title">题解 CF1149C Tree Generator™</h2>
+    <div class="post-tag">
+      <svg class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+        </path>
+      </svg>
+      <a href="https://acfboy.pw/ti-jie/" class="tag">
+        题解
       </a>
-      <div class="post-abstract">
-        <p><s>这不但打了 TM 而且还是世界知名商标，可能受法律保护哦</s></p>
+    </div>
+    
+
+    <article class="post">
+      <div class="post-left">
+        <div class="post-head">
+          
+          <a class="title" href="https://acfboy.pw/cf1149c/">
+            <h2 class="post-title">题解 CF1149C Tree Generator™</h2>
+          </a>
+        </div>
+        <div class="post-abstract">
+          <p><s>这不但打了 TM 而且还是世界知名商标，可能受法律保护哦</s></p>
 <p>一道非常惊喜的线段树题。</p>
 
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-03-23</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://acfboy.pw/xian-duan-shu/">
-                线段树
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://acfboy.pw/ti-jie/">
-                题解
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://acfboy.pw/cf1149c/">
-        <div class="feature-container" style="background-image: url('https://img.cc0.cn/pixabay/2019102219290732571.jpg!cc0.cn.jpg')">
         </div>
-      </a>
-    
-  </section>
-
-
-<div class="pagination-container">
-  
-  
-</div>
-
-
+        <div class="post-info">
+          <svg class="post-date" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time class="post-time">
+            2021-03-23
+          </time>
+          <svg fill="none" class="view-icon" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+            </path>
+          </svg>
+          <span id="/cf1149c/" class="leancloud_visitors" data-flag-title="题解 CF1149C Tree Generator™">
+            <span class="leancloud-visitors-count"></span><span> 次阅读</span>
+          </span>
+          <span>
+            4 min read
+          </span>
+        </div>
       </div>
-
-      <div class="site-footer">
-  <div class="slogan">纵世事物欲横流，仍心归少年志向。</div>
-  <div class="social-container">
-    
       
-    
+      <a href="https://acfboy.pw/cf1149c/" class="post-feature-image" style="background-image: url('https://img.cc0.cn/pixabay/2019102219290732571.jpg!cc0.cn.jpg')">
+      </a>
       
-    
-      
-    
-      
-    
-      
-    
+    </article>
   </div>
-  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码</a> | <a class="rss" href="https://acfboy.pw/atom.xml" target="_blank">RSS</a>
+  
+</div>
+      <div class="pagination-container">
+  
+  
+</div>
+      <div class="site-footer">
+  <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码链接</a>
+  <b>Theme: </b>
+  <a href="https://github.com/chiperman/gridea-theme-porky" target="_blank" title="Porky">
+    <span><b>Porky</b></span>
+  </a>
+  <b>. Powered by </b>
+  <a href="https://gridea.dev/" target="_blank" title="Gridea">
+    <span><b>Gridea</b></span>
+  </a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
+      <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
 
 
+<div id="vcomments"></div>
 
-  </body>
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		visitor: true,
+		
+	});
+</script>
+    </div>
+  </div>
+</body>
+
 </html>
