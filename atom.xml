@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://acfboy.pw</id>
     <title>Acfboy 的博客</title>
-    <updated>2021-06-05T06:40:10.472Z</updated>
+    <updated>2021-06-07T09:57:28.597Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://acfboy.pw"/>
     <link rel="self" href="https://acfboy.pw/atom.xml"/>
@@ -10,6 +10,237 @@
     <logo>https://acfboy.pw/images/avatar.png</logo>
     <icon>https://acfboy.pw/favicon.ico</icon>
     <rights>All rights reserved 2021, Acfboy 的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Codeforces Round #724 & ABC204 游记]]></title>
+        <id>https://acfboy.pw/cf724-abc204/</id>
+        <link href="https://acfboy.pw/cf724-abc204/">
+        </link>
+        <updated>2021-06-07T09:52:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>CF 再一次地 PB 了！</p>
+<p>而且赛时排名恰好 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>787</mn></mrow><annotation encoding="application/x-tex">787</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">8</span><span class="mord">7</span></span></span></span>, 所以有了这张封面图。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>CF 再一次地 PB 了！</p>
+<p>而且赛时排名恰好 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>787</mn></mrow><annotation encoding="application/x-tex">787</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">8</span><span class="mord">7</span></span></span></span>, 所以有了这张封面图。</p>
+<!-- more -->
+<h2 id="cf-r724">CF R724</h2>
+<p><a href="https://imgtu.com/i/2do5pF"><img src="https://z3.ax1x.com/2021/06/07/2do5pF.md.png" alt="2do5pF.md.png" loading="lazy"></a><br>
+（Ubuntu 截图的颜色似乎有点问题啊）</p>
+<p><a href="https://imgtu.com/i/2doGyd"><img src="https://z3.ax1x.com/2021/06/07/2doGyd.png" alt="2doGyd.png" loading="lazy"></a><br>
+<a href="https://imgtu.com/i/2doJOA"><img src="https://z3.ax1x.com/2021/06/07/2doJOA.png" alt="2doJOA.png" loading="lazy"></a></p>
+<p>修正排名 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>619</mn></mrow><annotation encoding="application/x-tex">619</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">1</span><span class="mord">9</span></span></span></span>, 个人最好成绩。</p>
+<p>虽然最后的成绩非常不错，但是中间的失误还是有点多的，也险些只做出两道，那样就会很严重的掉分了。</p>
+<p>比赛开始 A 题还是做的比较顺利的，然后 B 题就直接翻车了，明明是很简单的一题 WA 了一次又 T 了一次， 可是这题才 1200……， 然后 C 题就直接弄的人很绝望，看着一千多人过了自己却没有一点思路。</p>
+<p>幸好 D 题一下子就大概知道了，结果还没有想清楚，WA 了一次，然后换上 <code>vector</code>, 可这玩意儿居然插入速度没有想象中的那么快，换成 <code>list</code> 才过。</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/2dTTC8"><img src="https://z3.ax1x.com/2021/06/07/2dTTC8.md.png" alt="2dTTC8.md.png" loading="lazy"></a></figure>
+<h3 id="c">C</h3>
+<blockquote>
+<p>将 <code>D</code> 和 <code>K</code> 组成的字符串分成 <code>D</code> 个数和 <code>K</code> 个数比值相同的子串，求最多的串个数。</p>
+</blockquote>
+<p>这里的比值的是可以有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的，非常讨厌，所以显然先把前面一段只有单个的给处理好去掉。</p>
+<p>然后考虑后面怎么做——然后我就没有思路了，一直到最后才突然开窍。</p>
+<p>后面比值是正常的，所以可以约分当做正常分数来算。那么很明显的，对 <code>D</code> 和 <code>K</code> 的个数做前缀和，当 <code>D</code> 和 <code>K</code> 成一定比例时，它们前缀和的差一定是成相同比例的，而第一段是从头开始的，所以就变成了前缀和的比例相同，所以定义个 <code>twt</code> 把那些分数记下来用个 <code>map</code> 存就好了。</p>
+<p>就这要我想一个小时？？？</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+const int N = 500005;
+int gcd(int a, int b) {
+    if(b == 0) return a;
+    return gcd(b, a % b);
+}
+struct twt {
+    int a, b;
+    void pro() {
+        int g = gcd(a, b);
+        a /= g, b /= g;
+    }
+    bool operator &lt; (twt y) const {
+        return a &lt; y.a || (a == y.a &amp;&amp; b &lt; y.b);
+    }
+};
+std::map&lt;twt, int&gt; map;
+int n, ans[N], T;
+char st[N];
+int main() {
+    scanf(&quot;%d&quot;, &amp;T);
+    while(T--) {
+        map.clear();
+        scanf(&quot;%d%s&quot;, &amp;n, st+1);
+        int a = 0, b = 0, f = 1;
+        for( ; st[f+1] == st[1]; f++);
+        for(int i = 1; i &lt;= f; i++) ans[i] = i;
+        if(st[1] == 'D') a = f; else b = f;
+        for(int i = f+1; i &lt;= n; i++) {
+            twt now;
+            a += st[i] == 'D';
+            b += st[i] == 'K';
+            now.a = a, now.b = b;
+            now.pro();
+            ans[i] = map[now] + 1;
+            map[now] ++;
+        }
+        for(int i = 1; i &lt;= n; i++) printf(&quot;%d &quot;, ans[i]);
+        puts(&quot;&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<h3 id="d">D</h3>
+<p>这个感觉很套路，居然也有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2000</mn></mrow><annotation encoding="application/x-tex">2000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 分？显然中位数最多只移动一个，所以把中间的一串记下来，然后看能不能插入，能插就插，能移就移，不行就不行就好了。所以需要数据结构支持快速插入，用 <code>std::list</code> 即可。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;list&gt;
+std::list&lt;int&gt; que;
+int T, n, x;
+int main() {
+    scanf(&quot;%d&quot;, &amp;T);
+    while(T--) {
+        scanf(&quot;%d&quot;, &amp;n);
+        que.clear();
+        scanf(&quot;%d&quot;, &amp;x);
+        que.push_back(x);
+        std::list&lt;int&gt;::iterator p = que.begin();
+        bool flag = 0;
+        for(int i = 2; i &lt;= n; i++) {
+            scanf(&quot;%d&quot;, &amp;x);
+            if(flag) continue;
+            if(x &lt; *p) {
+                if(p == que.begin() || x &gt; *((--p)++)) p = que.insert(p, x);
+                else if(x != *(--p)) flag = 1;
+            }
+            else if(x &gt; *p) {
+                if((++p)-- == que.end() || x &lt; *((++p)--)) p = que.insert(((++p)--), x);
+                else if(x != *(++p)) flag = 1;
+            }
+        }
+        if(flag) puts(&quot;NO&quot;);
+        else puts(&quot;YES&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<h3 id="e">E</h3>
+<p>妙妙题啊！</p>
+<blockquote>
+<p>输入一个 <code>0</code> 和 <code>#</code> 组成的矩阵，<code>#</code> 可以任意填数字，求满足相邻两个数相差不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 且若一个数严格大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 则必须严格大于其周围的至少一个数的矩阵个数。</p>
+</blockquote>
+<p>其实把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的位置都确定下来之后这个图就是确定的。</p>
+<p>为什么？<br>
+可以先考虑一排只有一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的情况，那么就只能是从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 开始向周围发散。然后可以把这个继续思考，一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 出去之后如果不继续增长的话这一边没有比它大的了就只能指望其它的边，可其它的方向如果要降下去的话不能重新上升了，因为会产生比周围小的。而下降若不到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 有不行，因为最后一个就四周没有一个比它小的了。</p>
+<p>所以每个位置上就只能是到离他最近的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的距离，这样的化就只要枚举每个位置是不是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 就好了。</p>
+<p>代码甚至比第一题短。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int P = 1000000007;
+int T, n, m;
+char s[2005];
+int main() {
+	scanf(&quot;%d&quot;, &amp;T);
+	while(T--) {
+		scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+		int an = 0;
+		for(int i = 1; i &lt;= n; i++) {
+			scanf(&quot;%s&quot;, s+1);
+			for(int j = 1; j &lt;= m; j++) an += s[j] == '#';
+		}
+		int ans = 1;
+		for(int i = 1; i &lt;= an; i++) ans = ans * 2 % P;
+		printf(&quot;%d\n&quot;, (ans - (an == n*m) + P) % P);
+	}
+	return 0;
+}
+</code></pre>
+<h3 id="f">F</h3>
+<blockquote>
+<p>O 和 A 在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个格子组成的环上面游戏，两人轮流放置字母 <code>a</code> 或 <code>b</code>, 不能让相同的字母相邻，若一个人无法放置字母，他就输了。</p>
+<p>求两人都按最优策略的方案数。</p>
+</blockquote>
+<p>这个题目阴险啊！他跟你说是说要最优策略的方案数，然后你手玩一下发现不管怎么搞后手都一定赢。证明考虑最终状态是什么样子的，容易得到它必然是 <code>ab</code> 相间的，且可以有一些空格，不过空格不能连续，且空格两边也是黑白相间的。那么 <code>a</code> 和 <code>b</code> 就需要相同的个数，也就是后手必胜。</p>
+<p>所以就是要计算所有合法局的方案数。这又是 nottttttthy 最喜欢的组合数学题了。</p>
+<p>考虑枚举空了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个点， 那么就要用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个空将 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">n-i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个分开，因为空格不能连续，所以方案数是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mi>i</mi></mfrac><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">n-i \choose i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.255674em;vertical-align:-0.35001em;"></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9056639999999999em;"><span style="top:-2.3550000000000004em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span style="top:-3.144em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span></span></span></span>, 因为这个格子是环状的，所以需要考虑第一个格子时空的情况，那么就是在剩下的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-i-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 里面选 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个就可以了。</p>
+<p>因为 <code>a</code> 和 <code>b</code> 可以互换，而且顺序可以随意打乱，所以答案还要乘上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>(</mo><mi>n</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo></mrow><annotation encoding="application/x-tex">2(n-i)!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mclose">!</span></span></span></span> 。</p>
+<p>代码。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#define int long long
+const int N = 1000005, P = 1000000007;
+int fac[N], inv[N], n, ans;
+int Pow(int a, int b) {
+	int an = 1;
+	while(b) {
+		if(b &amp; 1) an = an * a % P;
+		a = a * a % P;
+		b &gt;&gt;= 1;
+	}
+	return an;
+} 
+int C(int n, int m) { return fac[n] * inv[m] % P * inv[n-m] % P; }
+signed main() {
+	scanf(&quot;%lld&quot;, &amp;n);
+	fac[0] = 1;
+	for(int i = 1; i &lt;= n; i++) fac[i] = fac[i-1] * i % P;
+	inv[n] = Pow(fac[n], P-2);
+	for(int i = n; i &gt;= 1; i--) inv[i-1] = inv[i] * i % P;
+	for(int i = n&amp;1; i &lt;= n-i; i += 2) ans = (ans + 2*fac[n-i]*(C(n-i, i)+C(n-i-1,i-1)) % P) % P;
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+<h2 id="abc-204">ABC 204</h2>
+<h3 id="e-2">E</h3>
+<p>E 犯了一个重大失误，没有验证过二分性就直接上二分了，导致最后调了很久才发现这个问题并改正，不然肯定会掉很多的分了，那就成悲剧了。</p>
+<h3 id="f-2">F</h3>
+<p>主要讲 F。</p>
+<blockquote>
+<p>用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1 \times 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 \times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的格子覆盖 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n \times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的矩形的方案数。</p>
+</blockquote>
+<p>注意到数据范围 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">n \le 6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>，那么显然就是要状压掉一列的内容了。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i, S}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 表示前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 行最后一行是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> （横着叉出去是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 否则是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>）的方案数。转移的话就是枚举前面一行的状态，然后再枚举一下空的哪些用 $1\times 2 $ 哪些用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 \times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的就可以了。</p>
+<p>但是一看 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的范围是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>12</mn></msup></mrow><annotation encoding="application/x-tex">10^{12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span> 这个范围也非常明显的是要让你矩阵乘法快速幂的优化的或者某些神奇的根号算法的。我们注意到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T \to S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 的转移里面枚举的哪些用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1 \times 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 得出方案数的答案是固定的。所以可以把转移这样表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>S</mi></mrow></msub><mo>=</mo><mo>∑</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>T</mi></mrow></msub><mo>⋅</mo><mi>c</mi><mo>(</mo><mi>S</mi><mo separator="true">,</mo><mi>T</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">f_{i, S} = \sum f_{i-1, T} \cdot c(S, T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span>，后面的那个东西处理出来就是标准的矩阵乘法了。</p>
+<p>说起来轻松但是当我自己写的时候还是遇到了很多的问题，大概是我对于矩阵乘法快速幂的理解不够深刻吧。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define int long long
+const int P = 998244353;
+int n, m;
+struct twt {
+	int v[1 &lt;&lt; 6][1 &lt;&lt; 6], n, m;
+	int* operator [] (int x) { return v[x]; }
+	twt() { memset(v, 0, sizeof v); }
+	friend twt operator * (twt a, twt b) {
+		twt c;
+		c.n = a.n, c.m = b.m;
+		for(int i = 0; i &lt; 	c.n; i++)
+			for(int j = 0; j &lt; c.m; j++)
+				for(int k = 0; k &lt; a.m; k++)
+					c[i][j] = (c[i][j] + a[i][k] * b[k][j] % P) % P;
+		return c;
+	}
+} f, c;
+twt Pow(twt a, int b) {
+	twt an = a; b--;
+	while(b) {
+		if(b &amp; 1) an = an * a;
+		a = a * a;
+		b &gt;&gt;= 1;
+	}
+	return an;
+}
+signed main() {
+	scanf(&quot;%lld%lld&quot;, &amp;n, &amp;m);
+	f.n = 1, f.m = 1 &lt;&lt; n;
+	f[0][0] = 1;
+	c.n = c.m = 1 &lt;&lt; n;
+	for(int i = 0; i &lt; (1 &lt;&lt; n); i++)
+		for(int j = 0; j &lt; (1 &lt;&lt; n); j++)
+			for(int k = 0; k &lt; (1 &lt;&lt; n); k++) 
+				if((i | j | k | (k &lt;&lt; 1)) == i + j + k + (k &lt;&lt; 1)
+				&amp;&amp; i + j + k + (k &lt;&lt; 1) &lt; 1 &lt;&lt; n) c[i][j] ++;
+	f = f * Pow(c, m);
+	printf(&quot;%lld&quot;, f[0][0]);
+	return 0;
+}
+</code></pre>
+<p>我遇到的问题大概都是在起始状态和停止状态上。<br>
+要记住，矩阵描述的是满足结合律的运算，所以直接把后面变换的那个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span> 矩阵和我们原来的初始状态相乘就可以了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2021.6.5 校内模拟赛游记]]></title>
         <id>https://acfboy.pw/20210605/</id>
@@ -900,73 +1131,6 @@ int main() {
 </blockquote>
 <p>翘翘所谓的可爱，只是在原来可爱优秀的同学们中受感染的罢了。只有真正的独立的做到和坚持“心地干净，思路清晰，没有多余情绪和妄想”，才是真正可爱的翘翘。</p>
 <p>任何时候改变都来的及，前方的路还长。加油。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2021.5.21 模拟赛游记]]></title>
-        <id>https://acfboy.pw/20210521/</id>
-        <link href="https://acfboy.pw/20210521/">
-        </link>
-        <updated>2021-05-21T06:36:15.000Z</updated>
-        <summary type="html"><![CDATA[<p>其实又是未遵循标准程序造成的严重事故征候。</p>
-<p>吸取了上次的经验，开始记录较为详细的 CVR 数据了，用来 <s>热烈庆祝</s> 加速调查。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>其实又是未遵循标准程序造成的严重事故征候。</p>
-<p>吸取了上次的经验，开始记录较为详细的 CVR 数据了，用来 <s>热烈庆祝</s> 加速调查。</p>
-<!-- more -->
-<p>先放上 CVR 数据：</p>
-<pre><code class="language-CVR">比赛开始于 0110Z
-
-共产生三份备份，备份最终修改时间 0218Z 0239Z 和 0318Z。
-未进行回滚。
-
-A:
-// 0130Z - coding completed
-// 0137Z - before submit checklist completed
-
-B:
-// 0210Z - coding compeleted
-// 0211Z - error occured ! 
-// 0225Z - extra tests begin
-// 0235Z - error occured !
-// 0310Z - skip procedues
-// 0328Z - debug again
-// 0343Z - before submit checklist compeleted
-
-C:
-未执行检查单。
-</code></pre>
-<h2 id="a">A</h2>
-<p>看题之后先瞎想了一会儿，然后模拟了一下暴力思路，很快发现了重复，写出了正解。</p>
-<p>由 CVR 数据可知在比赛开始之后二十分钟写完了，然后没经过什么调试并在七分钟后完成了提交前检查单。对于模拟赛第一题来说这个速度可能略微有一点慢，但从总体看对这场比赛的影响不大。</p>
-<h2 id="b1">B1</h2>
-<p>明明是数位 dp 的模板，但事情有一点儿不太对劲了。</p>
-<p>从 CVR 看，B 题完成第一份代码一共使用了超过半小时，对于一个不是很复杂的模板这个用时显然有一点高了。</p>
-<p>随后开始执行提交前检查单，很快发现了错误，即输入数据无法使用整型进行存储，然后开始修正，最终在十多分钟后通过了样例。由于独立完成的数位 dp 不多，所以有点不放心，而且人工难以完成检查单所要求的 tests, 所以开始对拍。</p>
-<p>然后直接就拍出了错误……接着就是一堆的调试了。</p>
-<p>甚至写完之后一个小时了都没有调处来，因为这题总用时已经达到一小时三十分，严重超出了最开始的计划，所以执行跳题程序，先去 C 了。</p>
-<h2 id="c">C</h2>
-<p>看了题觉得是有什么结论的，但是由于前一题的原因，直接就写了个模拟，时间上可能是可以过的，但是没空考虑证明了，所以这大概是一个谭变。</p>
-<p>既然没有给出啥证明，就觉得 <s>速度大点没事</s>，检查单啥的不管了。</p>
-<h2 id="b2">B2</h2>
-<p>调了一会儿总算是调出来了。一个很傻的小问题。</p>
-<p>比赛开始之后两小时三十二分完成了检查单。</p>
-<h2 id="然后">然后……</h2>
-<p>然后呢！这个时候明明已经完成了，为什么不去做最后一题的检查单？！</p>
-<p>最后因为 （返回值不为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>）</p>
-<pre><code class="language-cpp">if(b == 0) return printf(&quot;%lld\n&quot;, ans);
-</code></pre>
-<p>而 RE 了，失去了 AK 的机会。</p>
-<p>还是得讲一下最后一题的：</p>
-<blockquote>
-<p>两个数，每次可以把大的一个减去小的并把小的一个翻倍，问多少次之后一个为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
-</blockquote>
-<p>反过来考虑这个问题，若最后有解，那么一次次的分裂之中不可能超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log_2 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 级别次，所以复杂度是对的。</p>
-<p>事实上还有一种更简单的做法：因为永远是把一个减掉，所以分的最小的块就是两个的最大公约数了，除掉这个公约数答案不会发生变化。而由前面的分裂理论得到，把两个数的和除掉公约数然后取个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\log_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 就可以了。</p>
-<h2 id="结论和建议">结论和建议</h2>
-<p>这次严重事故征候的原因主要在于对于简单问题过于放松，未完整执行检查单。</p>
-<p>所以建议在任何情况下都应遵循标准操作程序并严格执行检查单。同时，对 IO 的检查中也应该加入对输出后退出的检查， tests 检查中应确认程序返回值。</p>
-<p>对于一些合并的证明可以反向思考。</p>
 ]]></content>
     </entry>
 </feed>
