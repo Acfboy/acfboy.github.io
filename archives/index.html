@@ -1,705 +1,89 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Acfboy 的博客</title>
-<link rel="shortcut icon" href="https://acfboy.pw/favicon.ico">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://acfboy.pw/styles/main.css">
-<link rel="apple-touch-icon" href="https://acfboy.pw/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="XiaoX 博客">
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-
-<!-- iconfont -->
-<link href="https://at.alicdn.com/t/font_2463772_glcffdg0qau.css" rel="stylesheet" />
-
-
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
-
-<!-- DEMO JS -->
-<script src="media/scripts/index.js"></script>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Page Not Found</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      text-align: center;
+    }
+    .box {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .number {
+      font-size: 80px;
+      color: #666;
+      font-weight: bold;
+    }
+    .text {
+      font-size: 14px;
+      margin: 24px;
+      color: #333;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: center;
+    }
+    .btn {
+      padding: 8px 24px;
+      display: inline-block;
+      text-decoration: none;
+      background: #fff;
+      border: 2px solid #efefef;
+      color: #333;
+      margin: 24px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .footer {
+      padding: 16px;
+      border-top: 1px solid #efefef;
+      color: #777;
+      font-weight: lighter;
+    }
+    .footer a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="main">
-    <div class="main-content">
-      <div class="nav-bar">
-  <!-- 首页菜单 -->
-  <div class="menu-container">
-    <a href="https://acfboy.pw/index.html" target="_parent" class="home">
-      <svg class="home-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
-        <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z"></path>
-        <path fill="#fff"
-          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z">
-        </path>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222">
-        </path>
-      </svg>
-      <span class="home-title">Home</span>
-    </a>
-
-    <div class="nav-menu">
-      
-      
-      <a href="/" class="menu">
-        首页
-      </a>
-      
-      
-      
-      <a href="/archives" class="menu">
-        归档
-      </a>
-      
-      
-      
-      <a href="/tags" class="menu">
-        标签
-      </a>
-      
-      
-      
-      <a href="/about" class="menu">
-        关于
-      </a>
-      
-      
-
-
-
-      <a href="https://acfboy.pw/atom.xml" target="_blank" class="rss">
-        <span class="rss-title">RSS</span>
-        <i class="iconfont icon-rss"></i>
+  <div class="box">
+    <div class="number">博客暂时关闭</div>
+    <div class="text">
+        为了保护一些 xxs, 本博客暂时关闭。
+    </div>
+    <div class="btn-container">
+      <a class="btn" id="back">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="margin-right: 8px;">
+          <path fill="none" d="M0 0h24v24H0z"/>
+          <path d="M5.828 7l2.536 2.536L6.95 10.95 2 6l4.95-4.95 1.414 1.414L5.828 5H13a8 8 0 1 1 0 16H4v-2h9a6 6 0 1 0 0-12H5.828z"/>
+        </svg>
+        Back
       </a>
     </div>
   </div>
-</div>
-
-      <div class="site-header">
-  <!-- 首页头像 -->
-  <div class="site-avatar">
-    <a href="https://acfboy.pw">
-      <img class="avatar" src="https://acfboy.pw/images/avatar.png?v=1623059810597" alt="">
-    </a>
-  </div>
-  <!-- 首页标题 -->
-  <h1 class="site-title">
-    Acfboy 的博客
-  </h1>
-  <!-- 首页描述 -->
-  <p class="site-description">
-    纵世事物欲横流，仍心归少年志向。
-  </p>
-  <!-- 社交软件 -->
-  <div class="social-container">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  </div>
-</div>
-
-      
-
-<div class="archives-container">
-  
-  <h2 class="year">2021</h2>
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/cf724-abc204/">
-      <h2 class="post-title">
-        Codeforces Round #724 &amp; ABC204 游记
-        <small>2021-06-07</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210605/">
-      <h2 class="post-title">
-        2021.6.5 校内模拟赛游记
-        <small>2021-06-05</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/cf1031d/">
-      <h2 class="post-title">
-        题解 CF1031D Minimum path
-        <small>2021-06-04</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/cf1089f/">
-      <h2 class="post-title">
-        题解 CF1089F Fractions
-        <small>2021-06-02</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210602/">
-      <h2 class="post-title">
-        2021.6.2 模拟赛游记
-        <small>2021-06-02</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/ohhhh/">
-      <h2 class="post-title">
-        ABC 203 &amp; Deltix Round, Spring 2021 游记
-        <small>2021-05-31</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210529/">
-      <h2 class="post-title">
-        2021.5.29 比赛记录
-        <small>2021-05-30</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/shenmeguimodui/">
-      <h2 class="post-title">
-        题解 由乃喜欢二次离线根号黑科技
-        <small>2021-05-25</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/apio2021/">
-      <h2 class="post-title">
-        APIO 2021 游记
-        <small>2021-05-24</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/abc202/">
-      <h2 class="post-title">
-        AtCoder Beginner Contest 202 游记
-        <small>2021-05-24</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210521/">
-      <h2 class="post-title">
-        2021.5.21 模拟赛游记
-        <small>2021-05-21</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210519/">
-      <h2 class="post-title">
-        2021.5.19 校内模拟赛游记
-        <small>2021-05-19</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/arc119/">
-      <h2 class="post-title">
-        AtCoder Regular Contest 119 游记
-        <small>2021-05-17</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/educational-codeforces-round-109/">
-      <h2 class="post-title">
-        Educational Codeforces Round 109 游记
-        <small>2021-05-17</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/abc201/">
-      <h2 class="post-title">
-        AtCoder Beginner Conteset 201 游记
-        <small>2021-05-17</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/2018ping-heng-shu/">
-      <h2 class="post-title">
-        题解 [CCC 2018]平衡树
-        <small>2021-05-15</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210514/">
-      <h2 class="post-title">
-        2021.5.14 模拟赛游记
-        <small>2021-05-14</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/scoi2009fen-shua-jiang/">
-      <h2 class="post-title">
-        题解 [SCOI2009]粉刷匠
-        <small>2021-05-14</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210512/">
-      <h2 class="post-title">
-        2021.5.12 校内模拟赛游记
-        <small>2021-05-12</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/arc089c/">
-      <h2 class="post-title">
-        题解  [ARC089C] GraphXY
-        <small>2021-05-12</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/antitreap/">
-      <h2 class="post-title">
-        十分钟“平衡树”
-        <small>2021-05-11</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/abc200-and-arc118/">
-      <h2 class="post-title">
-        ABC200 &amp; ARC118 游记
-        <small>2021-05-10</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/apio2016hua-ting/">
-      <h2 class="post-title">
-        题解 [APIO2016]划艇
-        <small>2021-05-08</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/apio2015ba-li-dao-de-diao-su/">
-      <h2 class="post-title">
-        题解 [APIO2015]巴厘岛的雕塑
-        <small>2021-05-07</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210507/">
-      <h2 class="post-title">
-        2021.5.7 校内模拟赛游记。
-        <small>2021-05-07</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/cf961e/">
-      <h2 class="post-title">
-        题解 CF961E Tufurama
-        <small>2021-05-06</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/cf576d/">
-      <h2 class="post-title">
-        题解 CF576D Flights for Regular Customers
-        <small>2021-05-05</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/csp-s2019-emiya-jia-jin-tian-de-fan/">
-      <h2 class="post-title">
-        题解 [CSP-S2019] Emiya 家今天的饭
-        <small>2021-05-05</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210504/">
-      <h2 class="post-title">
-        2021.5.4 校内模拟赛游记
-        <small>2021-05-04</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/apio2013daolufeiyong/">
-      <h2 class="post-title">
-        题解  [APIO2013]道路费用
-        <small>2021-05-04</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/codeforces-global-round-14/">
-      <h2 class="post-title">
-        Codeforces Global Round 14 掉分记
-        <small>2021-05-03</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/zone-energy-programming-contest/">
-      <h2 class="post-title">
-        ZONe Energy Programming Contest 游记
-        <small>2021-05-02</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210430/">
-      <h2 class="post-title">
-        2021.4.30 校内模拟赛游记
-        <small>2021-04-30</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/apio2013robot/">
-      <h2 class="post-title">
-        题解 [APIO2013]机器人
-        <small>2021-04-29</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/poi2014hothotels/">
-      <h2 class="post-title">
-        题解 [POI2014]HOT-Hotels
-        <small>2021-04-28</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/scoi2015guoqijihua/">
-      <h2 class="post-title">
-        题解 [SCOI2015]国旗计划
-        <small>2021-04-28</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210428/">
-      <h2 class="post-title">
-        2021.4.28 校内模拟赛游记
-        <small>2021-04-28</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/noio1magic/">
-      <h2 class="post-title">
-        题解 [NOI Online #1 入门组] 魔法
-        <small>2021-04-27</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/shulianfubin/">
-      <h2 class="post-title">
-        题解 “数链抙玢”
-        <small>2021-04-27</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/noio1running/">
-      <h2 class="post-title">
-        题解 [NOI Online #1 入门组] 跑步
-        <small>2021-04-26</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/haoi2009qiuhuiwenchuan/">
-      <h2 class="post-title">
-        题解 [HAOI2009]求回文串
-        <small>2021-04-26</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/shoi2007shuguidechicun/">
-      <h2 class="post-title">
-        题解 [SHOI2007]书柜的尺寸
-        <small>2021-04-25</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210425/">
-      <h2 class="post-title">
-        2021.4.25 校内模拟赛游记
-        <small>2021-04-25</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/abc199/">
-      <h2 class="post-title">
-        AtCoder Beginner Contest 199 游记
-        <small>2021-04-25</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/cf1517/">
-      <h2 class="post-title">
-        Contest 2050 and Codeforces Round #718 游记
-        <small>2021-04-24</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210423/">
-      <h2 class="post-title">
-        2021.4.23 校内模拟赛游记
-        <small>2021-04-23</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/cf1516/">
-      <h2 class="post-title">
-        Codeforces Round #717 (div.2) 游记
-        <small>2021-04-22</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/20210421/">
-      <h2 class="post-title">
-        题解 [BalticOI 2020 Day2] 村庄
-        <small>2021-04-22</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/mei-kai-san-du/">
-      <h2 class="post-title">
-        梅 开 三 度
-        <small>2021-04-22</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-  <article class="post">
-    <a href="https://acfboy.pw/agc035c/">
-      <h2 class="post-title">
-        题解 [AGC035C] Skolem XOR Tree
-        <small>2021-04-21</small>
-      </h2>
-    </a>
-  </article>
-  
-  
-  
-</div>
-
-      <div class="pagination-container">
-  
-  
-  <a href="https://acfboy.pw/archives/page/2" class="next-page">下一页</a>
-  
-</div>
-
-      <div class="site-footer">
-  本博客所有原创内容按 cc0 协议最大限度放弃知识产权<br><b>Links: <a href="https://github.com/Acfboy/acfboy.github.io/tree/master/source">博文源码地址</a></b><br>
-  <b>Theme: </b>
-  <a href="https://github.com/chiperman/gridea-theme-porky" target="_blank" title="Porky">
-    <span><b>Porky</b></span>
-  </a>
-  <b> Powered by </b>
-  <a href="https://gridea.dev/" target="_blank" title="Gridea">
-    <span><b>Gridea</b></span>
-  </a>
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
-    </div>
-  </div>
+  <footer class="footer">
+    Powered by <a href="https://gridea.dev" target="_blank">Gridea</a>
+  </footer>
+  <script>
+    var back = document.getElementById('back')
+    back.onclick = function() { console.log('run...'); history.back() }
+  </script>
 </body>
-
 </html>
