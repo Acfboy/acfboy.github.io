@@ -119,10 +119,17 @@
 			}
 		}
 	
-		var s = window.location.href;
+		let s = window.location.href;
 		var trans = new Base64();
 		while (s.match('%22') != null) s = s.replace('%22', '"');
 		s = s.split('?')[1];
+		
+		if (s.length < 10) {
+			readTextFile("https://www.luogu.com.cn/paste/" + s, 'html', function(text) { s = text; })
+			s = s.split('<AFCC>')[1];
+			console.log(s)
+		}
+		
 		s = trans.decode(s)
 		var data = JSON.parse(s)
 		var beg = Number(data.st), end = Number(data.ed);
@@ -155,6 +162,7 @@
 							subs[i].tm[data.problems[j]] = c.epoch_second;
 							if (subs[i].pl[data.problems[j]] == undefined) 
 								subs[i].pl[data.problems[j]] = 0;
+							ple[i] += (c.epoch_second * 1000 - beg) / 1000;
 						}
 						if (c.result != 'CE' && c.result != 'AC') {
 							if (subs[i].pl[data.problems[j]] == undefined) 
