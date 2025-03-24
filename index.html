@@ -1,6 +1,128 @@
-<script language="JavaScript1.2" type="text/javascript"> 
-function delayURL(url, time) { 
-  setTimeout("top.location.href='" + url + "'", time); 
-} 
-delayURL("https://cnblogs.com/Acfboy", 0); 
-</script> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baoshuo's Profile</title>
+  </head>
+  <body>
+    <div class="profile-container">
+      <header>
+        <h1>Hello,<br />I'm Acfboy</h1>
+        <p>Student / Developer / Competitve Programmer</p>
+        <div class="contact-info">
+          <a href="https://github.com/Acfboy" target="_blank">GitHub</a>
+          <a href="https://www.cnblogs.com/acfboy" target="_blank">Blog</a>
+        </div>
+      </header>
+      <div class="about-me">
+        <h2>About Me</h2>
+        <p>
+          I'm a freshman majoring in Physics at Lanzhou University, with strong
+          interests in physics, computer science, and other fun stuffs.
+        </p>
+        <p>
+          Driven by lifelong curiosity about how technology works and how
+          pushing computational boundaries can transform our world, I constantly
+          challenge myself to learn emerging technologies, master advanced
+          tools, and explore relevant theories.
+        </p>
+        <p>
+          During high school, I participated in the Olympiad in Informatics,
+          which helped me build a solid foundation in algorithms and data
+          structures. This experience not only broadened my perspective on
+          technology's possibilities, but also clarified my aspirations in
+          technology development.
+        </p>
+        <p>
+          I believe in the power of collaboration and brainstorming. While being
+          an outgoing person who enjoys social activities and group projects, I
+          also value quiet time for deep reading. In this age of instant online
+          information, I maintain that well-structured books remain essential
+          for gaining systematic understanding of any technical or scientific
+          field, though there are lots of good blogs in the Internet that really
+          helps.
+        </p>
+        <p>
+          Right now, I'm focused on getting solid on the theory side, and
+          grinding through toy projects to level up my coding chops. Once ready,
+          I hope to tackle some real-world challenges – that's what gets me
+          pumped!
+        </p>
+      </div>
+    </div>
+  </body>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .profile-container {
+      width: 50%;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      .profile-container {
+        width: 90%;
+        margin: 0;
+      }
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .contact-info {
+      margin-top: 10px;
+    }
+
+    .contact-info a {
+      margin: 0 5px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px dotted #333;
+    }
+
+    .profile-details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .location p,
+    .contact p {
+      margin: 5px 0;
+    }
+
+    .about-me {
+      line-height: 1.6;
+    }
+
+    .about-me h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .about-me p {
+      margin-bottom: 10px;
+    }
+  </style>
+</html>
